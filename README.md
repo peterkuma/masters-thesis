@@ -1,3 +1,3 @@
 **This is a DRAFT**
 
-See [thesis.pdf](thesis.pdf).
+See [thesis.pdf](raw/master/thesis.pdf).
