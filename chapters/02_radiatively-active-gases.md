@@ -121,16 +121,16 @@ of continuum due to photodissociation, although Huggins bands have more
 irregular structure.
 
 Of the three, Hartley bands are the strongest. They cover the region between
-240-310 nm. Because of the strength, they absort most incident solar radiation
+240–310 nm. Because of their strength, they absort most incident solar radiation
 in the mesopshere and stratosphere.
 
 [Ozone shortwave bands. Data from @serdyuchenko2012. \label{fig:ozone-shortwave-bands}](img/ozone-shortwave-bands.png)
 
 Huggins bands cover the region of 310–340 nm.
 
-Although Chappuis bands are weakest of the three, they are important for
+Although Chappuis bands are the weakest of the three, they are important for
 atomospheric absorption, because they lie in the region of 450–750 nm,
-where solar radiation the strongest. Their principal location of absorption
+where solar radiation is the strongest. Their principal location of absorption
 is in the troposhpere.
 
 ### O2
@@ -143,14 +143,14 @@ moment, it has a permanent magnetic moment, enabling rotational transitions
 to occur.
 
 Outside of the ultraviolet region, oxygen absorbs in the _red_ and _infra-red_
-bands.
-They are associated with the a←X (resp. b←X) electronic transition
-in combination with vibrational-rotational transitions.
-The red bands comprise band A centered at 762 nm, band B at 688 nm, and
-band γ at 628 nm. Infra-red bands are centered at 1.58 μm, 1.27 μm and
-1.06 μm. Although relatively sparse, the red bands are important to
-the troposheric energy budget, because they they are located at the peak of
-the solar spectrum [@liou2002].
+bands. They are associated with the $\mathrm{a\leftarrow X}$ (resp.
+$\mathrm{b\leftarrow X}$) electronic transition in combination with
+vibrational-rotational transitions. The red bands comprise band A centered
+at 762 nm, band B
+at 688 nm, and band γ at 628 nm. Infra-red bands are centered at 1.58 μm, 1.27
+μm and 1.06 μm. Although relatively sparse, the red bands are important to the
+troposheric energy budget, because they they are located at the peak of the
+solar spectrum [@liou2002].
 
 Oxygen molecules are known to form dimers with some other
 atmospheric constituents, notably O~2~.N~2~ and O~4~. These have additional
