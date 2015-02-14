@@ -124,7 +124,18 @@ Of the three, Hartley bands are the strongest. They cover the region between
 240–310 nm. Because of their strength, they absort most incident solar radiation
 in the mesopshere and stratosphere.
 
-[Ozone shortwave bands. Data from @serdyuchenko2012. \label{fig:ozone-shortwave-bands}](img/ozone-shortwave-bands.png)
+\begin{figure}
+\includegraphics[width=\textwidth]{ozone-absorption/ozone-absorption.pdf}
+\caption{
+\label{fig:ozone-shortwave-bands}
+\textbf{Ozone shortwave bands.}
+Absorbed solar radiation (red) and absorption cross section
+(blue) of $\mathrm{O_3}$.
+Indicated are approximate regions of the Hartley, Huggins and Chappius
+absorption bands.
+Data from \cite{serdyuchenko2012}.
+}
+\end{figure}
 
 Huggins bands cover the region of 310–340 nm.
 
