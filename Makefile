@@ -5,7 +5,7 @@ BIBLIOGRAPHY=$(wildcard bib/*)
 
 NAME:=thesis
 PANDOC:=pandoc
-PANDOC_FLAGS:=-w latex --toc --standalone --biblatex -V documentclass=book -V mainfont="Palatino Linotype" -V sansfont="Source Sans Pro" -V numbersections
+PANDOC_FLAGS:=-w latex --toc --standalone --biblatex -Vdocumentclass=book -Vfontsize=12pt -Vmainfont="Lora" -Vsansfont="Source Sans Pro" -Vnumbersections
 BIBER:=biber
 LATEX_ENGINE:=xelatex
 LATEX_FLAGS:=-file-line-error -halt-on-error -output-directory build
@@ -18,7 +18,7 @@ clean:
 	rm -f build/*
 
 $(NAME).pdf: build/$(NAME).pdf
-	cp build/$(NAME).pdf .
+	pdftk cover.pdf build/$(NAME).pdf cat output $(NAME).pdf
 
 #build/$(NAME).pdf: build/$(NAME).tex
 #	latexmk -e '$$pdflatex=q/xelatex -synctex=1 -interaction=nonstopmode/' -pdf -jobname=build/$(NAME) build/$(NAME).tex

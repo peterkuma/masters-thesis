@@ -174,13 +174,85 @@ Distribution of Gases in the Atmosphere
 Absorption Lines
 ----------------
 
-### Line Boadening
+Atmospheric gases do not in fact absorb and emit radiation at exact
+wavelengths – if they did we would probably hardly observe any absorption,
+because the likelihood of an EM wave of exact wavelength interacting with
+a molecule would be negligible. Instead, absorption lines are spread out
+over a range of frequencies by three types of processes:
 
-### Lorentz Line Shape
+* Natural broadening
+* Doppler broadening
+* Pressure broadening
+
+_Natural broadening_ occurs due to quantum mechanical effects and is very weak
+compared to the other two. Therefore, it has little importantce to atmospheric
+radiative transfer.
+
+_Doppler broadening_ occurs due to Doppler shift in frequency as observed
+by a moving molecule. It has a normal (Gaussian) shape. Doppler broadening is
+relative strongest in the upper atmosphere.
+
+_Pressure broadening_ is the most important type of broadening to atmospheric
+physics. It occurs due to collisions between molecules, which impose
+a finite time limit on absorption and emission of a monochromatic EM wave.
+
+Effects of all three types of broadening are combined together to produce
+a characteristic _line shape_ of an absorbtion line. Line shape is defined
+as function f(ν), such that:
+
+$$
+k_\nu = Sf(\nu)
+$$
+
+where S is the strength of a line. The shape function itself is normalised to
+unity:
+
+$$
+\int_0^\infty f(\nu) \mathrm{d}\nu = 1
+$$
+
+### Pressure Broadening
+
+Molecules in the atmosphere collide with each other at very high frequency.
+Every time a collision happens any absorption or emission process which
+is underway is interrupted. When a stimulation by a monochromatic wave
+is limited to a finite amount of time, this is equivalent to stimulation
+by a rage of frequencies, which can be reconstructed by performing Fourier
+transform on the amplitude function. By taking into account the statistical
+distribution of time between collisions (Poisson distribution), we can
+calculate the relative probability of absorpiton/emission at every frequency.
+The derivation is carried out in e.g. @zdunkowski2007, here we show only
+the important result – the _Lorentz line shape_:
 
 $$
 f(\nu) = \frac{\alpha}{\pi[(\nu - \nu_0)^2 + \alpha^2]}
 $$
+
+where ν~0~ is the line center and α the line _half-width_.
+It should be noted that this only applies to high enough wavenumbers
+(compared to the half-width), but this is only concern to microwaves and longer
+wavelengths.
+
+The half-width α depends on the mean time between collision, which can be
+expressed in terms of pressure and temperature as:
+
+$$
+\alpha = \alpha_0 \frac{p}{p_0} \left(\frac{T_0}{T}\right)^n
+$$
+
+where α~0~ is the half-width at reference pressure and temperature p~0~, T~0~,
+and n is empirically determined exponent, which depends on the type of the
+molecule.
+
+It has to be said that the theory outlined above (_Michelson-Lorentz theory_)
+does not hold exactly [@goody1995].
+Especially, collisions themselves are not instantaneous, but take finite
+amount of time. Perhaps most importantly, the Lorentz line shape is
+insuffiecient in describing the line shape in far-wings of lines, which
+contribute very significantly to absorption in spectral windows, where
+there is no other absorption, and a far-wings of many distant lines add up.
+Overall, it has been established that the Lorentz line shape _underestimates_
+absorption in far-wings, and _overestimates_ absorption near line centers.
 
 ### Voigt Line Shape
 
@@ -229,7 +301,7 @@ $$
 W = 2\pi\alpha L(\tilde{u})
 $$
 
-where L is the Ladenberg-Reiche function, defined in terms of the modified
+where L is the Ladenburg-Reiche function, defined in terms of the modified
 Bessel function of the first kind:
 
 $$
@@ -270,7 +342,6 @@ explained sources of continuum absoprtion at lower frequencies due to:
 * _Self continuum_
 * _Foreign continuum_
 * Absorption by dimers and multimers
-* Deviation of the true line shape from the theoretical line function
 
 Event though contiuum absorption is generally weak comparable to line absorption
 (with the exception of UV)

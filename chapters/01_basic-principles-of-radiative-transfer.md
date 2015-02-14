@@ -5,13 +5,13 @@ The Electromagnetic Spectrum
 -----------------------------
 
 Radiation in the atmosphere is for the most part well represented by
-electromagnetic waves. These waves originate from multiple sources, most
-importantly the Sun, the Earth's surface and atmospheric gases and continutents
-(clouds and suspended particles). They have different wavelengths
-depending on the temperature of the radiating object through the
-Planck's law. Radiation of different wavelenghts is subject to different levels
-of absorption and scattering when passing through the atmosphere. Traditionally,
-the electromagnetic spectrum is split into a number of regions
+electromagnetic (EM) waves. Electromagnetic waves originate from multiple
+sources, most importantly the Sun, the Earth's surface and atmospheric gases and
+continutents (clouds and suspended particles). They have different wavelengths
+depending on the temperature of the radiating object through the Planck's law.
+Radiation of different wavelenghts is subject to different levels of absorption
+and scattering when passing through the atmosphere. Traditionally, the
+electromagnetic spectrum is split into a number of regions
 (Fig. \ref{fig:em-spectrum}):
 
 * Gamma radiation
@@ -31,8 +31,10 @@ Specifically, our interest will be on everything between UV-C and far infrared.
 Ultraviolet radiation (UV) is radiated in appreciable amounts only by very hot
 objects, such as the Sun. It is highly energetic, capable of causing electrons
 to be released from atoms (photoionisation) and breaking up molecules
-(photodissociation). Ultraviolet radiation is further split into three
-subregions[^uv-definition]:
+(photodissociation). Ultraviolet radiation spans wavelengths 10 – 400 nm.
+The UV spectrm is further split into multiple subregions,
+out which only the last three are of interest to atmospheric radiative
+transmission[^uv-definition]:
 
 * UV-C: 100 nm–280 nm
 * UV-B: 280 nm–320 nm
@@ -44,8 +46,8 @@ with little attenuation. Ultraviolet radiation has to be considered in radiation
 schemes, because it contributes sigificantly to heating of stratosphere. It is
 also imporant due to its influence on atmospheric chemistry (Chapman reactions).
 
-[^uv-definition]: The precise choice is somewhat arbitrary, and various
-definitions can be found.
+[^uv-definition]: The precise choice of boundaries is somewhat arbitrary,
+and various definitions can be found.
 
 ### Visible Light
 

@@ -1,5 +1,5 @@
-Approximate Solution of the Radiative Transfer Equation
-=======================================================
+Approximate Solutions of the Radiative Transfer Equation
+========================================================
 
 In order to make integration of the radiative transfer equation computationally
 feasible, and number of approximations are commonly taken along each axis
@@ -25,6 +25,19 @@ influence by a special cloud overlap treatment.
 Alternative to the plane parallel approximation is a full three-dimensional
 treatment of radiation, generally performed by Monte Carlo simulation. This
 is however too computationally expensive to be done in today NWP models.
+
+### Layers
+
+In the plane-parallel approximation the atmosphere is often
+discretized into _layers_, in which quantities such as temperature or
+gaseous concentrations are constant. Layer interfaces (boundaries) are
+defined by fixed vertical coordinates, usually pressure levels.
+
+In the following text we assume that layers are numbered from top to bottom by
+integer number k, where $k = 1$ is the uppermost layer, and $k = N$ the layer
+just above the surface. Some quantities, such as fluxes, need to be determined
+on layer interfaces. The layer interface corresponding to the ToA will be numered
+$k = 0$, increasing down to the atmopshere-surface interface $k = N$.
 
 ### 1-D Form of the Radiative Transfer Equation
 
@@ -57,6 +70,12 @@ somewhat less sound.
 ### Diffusivity Factor
 
 ### RTE in Delta-Two Stream Approximation
+
+The differential form of the RTE can be integrated over the azimuthal angle
+and both hemispheres two give two simplified ordinary differenential equations
+valid for the two-stream approximation.
+
+
 
 Band Models
 -----------
@@ -160,6 +179,45 @@ is fitted by measured values.
 
 Adding Method
 -------------
+
+The _adding method_ is a method of finding a solution to fluxes for given
+optical depths and temperature of layers. The adding method assumes that the
+plane parallel approximation, δ-two stream approximation and layer
+discretization have been made.
+
+A relationship between fluxes at the top and bottom interfaces of a layer
+can be found from the δ-two-stream differential equations.
+
+$$
+\begin{pmatrix}
+S_k\\
+F^\downarrow_k\\
+F^\uparrow_{k-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+a_1  &0    &0\\
+a_2  &a_3  &a_4\\
+a_5  &a_6  &a_7
+\end{pmatrix}
+\begin{pmatrix}
+S_{k-1}\\
+F^\downarrow_{k-1}\\
+F^\uparrow_k    
+\end{pmatrix}
+$$
+
+The equations for all layers can be consolidated into a system of linear
+equations:
+
+$$
+\mathbb{A}\mathbf{F} = \mathbf{S}
+$$
+
+where $\mathbb{A}$ is a matrix of coefficients (layer transmissivities and
+reflectivities), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
+vector of sources. This system can then be solved for $\mathbf{F}$, which
+is the desired outcome of the adding method.
 
 Net Exchange Rate
 -----------------
