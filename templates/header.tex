@@ -2,12 +2,22 @@
 % \font\standardfont="Times New Roman"
 % \setTransitionsForGreek{\begingroup\standardfont}{\endgroup}
 
-\usepackage{sectsty}
-\allsectionsfont{\sffamily}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\fontsize{22pt}{1.5em}\selectfont\sffamily\bfseries}
+  {\normalfont\itshape\chaptertitlename\ \thechapter}
+  {1em}
+  {\fontsize{26pt}{1.5em}\selectfont}
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+
+\usepackage{caption}
+\DeclareCaptionFormat{captionformat}{\sffamily\textbf{#1#2}#3}
+\captionsetup{format=captionformat}
 
 \usepackage{enumitem}
-\setlist{noitemsep}
-\renewcommand{\labelitemi}{▪}
+%\setlist{noitemsep}
+%\renewcommand{\labelitemi}{▪}
 \renewcommand{\[}{\begin{equation}}
 \renewcommand{\]}{\end{equation}}
 
