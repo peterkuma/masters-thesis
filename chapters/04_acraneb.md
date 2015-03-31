@@ -1,16 +1,30 @@
-ACRANEB
-=======
+Overview of the ACRANEB Radiation Scheme
+========================================
 
-ACRANEB [@ritter1992] is a radiation scheme developed as an alternative to RRTM
-(Rapid Radiative Transfer Model) for use in NWP models. In contrast to
-k-distribution method employed by RRTM, ACRANEB uses a broadband model
-in only two spectral regions – shortwave and longwave, along with combined
-adding method/net exchange rate approach to finding spatial solution of
-the radiative transfer equation. Decrease in accuracy is compensated by
-more frequent updating of cloud cover made possible by shorter integration time.
+ACRANEB [@geleyn1979;@ritter1992;@geleyn2005;@masek2014] is a broadband
+radiation scheme
+developed as an alternative to k-distribution radiation schemes.
+k-distribution schemes are currently the most popular method of solving the
+radiative transfer equation in NWP models, thanks to their superior properties
+to narrow band models used previously. Their computation complexity, however,
+precludes frequent recalculation of fluxes due to changing cloudiness.
+The bradband approach in ACRANEB allows for computational intermittency and
+decoupling of quickly changing cloudiness from slowly changing gaseous absorption
+in radiative computations. As a result, the radiative code can be called at
+every time step, responding rapidly to evolution of cloud cover.
 
-ACRANEB is currently used operatively as a module in the NWP model ALARO
-by a number of countries.
+We can characterise the scheme by choices of methods and approximations:
+
+- horizontally homogeneous
+- $\delta$-two stream approximation
+- broadband model based (two bands: shortwave and longwave)
+- adding method for flux computation
+
+ACRANEB is currently used operatively in the NWP model ALADIN/ALARO of
+the RC LACE[^rc-lace] community. Work on version 2 of ACRANEB commenced in 2011,
+and this text incorporates the recent developments.
+
+[^rc-lace]: Regional Cooperation for Limited Area modeling in Central Europe.
 
 Operation Overview
 ------------------
@@ -22,21 +36,47 @@ _eta cooridates_, transitioning smoothly from σ-coordinates near the surface
 to pressure coordinates in the free atmosphere. Therefore, boundary layers
 follow the ground, while upper layers follow isobaric surfaces.
 
+Apart from an NWP model, ACRANEB can be run in isolation inside a
+single-cell model. This is useful mostly for diagnostic purposes.
+
+### Input and output
+
 The input to the radiation scheme consists of:
 
 * Pressure profile
 * Temperature profile
 * Concentration of gases
 * Cloud fraction and cloud water/ice content
-* Aerosol fraction and properties (?)
+* Aerosol fraction and properties
 * Surface temperature and albedo/emissivity
-* Solar constant (?)
+* Solar constant
 
-The output of the scheme are the broadband fluxes at layer interfaces,
-from which the heating rate of layers can be calculated.
+The output of the scheme are broadband fluxes at layer interfaces,
+from which the heating rate of layers can be calculated by the rest of the
+NWP model.
 
-Apart from an NWP model, ACRANEB can be run in isolation inside a
-single-cell model. This is useful mostly for diagnostic purposes.
+### General principle of operation
+
+The general operation of the scheme can be summarised as follows:
+
+1. Optical thickness and transmissivity/reflectivity coefficients of layers are
+calculated. These are due to gases, clouds and aerosols. The resulting
+layer coefficients are a weighted sum of layer coefficients for the particular
+processes, weighted by optical thickness [@masek2014]:
+
+    \begin{align}
+    \alpha_i = \frac{1}{\Delta\delta}\sum_j \alpha_{i,j}\Delta\delta_j, \quad \Delta\delta = \sum_j \Delta\delta_j
+    \end{align}
+
+2. Integral layer coefficients $a_1, ..., a_4$ are calculated from
+$\alpha_1, ..., \alpha_4$.
+
+3. Fluxes are calculated using the adding method, taking the integral layer
+coefficients as an input.
+
+    **Longwave:** The adding method is performed in total five times with
+    different choices of ‘idealised’ optical thickess, i.e. thickness assuming
+    radiation exchanged with the surface, space, or neighouring layers (resp.).
 
 Broadband Regions
 -----------------
@@ -161,9 +201,145 @@ when we consider the net exchange rate formulation:
 i.e. when we compute the flux divergence R_k by the adding method, it is
 equal to the sum of CTS, EWS and EBL terms. For a suitable choice of sources,
 
+Longwave Solution
+-----------------
 
+In the longwave part of of the spectrum, there are many sources of
+radiation: the Earth's surface and each atmospheric layer. This fact
+makes the situation more complicated than in the shortwave part of the spectrum,
+as broadband optical thickness of layers depends on the path travelled by
+radiation, which is ambiguous. The adding method can accomodate only a
+single choice of optical thickness per layer. However, it is possible to
+overcome this problem with improved accuracy
+(over making a single arbitrary choice of optical thickness)
+by repeating the adding method
+with different choices of optical thickness and combining the results.
 
+Firstly, we should observe that most of the radiation is exchanged with
+space by cooling to space (CTS). Second to that, significant amount of radiation
+is exchanged with surface (EWS). In the third place, radiation is exchanged
+between neighbouring layers and layers further away (EBL).
 
+### Simple Net Exchange Rate Formulation
+
+Consider the following combination of fluxes obtained by the adding method
+with different choices of optical thickness and temperature profile:
+
+\begin{align}
+\mathbf{F} = \mathbf{F}_{0} + (\mathbf{F}_\mathsf{CTS} - \mathbf{F}_{0,\mathsf{CTS}}) + (\mathbf{F}_\mathsf{EWS} - \mathbf{F}_{0,\mathsf{EWS}})
+\end{align}
+
+where $\mathbf{F}$ is a vector of fluxes at all layer interfaces, and:
+
+- $\mathbf{F}_0$ is a vector of fluxes for the real temperature profile
+and optical thickness of each layer chosen to be the minimum of
+optical thickness as viewed from space
+and optical thickness as viewed the surface, i.e.
+$\tau_i = \min(\tau_{i,\mathsf{surface}}, \tau_{i,\mathsf{space}})$.
+
+- $\mathbf{F}_\mathsf{CTS}$ is obtained from $\mathbf{F}_\mathsf{CTS}'$,
+which is a vector of fluxes for a temperature profile in which the surface
+and all layers
+have unit temperature and space has temperature of 0\ K. 
+Optical thickness of layers is chosen as viewed from space.
+$\mathbf{F}_\mathsf{CTS}$ is calculated from
+$\mathbf{F}_\mathsf{CTS}'$ in such a way that fluxes are turned into NER exchanges,
+each multiplied by the real thermal emission ($\sigma T^4$)
+of the respective layer, and turned back into fluxes.
+
+- $\mathbf{F}_\mathsf{EWS}$ is obtained from $\mathbf{F}_\mathsf{EWS}'$,
+which is a vector of fluxes for a temperature profile
+in which all layers and space
+have temperature of 0\ K and surface has temperature of unity. Optical thickness
+of layers is chosen as viewed from the surface.
+$\mathbf{F}_\mathsf{EWS}$ is calculated from
+$\mathbf{F}_\mathsf{EWS}'$ in such a way that fluxes are turned into NER exchanges,
+each multiplied by the real thermal emission ($\sigma T^4$)
+of the respective layer, and turned back into fluxes.
+
+- $\mathbf{F}_{0,\mathsf{CTS}}$ is obtained from $\mathbf{F}_{0,\mathsf{CTS}}'$,
+which is a vector of fluxes for a temperature profile as in
+$\mathbf{F}_\mathsf{CTS}$ and optical thickness as in $\mathbf{F}_0$.
+$\mathbf{F}_{0,\mathsf{CTS}}$ is calculated from $\mathbf{F}_{0,\mathsf{CTS}}'$
+by multiplying exchanges by real emission of layers as in
+$\mathbf{F}_\mathsf{CTS}$.
+
+- $\mathbf{F}_{0,\mathsf{EWS}}$ is obtained from $\mathbf{F}_{0,\mathsf{EWS}}$,
+which is a vector of fluxes for a temperature profile as in
+$\mathbf{F}_\mathsf{EWS}$ and optical thickness as in $\mathbf{F}_0$.
+$\mathbf{F}_{0,\mathsf{EWS}}$ is calculated from $\mathbf{F}_{0,\mathsf{EWS}}'$
+by multiplying exchanges by real emission of layers as in
+$\mathbf{F}_\mathsf{EWS}$.
+
+Here, we used the 1:1 correspondence between the flux and NER representations.
+This seemingly complicated combination has a simple purpose: to remove
+CTS and EWS exchanges from $\mathbf{F}_0$ and replace them with CTS and EBW
+exchanges calculated with a more suitable choice of optical thickness.
+$\mathbf{F}_{0,\mathsf{CTS}}$ and $\mathbf{F}_{0,\mathsf{EWS}}$
+are the terms which remove
+the CTS and EWS exchanges from $\mathbf{F}_0$, and $\mathbf{F}_\mathsf{CTS}$
+and $\mathbf{F}_\mathsf{EWS}$ are the ‘replacements’ with the more suitable
+choices of optical thickness.
+
+The ‘simple’ formulation described here was used in a previous version of
+ACRANEB, and has been superseded by an extended formulation
+with a greater accuracy (see below). The choice of
+$\tau_i = \min(\tau_{i,\mathsf{surface}}, \tau_{i,\mathsf{space}})$
+in $\mathbf{F}_0$ is pragmatic: it minimises exchanges between layers,
+which is assumed to lead to a better model stability
+(J. Mašek, personal communication, November 13, 2013).
+
+### Net Exchange Rate Formulation with ‘Bracketing’
+
+The formulation outlined in the previous section still does not represent
+exchanges between layers accurately. Especially, optical thickness
+used in the calculation of $\mathbf{F}_0$ is an extreme case. 
+An improved formulation takes into the account the fact that optical thickness
+in EBL (exchange between layers) terms should be between two extreme values:
+
+\begin{align}
+\mathbf{F} &= (1 - \alpha)(\mathbf{F}_1 - \mathbf{F}_{1,\mathsf{CTS}} - \mathbf{F}_{1,\mathsf{EWS}}) +
+\alpha(\mathbf{F}_2 - \mathbf{F}_{2,\mathsf{CTS}} - \mathbf{F}_{2,\mathsf{EWS}}) +\\
+&+ \mathbf{F}_\mathsf{CTS} + \mathbf{F}_\mathsf{EWS}
+\end{align}
+
+where:
+
+- $\mathbf{F}_1$ is a vector of fluxes  for the real temperature profile
+and optical thickness of each layer chosen to be the *minimum* of
+optical thickness as viewed from space
+and optical thickness as viewed the surface, i.e.
+$\tau_i = \min(\tau_{i,\mathsf{surface}}, \tau_{i,\mathsf{space}})$.
+
+- $\mathbf{F}_2$ is a vector of fluxes  for the real temperature profile
+and optical thickness of each layer chosen to be the *maximum* of
+optical thickness as viewed from space
+and optical thickness as viewed the surface, i.e.
+$\tau_i = \max(\tau_{i,\mathsf{surface}}, \tau_{i,\mathsf{space}})$.
+
+- $\mathbf{F}_{1,\mathsf{CTS}}$ and $\mathbf{F}_{1,\mathsf{EWS}}$
+are obtained in analogy to
+$\mathbf{F}_{0,\mathsf{CTS}}$ and $\mathbf{F}_{0,\mathsf{EWS}}$ (resp.)
+of the ‘simple’ NER formulation, but with
+optical thickness as in $\mathbf{F}_1$.
+
+- $\mathbf{F}_{2,\mathsf{CTS}}$ and $\mathbf{F}_{2,\mathsf{EWS}}$
+are obtained in analogy to
+$\mathbf{F}_{0,\mathsf{CTS}}$ and $\mathbf{F}_{0,\mathsf{EWS}}$ (resp.)
+of the ‘simple’ NER formulation, but with
+optical thickness as in $\mathbf{F}_2$.
+
+- $\mathbf{F}_\mathsf{CTS}$ and $\mathbf{F}_\mathsf{EWS}$ are the same as 
+in the ‘simple’ NER formulation.
+
+The idea behind this complicated formulation is that
+$\mathbf{F}_{1,\mathsf{CTS}}$ and $\mathbf{F}_{1,\mathsf{EWS}}$
+remove CTS and EWS exchanges from $\mathbf{F}_1$,
+\ $\mathbf{F}_{2,\mathsf{CTS}}$ and $\mathbf{F}_{2,\mathsf{EWS}}$
+remove CTS and EWS exchanges from $\mathbf{F}_2$,
+their linear combination is taken according to a real parameter $\alpha$,
+and CTS and EWS exchanges are supplied by $\mathbf{F}_\mathsf{CTS}$ and
+$\mathbf{F}_\mathsf{EWS}$.
 
 Net Exchange Rate Formulation
 -----------------------------

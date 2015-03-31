@@ -1,6 +1,13 @@
 Basic Principles of Radiative Transfer
 ======================================
 
+This chapter introduces a number of concepts related to radiative transfer
+in the Earth's atmosphere, and terms necessary for understanding later chapters
+unambiguously (as there are many notations in general use).
+Only the most relevant parts are covered, interested reader is advised
+to look at @petty2006, @zdunkowski2007 and @goody1995 for a more comprehensive
+development of the radiative transfer theory.
+
 The Electromagnetic Spectrum
 -----------------------------
 
@@ -64,9 +71,9 @@ due to relatively weak absorption by oxygen and ozone in a number of bands.
 Infrared radiation (IR) is emitted by objects of temperatures commonly found on
 Earth. Infrared spectrum can be split into three additional subregions:
 
-* Near infrared: 700 nm–4.6 μm
-* Thermal infrared: 4.6 μm–50 μm
-* Far infrared: 50 μm–1 mm
+* Near infrared: 700 nm–4.6 $\mu$m
+* Thermal infrared: 4.6 $\mu$m–50 $\mu$m
+* Far infrared: 50 $\mu$m–1 mm
 
 Radiation in near infrared comes mostly from the Sun, while standard temperature
 objects emit in the thermal and far infrared. The atmosphere is rather opaque to
@@ -84,15 +91,15 @@ For the purpose of radiation models, it is convenient to adopt two even broader
 spectral regions -- _shortwave_ and _longwave_ radiation. Though the choice of
 precise values is arbitrary, we will settle on the following definition:
 
-* Shortwave radiation (UV, visible, near IR): 0–4.6 μm
-* Longwave radiation (thermal and far IR) : 4.6 μm–100 μm
+* Shortwave radiation (UV, visible, near IR): 0–4.6 $\mu$m
+* Longwave radiation (thermal and far IR) : 4.6 $\mu$m–100 $\mu$m
 
 The justification for this choice is that the Sun emits radiation mostly between
-0.2–4.6 μm, while the Earth's surface and atmosphere emit mostly at wavelengths
-longer than 4.6 μm, with little overlap between the two
+0.2–4.6 $\mu$m, while the Earth's surface and atmosphere emit mostly at wavelengths
+longer than 4.6 $\mu$m, with little overlap between the two
 (Fig. \ref{fig:sun-earth-spectrum}). As discussed later, this exceptionally
 lucky coincidence allows for decoupling of radiative transfer calculations
-in these two regions.
+in the two regions.
 
 
 Fundamentals
@@ -114,15 +121,34 @@ in μm by the expression $y = 10000/x$, where x is wavenumber and y wavelength
 [^frequency-vs-wavenumber]: Symbols for frequency and wavenumber are
 sometimes reversed, with $\tilde{\nu}$ denoting wavenumber, and ν frequency.
 
-### Radiance and Flux Density
+### Monochromatic Radiance and Radiance
 
-_Radiance_[^radiance] is power transmitted by an EM wave passing through a unit
-surface in a particular direction. Radiance is denoted as $I_\lambda(\vec{r},
-\vec{\Omega})$, where $\vec{r}$ and $\vec{\Omega}$ determine the location and
-direction of interest (resp.). Radiance is sometimes denoted more specifically
-as _monochromatic radiance_ to distinguish it from broadband radiance
-(integrated over wavelength). The units of radiance are Wm^-2^sr^-1^, and
-monochromatic radiance Wm^-3^sr^-1^.
+*Monochromatic radiance*[^radiance] is power transmitted by an electromagnetic
+wave at certain wavelength passing through a unit surface in a particular
+direction. Monochromatic radiance depends on wavelength $\lambda$,
+position $\mathbf{r}$ and direction given by a unit vector
+$\mathbf{\hat{\Omega}}$:
+
+\begin{align}
+I_{\lambda} = I_{\lambda}(\mathbf{r}, \mathbf{\hat{\Omega}})
+\end{align}
+
+Monochromatic radiance has units $\mathrm{Wm^{-3}sr^{-1}}$. When integrated
+over an interval of wavelenths, we get *radiance*:
+
+\begin{align}
+I = \int_{\Delta\lambda} I_\lambda \mathrm{d}\lambda =
+  I(\mathbf{r}, \mathbf{\hat{\Omega}})
+\end{align}
+
+Radiance has units $\mathrm{Wm^{-2}sr^{-1}}$.
+As *monochromatic radiance*
+will be discussed freqently in this text, we will call it simply ‘radiance’
+and denote $I$ and state explicitly if *radiance* is considered by calling it
+*narrowband* or *broadband radiance*. We will also assume implicit dependence
+on $\mathbf{r}$ in order to make equations more readable.
+
+### Flux density and Flux
 
 _Flux density_ F is radiance integrated over a hemisphere. In plane parallel
 geometry, depending on the hemisphere we speak of _upward_ or _downward_ flux
@@ -161,6 +187,39 @@ a passing electromagnetic wave, generating new electromagnetic radiation,
 which modifies the original field. The is no net exchange of energy between
 the particle and the field at the end of the process.
 
+We will define the *scattering phase function* to be a function of two
+unit vectors $\mathbf{\hat{\Omega}}'$ and $\mathbf{\hat{\Omega}}$
+(in addition to the implicit dependence on the position $\mathbf{r}$),
+giving the fraction of radiance scattered from the direction of
+$\mathbf{\hat{\Omega}}'$ in the of $\mathbf{\hat{\Omega}}$:
+
+\begin{align}
+p = p(\mathbf{\hat{\Omega}}', \mathbf{\hat{\Omega}})
+\end{align}
+
+subject to normalisation condition (energy conservation):
+
+\begin{align}
+\frac{1}{4\pi}\int_{4\pi} p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \mathrm{d}\omega = 1
+\end{align}
+
+In the presence of scattering only, the differential change in radiance is:
+
+\begin{align}
+\mathrm{d}I(\mathbf{\hat{\Omega}}) =
+  -I(\mathbf{\hat{\Omega}})\beta_s\mathrm{d}s +
+  \beta_s\mathrm{d}s
+  \frac{1}{4\pi}\int_{4\pi}
+  p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}})
+  I(\mathbf{\hat{\Omega}'})
+  \mathrm{d}\omega'
+\end{align}
+
+i.e. the change in radiance is equal to the amount removed by scattering
+in all directions, compensated by radiation scattered into the direction of
+$\mathbf{\hat{\Omega}}$ from all other directions.
+
+
 ### Absoprtion
 
 Passing radiation can be absorbed by molecules and particles, whereby the energy
@@ -178,15 +237,32 @@ principles.
 
 ### Radiative Transfer Equation
 
-The full form of the radiative transfer equation (RTE) combines the
+The full form of the *radiative transfer equation* (RTE) combines the
 contributions of extinction, scattering, and emission in a single equation:
 
-$$
-\mathrm{d}I(\theta,\phi) =
+\begin{align}
+\label{eq:rte}
+\mathrm{d}I &= - \mathrm{d}I_\mathrm{ext} + \mathrm{d}I_\mathrm{emit} + \mathrm{d}I_\mathrm{scat}\nonumber\\
+\mathrm{d}I(\mathbf{\hat{\Omega}}) &=
+- \beta_\mathrm{e}\mathrm{d}s I(\mathbf{\hat{\Omega}})
++ \beta_\mathrm{a}\mathrm{d}s B(\mathbf{\hat{\Omega}})
++ \beta_\mathrm{s}\mathrm{d}s \frac{1}{4\pi}\int_{4\pi}
+    p(\mathbf{\hat{\Omega}'},\mathbf{\hat{\Omega}})
+    I(\mathbf{\hat{\Omega}'})
+    \mathbf{\hat{n}}\cdot\mathrm{d}\mathbf{\hat{\Omega}'}
+\end{align}
+
+It is the purpose of radiation schemes to provide solution to the radiative
+transfer equation. Before this task becomes computationally feasible in
+operational NWP models, the equation has to be simplified in a number ways,
+as discussed in the following chapters.
+
+<!--
+\mathrm{d}I(\theta,\phi) = 
     -\beta_\mathrm{e}\mathrm{d}sI(\theta,\phi)
     + \beta_\mathrm{s}\mathrm{d}s \int_{4\pi} I(\theta,\phi) p(\theta,\phi,\theta',\phi') \mathrm{d}\theta' \mathrm{d}{\phi}'
     + \beta_\mathrm{a}\mathrm{d}s B(\phi,\theta)
-$$
+-->
 
 Solar Constant
 --------------
