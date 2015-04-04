@@ -12,6 +12,16 @@ See [thesis.pdf](https://github.com/peterkuma/acraneb-thesis/raw/master/thesis.p
 
 ## Assignment
 
+**Student:** Bc. Peter Kuma
+
+**Supervisor:** Mgr. Ján Mašek
+
+### Title
+
+**Broadband approach as a framework for implementation of
+radiative transfer scheme with selective intermittency
+– cost versus accuracy study**
+
 ### Goal
 
 Propose, implement and test suitable intermittent strategies for
