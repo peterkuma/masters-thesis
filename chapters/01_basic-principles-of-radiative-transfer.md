@@ -102,11 +102,13 @@ lucky coincidence allows for decoupling of radiative transfer calculations
 in the two regions.
 
 
-Fundamentals
-------------
+Terms and Definitions
+---------------------
 
-This section summarises the basic theory of radiative transfer and notation used
-later in the text.
+This section summarises terms and definitions of the radiative transfer theory
+used in later chapters. Especially, there is a number of different notations
+in use today. We follow those of @petty2006 due to their clarity
+for most quantities discussed in this text.
 
 ### Frequency, Wavelength and Wavenumber
 
@@ -148,12 +150,26 @@ and denote $I$ and state explicitly if *radiance* is considered by calling it
 *narrowband* or *broadband radiance*. We will also assume implicit dependence
 on $\mathbf{r}$ in order to make equations more readable.
 
-### Flux density and Flux
+### Flux Density and Net Flux Density
 
-_Flux density_ F is radiance integrated over a hemisphere. In plane parallel
+_Flux density_ is radiance integrated over a hemisphere. In plane parallel
 geometry, depending on the hemisphere we speak of _upward_ or _downward_ flux
-density. Flux density integrated over surface is denoted simply as $flux$. _Net
-flux density_ is flux density integrated over the full solid angle.
+density:
+
+\begin{align}
+F^\uparrow = \int_\uparrow I(\mathbf{\hat{\Omega}})\mathrm{d}\omega\\
+F^\downarrow = \int_\downarrow I(\mathbf{\hat{\Omega}})\mathrm{d}\omega
+\end{align}
+
+where $\int_\uparrow$, $\int_\downarrow$ represent integration over the top
+and bottom hemisphere (resp.).
+
+*Net flux density* is the difference between the upward and downward flux
+densities:
+
+\begin{align}
+F^\mathrm{net} = F^\uparrow - F^\downarrow
+\end{align}
 
 [^radiance]: Radiance is sometimes referred to as _intensity_, _irradiance_ or
 _exitance_. The latter two are reserved for radiance incoming on, and emitted
@@ -252,10 +268,12 @@ contributions of extinction, scattering, and emission in a single equation:
     \mathbf{\hat{n}}\cdot\mathrm{d}\mathbf{\hat{\Omega}'}
 \end{align}
 
-It is the purpose of radiation schemes to provide solution to the radiative
-transfer equation. Before this task becomes computationally feasible in
-operational NWP models, the equation has to be simplified in a number ways,
-as discussed in the following chapters.
+where $\mathrm{d}s$ is in the direction of $\mathbf{\hat{\Omega}}$.
+
+It is the purpose of radiation schemes to find an approximate solution to
+the radiative transfer equation. Before this task becomes computationally
+feasible in operational NWP models, the equation has to be simplified in a
+number ways, as discussed in the following chapters.
 
 <!--
 \mathrm{d}I(\theta,\phi) = 
