@@ -758,8 +758,8 @@ Net Exchange Rate Formulation
 
 
 
-Time Intermittence
-------------------
+Computational Intermittence
+---------------------------
 
 Because the temporal variability of all quantities coming as an input 
 to the RTE is not the same, it is convenient to avoid repeated computation
@@ -768,3 +768,71 @@ than that of gas concentrations. Therefore, it is possible skip or linearise
 the computation of gaseous transmission functions. Other intermediate
 results may also be reused, depending on the actual implementation of the
 solution.
+
+### Diminising Performance Gain of Computational Intermittence
+
+\begin{figure}
+\centering
+\includegraphics[width=8cm]{img/diminishing-gain.pdf}
+\caption{
+\textbf{Relative model run time with computational intermittence.}
+The relative run time decreases at a diminishing rate as the intermittence
+period increases, eventually converging to a constant.
+In this example, a full step time fraction $q = 0.5$,
+and intermittent step time fraction $q' = 0.5q$ are assumed.
+\label{fig:diminishing-gain}
+}
+\end{figure}
+
+Computational intermittence allows us to reduce the computation time
+of intermittent steps when approximate results are calculated
+(e.g. by interpolation), while full steps take an unchanged
+amount of time (or somewhat greater, depending on implementation details).
+Radiation schemes constitute a fraction of total run time
+of an NWP model, typically 20–60 % (?). Therefore, there is a limit on
+the total time reduction due to performance improvements in
+the radiation scheme alone. Moreover, as we increase the length of
+the intermittence period
+(the number of intermittent steps per the number of full steps),
+there is a diminishing improvement in total run time,
+to the point that intermittent steps far outnumber full steps, and the
+computation time of full steps ceases to matter. The accuracy will continue
+to decrease, however.
+
+Let us assume that a model time step takes time $t_m$ to compute,
+and the model initialisation/deinitialisation time is $t_0$. The total model
+run time when $n$ steps are computed is then:
+
+\begin{align}
+t(n) = t_0 + t_m n
+\end{align}
+
+If a full step of our module (radiation scheme) takes a fraction $q$ of the
+model time step to compute, and an intermittent step takes $q' < q$,
+and we choose intermittence period of $k$ steps,
+the total model run time will be:
+
+\begin{align}
+t_k'(n) = t_0 + t_m q\frac{n}{k} + t_m q'\left(n - \frac{n}{k}\right) +
+  t_m(1 - q)n
+\end{align}
+
+i.e. the sum of initialisation time, time of full steps,
+time of intermittent steps, and the rest of the model.
+The relative model run time will be:
+
+\begin{align}
+\tau_k = \frac{t'_k(n)}{t(n)} \approx 1 - (q - q')\left(1 - \frac{1}{k}\right) =
+  1 - q\left(1 - \frac{q'}{q}\right)\left(1 - \frac{1}{k}\right)
+\end{align}
+
+where we neglected the initialisation time ($t_0 \ll t(n)$).
+Therefore, when $k \rightarrow \infty$, $\tau_k \rightarrow 1 - (q - q')$,
+and there is a diminishing gain in performance as $k$ increases.
+
+
+Figure\ \ref{fig:diminishing-gain} demonstrates $\tau_k$
+for a particular choice of parameters. We can see that considering
+improvement in the total model run time is important when deciding
+the lenght of the intermittence period, especially considering
+the detrimental effect intermittence might have the result accuracy.
