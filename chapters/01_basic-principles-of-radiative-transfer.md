@@ -85,11 +85,12 @@ importance to radiation models. Radiation in far infrared approx. above 100 μm
 gradually ceases to be energetically important due to low power emitted at
 longer wavelengths.
 
-### Shortwave and Longwave Spectrum
+### Shortwave and Longwave Parts of the Spectrum
 
-For the purpose of radiation models, it is convenient to adopt two even broader
-spectral regions -- _shortwave_ and _longwave_ radiation. Though the choice of
-precise values is arbitrary, we will settle on the following definition:
+For the purpose of radiation schemes, it is convenient to adopt two even broader
+spectral regions -- _shortwave_ (solar) and _longwave_ (thermal) radiation.
+Though the choice of precise values is arbitrary,
+we will settle on the following definition:
 
 * Shortwave radiation (UV, visible, near IR): 0–4.6 $\mu$m
 * Longwave radiation (thermal and far IR) : 4.6 $\mu$m–100 $\mu$m
@@ -97,10 +98,9 @@ precise values is arbitrary, we will settle on the following definition:
 The justification for this choice is that the Sun emits radiation mostly between
 0.2–4.6 $\mu$m, while the Earth's surface and atmosphere emit mostly at wavelengths
 longer than 4.6 $\mu$m, with little overlap between the two
-(Fig. \ref{fig:sun-earth-spectrum}). As discussed later, this exceptionally
-lucky coincidence allows for decoupling of radiative transfer calculations
+(Fig. \ref{fig:sun-earth-spectrum}). As discussed later, this exceptional
+coincidence allows for decoupling of radiative transfer calculations
 in the two regions.
-
 
 Terms and Definitions
 ---------------------
@@ -183,6 +183,10 @@ from a surface (resp.).
 
 ### Heating Rate
 
+Heating rate of a layer of atmosphere by radiation is given by the difference
+of net flux density between its top and bottom interfaces, which is
+a consequence of energy conservation – the energy is transferred from radiation
+to air molecules and airborne particles in the layer.
 
 The Radiative Transfer Equation
 -------------------------------
@@ -307,3 +311,4 @@ satellite-borne measurements performed over the past decades [@liou2002].
 
 Scattering on Spherical Particles
 ---------------------------------
+
