@@ -1,8 +1,5 @@
-Solar Intermittence Implementation in ACRANEB
-=============================================
-
-Introduction
-------------
+Shortwave Intermittency in ACRANEB2
+===================================
 
 As the atmospheric gaseous composition and temperature and pressure profile
 do not
@@ -18,6 +15,10 @@ spectrum, however, the situation is complicated by the fact that optical
 thickness depends on the zenith angle. It is therefore necessary to devise
 a method of accounting for this change without the need to do a full
 recalculation of optical thicknesses.
+
+This chapter discusses design, implementation and evaluation of shortwave
+intermittence in the context of a single cell model and the NWP model
+ALADIN/ALARO.
 
 Theoretical Considerations
 --------------------------
@@ -330,8 +331,8 @@ with the ALARO NWP model.
 The simulations were performed on a domain covering Central Europe.
 Values for offline analysis were sampled from a limited number of points
 chosen evenly from the whole domain (Figure \ref{fig:domain-points}).
-A 24-h summer day situation starting at 0:00 UTC, 29 May 2009 was chosen
-for the analysis.
+A 24-h summer day convective situation starting at 0:00 UTC,
+29 May 2009 was chosen for the analysis.
 
 For the purpose of gathering data from the selected points during model run,
 tools called [nc_dump](https://github.com/peterkuma/nc_dump)[^nc-dump]
@@ -339,7 +340,8 @@ and [dump2h5](https://github.com/peterkuma/dump2h5)[^dump2h5] were developed.
 These made it possible to export fields into NetCDF/HDF5 files, which were
 subsequently analysed using a set of short programs made
 in the statistical programming language R. The entire analysis is
-available openly at \url{https://github.com/peterkuma/solar-intermittence-nwp}.
+available openly at
+\url{https://github.com/peterkuma/acraneb2-intermittency-analysis}.
 
 [^nc-dump]: https://github.com/peterkuma/nc_dump
 [^dump2h5]: https://github.com/peterkuma/dump2h5
