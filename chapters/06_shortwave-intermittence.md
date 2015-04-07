@@ -389,10 +389,12 @@ error was on the order of 0.01\ K/day.
 
 \begin{figure}
 \centering
-\includegraphics[width=10cm]{img/shortwave_heating_rate_error.pdf}
+\includegraphics[width=10cm]{img/shortwave_heating_rate_error.pdf}\\
+\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_timeseries.pdf}
 \caption{
 \textbf{Shortwave heating rate error of 1\ h shortwave intermittency.}
-Shown is a global bias in heating rate and 95\ \% confidence band
+Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
+of heating rate and 95\ \% confidence bands
 of a model run with 1\ h shortwave intermittency compared to
 no shortwave intermittency. The situation is a convective summer day of
 29 May 2009 over Central Europe.
