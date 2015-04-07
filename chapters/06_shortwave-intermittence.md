@@ -176,7 +176,7 @@ atmosphere and a number of additional cases.
 \centering
 \includegraphics[width=12cm]{img/intermittence-geometry.pdf}
 \caption{
-  \textbf{Geometry of the solar intermittence problem (downward).}
+  \textbf{Geometry of the shortwave intermittency problem (downward).}
   (1) At the beginning of the
   intermittence period, solar radiation passes through a plane-parallel
   atmospheric layer
@@ -224,7 +224,7 @@ on the zenith angle, we performed an experiment with the single column
 model where the log optical thicknesses were linearly interpolated
 with respect to log of the modified cosine of the zenith angle.
 The Fig.\ \ref{fig:heating-rate} shows the result for a clear-sky atmosphere,
-and a choice of solar intermittence interval of $\Delta \theta = 15^\circ$ 
+and a choice of shortwave intermittency interval of $\Delta \theta = 15^\circ$ 
 (1\ h on the equator on equinox). The heating rates were compared to the
 reference (non-interpolated) case. The difference in heating rates was
 the most significant for high zenith angles (low $\cos(\mu)$),
@@ -246,11 +246,11 @@ within 0.5\ K/day.
 [^more-cases]: Plots of all studied cases can be found in the
 Additional Materials (see the end of this report).
 
-Solar Intermittence Implementetion in a 3D Model
+shortwave intermittency Implementetion in a 3D Model
 ------------------------------------------------
 
 The results from the Single Colomn Model support the application of
-solar intermittence in a 3-dimensional NWP model. This was implemented
+shortwave intermittency in a 3-dimensional NWP model. This was implemented
 in the ACRANEB2 scheme in the ALADIN/ALARO[^2] model.
 
 [^2]: ALARO cycle 38.
@@ -285,7 +285,7 @@ At every time step *within* the intermittence period
 ### Technical considerations
 
 There were a number of additional technical considerations which needed to be
-taken into account when implementing solar intermittence in a 3D model:
+taken into account when implementing shortwave intermittency in a 3D model:
 
 1. **Solar declination.** Solar declination varies during the intermittence
    period. In our case, the model does no provide the scheme with solar
@@ -299,7 +299,7 @@ taken into account when implementing solar intermittence in a 3D model:
 
 [^3]: Without copying a significat amount of code.
 
-2. **Storage requirements.** Solar intermittence requires us to store
+2. **Storage requirements.** Shortwave intermittency requires us to store
    fields of downward and upward optical thickness at two extreme values of
    the zenith angle. This results in four 3D global fields of optical
    thickness and a number of 2D global fields of zenith angles
@@ -311,7 +311,7 @@ taken into account when implementing solar intermittence in a 3D model:
    This selection has to be extended with grid points where the zenith angle
    is positive at any time during the intermittence period.
 
-4. **Modularization.** The solar intermittence implementation required more
+4. **Modularization.** The shortwave intermittency implementation required more
    modularization in terms of decoupling the solar and thermal computations of
    optical thickness.
 
@@ -319,12 +319,12 @@ taken into account when implementing solar intermittence in a 3D model:
       simultaneously by a single processor
       (on processors which support such a feature).
 
-Results
--------
+Analysis
+--------
 
 In order to evaluate accuracy and performance of the implementation of
-solar intermittence, we performed a number of simulations
-with the ALARO NWP model. 
+shortwave intermittency, we performed a number of simulations (experiments)
+with the ALADIN/ALARO NWP model and analysed the results.
 
 ### Analysis Description
 
@@ -357,22 +357,59 @@ analysis at every time step of the simulation.
 }
 \end{figure}
 
-### Results
+### Experiments
 
-In order to determine how the solar intermittence affects accuracy,
+The following experiments were performed:
+
+1. **Shortwave Intermittency Base**
+
+    Base configuration for shortwave intermittency evaluation:
+
+    * Shortwave gaseous transmissivities computed at every time step.
+    * Longwave gaseous transmissivities computed once per 1\ h.
+    * Calibration of longwave NER weights computed once per 3\ h.
+
+2. **Shortwave Intermittency 1\ h**
+
+    Shortwave intermittency enabled with 1\ h intermittency:
+
+    * Based on *Shortwave Intermittency Base*.
+    * Shortwave gaseous transmissivities computed once per 1\ h.
+
+### Accuracy
+
+In order to determine how the shortwave intermittency affects accuracy,
 we looked at the global bias of heating rates, as well as the local error
-and its statistical distribution.
+and its statistical distribution. Figure \ref{fig:shortwave-heating-rate-error}
+shows the error in heating rate of 1\ h shortwave intermittency
+compared to no shortwave intermittency
+(Exp. *Shortwave Intermittency 1\ h* vs. Exp. *Shortwave Intermittency Base*).
+The local error was less than 0.2\ K/day in 95\ % of samples, and the global
+error was on the order of 0.01\ K/day.
 
-[ TODO: Results. ]
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{img/shortwave_heating_rate_error.pdf}
+\caption{
+\textbf{Shortwave heating rate error of 1\ h shortwave intermittency.}
+Shown is a global bias in heating rate and 95\ \% confidence band
+of a model run with 1\ h shortwave intermittency compared to
+no shortwave intermittency. The situation is a convective summer day of
+29 May 2009 over Central Europe.
+\label{fig:shortwave-heating-rate-error}
+}
+\end{figure}
 
 <!-- The plot in Fig.\ \ref{fig:results} shows the average global heating rates
-as calculated by the scheme *with* and *without* 2-h solar intermittence.
+as calculated by the scheme *with* and *without* 2-h shortwave intermittency.
 We can see that the difference is on the order of K/day, which is small
 compared to the accuracy of the scheme. -->
 
+### Performance
+
 We measured performance of the new scheme using a 24-h run of the NWP model
 on 4 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU). The decrease in total model
-computation time with 2-h solar intermittence was 5\ %, which is in our experience
+computation time with 2-h shortwave intermittency was 5\ %, which is in our experience
 a significant reduction. See Tab.\ \ref{tab:performance} for details.
 
 \begin{table}
@@ -399,7 +436,7 @@ Yes                   & Yes, 1 h            & \textbf{0.95}
 Conclusion
 ----------
 
-Solar intermittence is a viable approximation in plane-parallel broadband
+shortwave intermittency is a viable approximation in plane-parallel broadband
 radiative transfer schemes. By avoiding calculation of solar gaseous optical
 thicknesses at every time step we gain a signification reduction in
 computation time, while maintaining good accuracy of heating rates.
