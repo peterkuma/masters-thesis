@@ -2,6 +2,7 @@ CHAPTERS=$(wildcard chapters/*.md)
 IMAGES=$(wildcard images/*)
 TEMPLATES=$(wildcard templates/*)
 BIBLIOGRAPHY=$(wildcard bib/*)
+TITLE=title.md
 
 NAME:=thesis
 PANDOC:=pandoc
@@ -26,8 +27,8 @@ $(NAME).pdf: build/$(NAME).pdf
 build/$(NAME).pdf: build/$(NAME).tex build/$(NAME).bbl
 	$(LATEX_ENGINE) $(LATEX_FLAGS) build/$(NAME).tex
 
-build/$(NAME).tex: $(CHAPTERS) $(IMAGES) $(TEMPLATES)
-	$(PANDOC) $(PANDOC_FLAGS) -H templates/header.tex --template templates/default.latex --bibliography bib/bibliography.bib $(CHAPTERS) -o build/$(NAME).tex
+build/$(NAME).tex: $(TITLE) $(CHAPTERS) $(IMAGES) $(TEMPLATES)
+	$(PANDOC) $(PANDOC_FLAGS) -B title.md -H templates/header.tex --template templates/default.latex --bibliography bib/bibliography.bib $(CHAPTERS) -o build/$(NAME).tex
 
 build/$(NAME).bbl: $(BIBLIOGRAPHY) build/$(NAME).bcf
 	$(BIBER) build/$(NAME)
