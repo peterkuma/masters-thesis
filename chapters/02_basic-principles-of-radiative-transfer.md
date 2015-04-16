@@ -98,9 +98,21 @@ we will settle on the following definition:
 The justification for this choice is that the Sun emits radiation mostly between
 0.2–4.6 $\mu$m, while the Earth's surface and atmosphere emit mostly at wavelengths
 longer than 4.6 $\mu$m, with little overlap between the two
-(Fig. \ref{fig:sun-earth-spectrum}). As discussed later, this exceptional
-coincidence allows for decoupling of radiative transfer calculations
-in the two regions.
+(Fig. \ref{fig:sun-earth-spectrum}). This coincidence allows for decoupling of
+radiative transfer calculations in the two regions.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{img/shortwave-longwave.pdf}
+\caption{
+\textbf{Planck's function for the approximate temperature of the Sun (6000 K)
+and the surface of the Earth (300 K).} The small overlap allows for decoupling
+of radiative transfer calculations in the shortwave and longwave parts of the
+spectrum. The value is normalized to equal areas. The vertical line
+show the division at $4.6\ \mathrm{\mu m}$ (see text).
+Adapted from \cite{petty2006}.
+\label{fig:sun-earth-spectrum}
+}
+\end{figure}
 
 Terms and Definitions
 ---------------------
@@ -113,15 +125,17 @@ for most quantities discussed in this text.
 ### Frequency, Wavelength and Wavenumber
 
 _Frequency_ of a monochromatic EM wave will be denoted $\tilde{\nu}$. Frequency
-relates to _wavelength_ λ via the speed of light $c = \tilde{\nu}\lambda$.
-Longer wavelengths are sometimes indentified by _wavenumber_[^frequency-vs-wavenumber]
-$\nu = 1/\lambda$, esp. preferred in the infrared spectrum. It is
-notable that wavenumbers in cm^-1^ can be conveniently converted to wavelengths
-in μm by the expression $y = 10000/x$, where x is wavenumber and y wavelength
-(and vice-versa).
+is realted to _wavelength_ $\lambda$ via the speed of light
+$c = \tilde{\nu}\lambda$. Longer wavelengths are sometimes indentified by
+_wavenumber_[^frequency-vs-wavenumber]
+$\nu = 1/\lambda$, which is often preferred in the infrared spectrum.
 
 [^frequency-vs-wavenumber]: Symbols for frequency and wavenumber are
-sometimes reversed, with $\tilde{\nu}$ denoting wavenumber, and ν frequency.
+sometimes reversed, with $\tilde{\nu}$ denoting wavenumber, and $\nu$ frequency.
+
+It is notable that wavenumbers in $\mathrm{cm^{-1}}$ can be conveniently
+converted to wavelengths in $\mathrm{\mu m}$ by the expression $y = 10000/x$,
+where $x$ is wavenumber and $y$ is wavelength (and vice-versa).
 
 ### Monochromatic Radiance and Radiance
 
