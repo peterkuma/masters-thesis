@@ -191,14 +191,17 @@ atmosphere and a number of additional cases.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.75\textwidth]{img/optical_depth.pdf}\\
-\includegraphics[width=0.75\textwidth]{img/optical_depth_log.pdf}
+\includegraphics[width=7cm]{img/optical_thickness_downward.pdf}
+\includegraphics[width=7cm]{img/optical_thickness_upward.pdf}\\
+\includegraphics[width=7cm]{img/optical_thickness_downward_log.pdf}
+\includegraphics[width=7cm]{img/optical_thickness_upward_log.pdf}
 \caption{
-  \textbf{Optical depth of layers as a function of the (modified)
-  cosine of the zenith angle.}
-  Optical depths are plotted in normal (top) and log-log coordinates (bottom).
-  Lines are labeled with layer numbers, where numbers above 87 are upward
-  optical depths. Note that the relationship is
+  \textbf{Optical thickness of layers as a function of the modified
+  cosine of the zenith angle.} Downward optical thickness in ordinary
+  (\textbf{top-left}) and log-log coordinates (\textbf{bottom-left}),
+  and upward optical thickness in ordinary (\textbf{top-right}) and log-log
+  coordinates (\textbf{bottom-right}).
+  Lines are labeled with layer numbers. Note that the relationship is
   almost linear in the log-log coordinates.
   \label{fig:optical-depth}
 }
@@ -206,13 +209,13 @@ atmosphere and a number of additional cases.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.75\textwidth]{img/heating_rate_shortwave_difference.pdf}\\
-\includegraphics[width=0.75\textwidth]{img/heating_rate_shortwave_relative_difference.pdf}
+\includegraphics[width=10cm]{img/heating_rate_shortwave_difference.pdf}\\
+\includegraphics[width=10cm]{img/heating_rate_shortwave_relative_difference.pdf}
 \caption{
   \textbf{Heating rate difference between the reference and linearly
   interpolated optical thicknesses at 15$^\circ$ steps of the zenith angle.}
-  \textbf{Top, } absolute difference in heating rate.
-  \textbf{Bottom, } relative difference in heating rate in per cent.
+  Plots show absolute difference in heating rate (\textbf{top}),
+  and relative difference in heating rate in per cent (\textbf{bottom}).
   \label{fig:heating-rate}
 }
 \end{figure}
