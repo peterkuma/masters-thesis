@@ -10,7 +10,7 @@ Faculty of Mathematics, Physics and Informatics\\
 \vspace{1cm}
 
 \begin{center}
-\Huge\sffamily\bfseries
+\huge\sffamily\bfseries
 Broadband Approach as a Framework
 for Implementation of Radiative Transfer
 Scheme with Selective Intermittency:\\
