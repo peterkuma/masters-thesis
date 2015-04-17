@@ -4,61 +4,59 @@ Shortwave Intermittency in ACRANEB2
 As the atmospheric gaseous composition and temperature and pressure profile
 do not
 change as quickly as the cloud cover, we can speed up radiative computations
-by calculating gaseous optical thicknesses less frequently than the rest
-of the variables. In other words, we can introduce an *intermittence*
+by calculating gaseous optical thickness of layers less frequently than the rest
+of the fields, while maintaining rapid response to changing cloud cover.
+In other words, we can introduce a *shortwave intermittency*
 period longer than the model time step during which the gaseous optical
-thicknesses are not recalculated.
+thickness is reused.
 
 In the thermal part of the spectrum, we can achieve this by simply maintaining
-constant optical thicknesses during the intermittence period. In the solar
-spectrum, however, the situation is complicated by the fact that optical
-thickness depends on the zenith angle. It is therefore necessary to devise
+constant gaseous optical thickness during the intermittency period. In the
+shortwave spectrum, however, the situation is complicated by the fact that optical
+thickness depends on the solar zenith angle. It is therefore necessary to devise
 a method of accounting for this change without the need to do a full
-recalculation of optical thicknesses.
+(computationally expensive) recalculation of optical thickness.
 
-This chapter discusses design, implementation and evaluation of shortwave
-intermittence in the context of a single cell model and the NWP model
-ALADIN/ALARO.
+This chapter discusses the proposal, implementation and evaluation of shortwave
+intermittency in the context of a single column model and the NWP model
+ALADIN.
 
 Theoretical Considerations
 --------------------------
 
-In the following text, we assume a broadband model with two bands
-(solar and thermal), plane-parallel and delta-two stream approximations.
-
 ### Monochromatic light
 
-Let us first consider the simple case of monochromatic light passing through
-a homogeneous atmospheric layer. Radiation passing at cosine of the zenith
-angle $\mu$ is attenuated exponentially by the Beer-Lambert law:
+Let us first consider the simple case of monochromatic radiation passing through
+a homogeneous atmospheric layer. Direct radiation passing at cosine of the
+zenith angle $\mu_0$ is attenuated exponentially by the Beer's law:
 
 $$
-I(z_2) = I(z_1) \exp\left(-\frac{1}{\mu}k\Delta u\right)
+I(z) = I(z_0) \exp\left(-\frac{1}{\mu_0}k_e\Delta u\right)
 $$
 
-where $k$ is the mass extinction coefficient, and $\Delta u$ is the mass of the
+where $k_e$ is the mass extinction coefficient and $\Delta u$ is the mass of the
 absorber per unit area.
-Here, $\frac{1}{\mu}k\Delta u$ is the *optical path* through the layer.
+Here, $(1/\mu_0) k_e\Delta u$ is the *optical path* through the layer.
 
-In addition to *optical depth*, we use the concept of *optical thickness*.
+In addition to *optical path*, we use the concept of *optical thickness*.
 The *optical thickness* of a layer is commonly defined as the optical path
 through
-the layer in the vertical direction ($\mu = 1$), but we note that this is
-the same as normalizing the actual optical path by $\mu$:
+the layer in the vertical direction ($\mu_0 = 1$), but we note that this is
+the same as normalizing the actual optical path by $\mu_0$:
 
 $$
-\tau := \tau(z_1, z_2; \mu=1) = k\Delta u = \mu \left(\frac{1}{\mu}k\Delta u\right) = \mu \tau(z_1, z_2; \mu)
+\tau := \tau(z_1, z_2; \mu_0=1) = k\Delta u = \mu_0 \left(\frac{1}{\mu_0}k\Delta u\right) = \mu_0 \tau(z_1, z_2; \mu_0)
 $$
 
-where $\tau(z_1, z_2; \mu)$ denotes optical path for radiation passing
-at the (cosine of) angle $\mu$. We use the same symbol $\tau$ for optical
+where $\tau(z_1, z_2; \mu_0)$ denotes optical path for radiation passing
+at cosine of the zenith angle $\mu_0$. We use the same symbol $\tau$ for optical
 thickness and optical depth, but stating its meaning explicitly where needed.
 In the monochromatic case, both definitions are equivalent, but the latter
-generalizes better to the broadband radiation treatment, where the Beer-Lambert
+generalizes better to the broadband radiation treatment, where the Beer's
 law no longer holds. We will therefore use this latter definition:
 
 $$
-\tau := \mu \tau(z_1, z_2; \mu)
+\tau := \mu_0 \tau(z_1, z_2; \mu_0)
 $$
 
 ### Downward and upward broadband optical thickness
@@ -80,12 +78,12 @@ thickness depends not only on the properties of the layer
 entering the layer and the length of the path through the layer,
 which determines the amount of spectral saturation.
 
-The downward solar optical thickness is calculated for parallel radiation
+The downward shortwave optical thickness is calculated for parallel radiation
 coming directly from the Sun at a zenith angle $\theta$ and is equal
 to the optical path through the layer normalized by cosine of the zenith
 angle (which is proportional to the length of the path).
 
-The upward solar optical thickness, on the contrary, is calculated for diffuse
+The upward shortwave optical thickness, on the contrary, is calculated for diffuse
 radiation reflected from the surface, which does not have any associated
 direction in the $\delta$-two stream approximation.
 In this case, the dependence
@@ -101,22 +99,22 @@ The geometry of the downward case is depicted in Fig.\ \ref{fig:geometry}.
 The actual angle at which radiation passes through an atmospheric
 layer is not the same as the zenith angle. This is due to the sphericity
 of the atmosphere, and is particularly true for high zenith angles
-($\mu \rightarrow 0$).
+($\mu_0 \rightarrow 0$).
 
 In order to transparently account for this effect, the ACRANEB2 scheme
 uses a modified cosine of the zenith angle in place of $\mu$ [@masek2014]:
 
 $$
-\mu' = \frac{1}{
-  \left(\left(\frac{a}{H}\mu\right)^2 + 2\frac{a}{H} + 1\right)^{1/2} -
-  \frac{a}{H}\mu
+\mu_0' = \frac{1}{
+  \left(\left(\frac{a}{H}\mu_0\right)^2 + 2\frac{a}{H} + 1\right)^{1/2} -
+  \frac{a}{H}\mu_0
 }
 $$
 
 where $a$ is the radius of the Earth, and $H$ is the approximate height of the
 atmosphere. The ratio $H/a$ was chosen to be a constant of 0.001324,
-for which $\mu'(\mu = 0) = 38.88$[^note]. This has an additional benefit of
-preventing $1/\mu$ growing to infinity as $\mu \rightarrow 0$ in numerical
+for which $\mu_0'(\mu_0 = 0) = 38.88$[^note]. This has an additional benefit of
+preventing $1/\mu_0$ growing to infinity as $\mu_0 \rightarrow 0$ in numerical
 calculations.
 
 [^note]: It should be noted that the true angle at which radiation passes
@@ -127,14 +125,19 @@ The modified cosine of the zenith angle is the natural coordiate for
 studying the change of optical thickness with the position of the Sun in
 the sky.
 
-Analysis Using a Single Column Model
-------------------------------------
+Analysis in a Single Column Model
+---------------------------------
 
-In order to empirically investigate dependece of broadband gaseous optical
-thicknesses on the zenith angle, we can use a single column model to calculate
-optical thicknesses for varying values of the zenith angle.
-We used multiple runs of the ACRANEB2 SCM model over a range of $\mu$ values
-from the interval $\left[0, 1\right]$.
+In order to empirically investigate dependence of broadband gaseous optical
+thickness on the zenith angle, we used a single column model to calculate
+optical thickness for varying values of the modified cosine of the zenith angle.
+We analysed the result of multiple runs of the acra2 SCM model over a range of
+$\mu_0$ values from the interval $\left[0, 1\right]$
+to simulate shortwave gaseous optical thickness of
+layers[^shortwave-intermittency].
+
+[^shortwave-intermittency]: The full analysis is available at
+\url{https://github.com/peterkuma/shortwave-intermittency}.
 
 <!-- 
 This depende
@@ -168,7 +171,7 @@ cosine of the zenith angle (see above).
 As you can see from the logarithmic plot, the dependence is
 close to a power function (i.e. is linear in the logarithmic coordinates).
 This suggest that a linear interpolation between extreme values 
-of the zenith angle in an intermittence period could yield
+of the zenith angle in an intermittency period could yield
 accurate enough results. Similar relatiotionship was observed in cloudy
 atmosphere and a number of additional cases.
 
@@ -178,7 +181,7 @@ atmosphere and a number of additional cases.
 \caption{
   \textbf{Geometry of the shortwave intermittency problem (downward).}
   (1) At the beginning of the
-  intermittence period, solar radiation passes through a plane-parallel
+  intermittency period, solar radiation passes through a plane-parallel
   atmospheric layer
   at zenith angle $\theta_1$. (2) As the Sun rises to zenith angle $\theta_2$,
   the broadband optical thickness (as per our definition)
@@ -249,33 +252,33 @@ within 0.5\ K/day.
 [^more-cases]: Plots of all studied cases can be found in the
 Additional Materials (see the end of this report).
 
-shortwave intermittency Implementetion in a 3D Model
+Shortwave intermittency Implementetion in a 3D Model
 ------------------------------------------------
 
 The results from the Single Colomn Model support the application of
 shortwave intermittency in a 3-dimensional NWP model. This was implemented
-in the ACRANEB2 scheme in the ALADIN/ALARO[^2] model.
+in the ACRANEB2 scheme in the ALADIN[^2] model.
 
-[^2]: ALARO cycle 38.
+[^2]: ALADIN cycle 38.
 
 In the 3D model, the radiative transfer scheme calculates radiative transfer
 independently for each grid point of the model domain.
 
 ### Overview of the implementation
 
-At the beginning of an intermittence period
+At the beginning of an intermittency period
 (*full* radiative time step):
 
 1. Calculate the mimimum and maximum values of the zenith angle attained at
-   any time step during the intermittence period. Store the zenith angles
+   any time step during the intermittency period. Store the zenith angles
    (the extreme values as well as the values at all time steps) in global
    arrays (preserved across time steps).
 
-2. Calculate solar optical thicknesses as usual for the two extreme values
+2. Calculate shortwave optical thickness as usual for the two extreme values
    the zenith angle. Store (the logarithm of) the optical thicknesses
    in global arrays.
 
-At every time step *within* the intermittence period
+At every time step *within* the intermittency period
 (*partial* radiative time step):
 
 1. Retrieve current zenith angle from the global array (ignoring the
@@ -290,7 +293,7 @@ At every time step *within* the intermittence period
 There were a number of additional technical considerations which needed to be
 taken into account when implementing shortwave intermittency in a 3D model:
 
-1. **Solar declination.** Solar declination varies during the intermittence
+1. **Solar declination.** Solar declination varies during the intermittency
    period. In our case, the model does no provide the scheme with solar
    declination for the subsequent time steps, nor a straighforward way
    of calculating it[^3].
@@ -309,14 +312,14 @@ taken into account when implementing shortwave intermittency in a 3D model:
    to be kept in the main memory between time steps.
 
 3. **Day/night segmentation.** The ACRANEB2 scheme performs calculations
-   on blocks of grid points in a vectorizable form[^4]. The solar computations
+   on blocks of grid points in a vectorizable form[^4]. The shortwave computations
    are only performed on segments of grid points where the Sun is in the sky.
    This selection has to be extended with grid points where the zenith angle
-   is positive at any time during the intermittence period.
+   is positive at any time during the intermittency period.
 
 4. **Modularization.** The shortwave intermittency implementation required more
-   modularization in terms of decoupling the solar and thermal computations of
-   optical thickness.
+   modularization in terms of decoupling the shortwave and longwave
+   computations of optical thickness.
 
 [^4]: In the sense of performing an operation on a sequence of values
       simultaneously by a single processor
@@ -327,7 +330,7 @@ Analysis
 
 In order to evaluate accuracy and performance of the implementation of
 shortwave intermittency, we performed a number of simulations (experiments)
-with the ALADIN/ALARO NWP model and analysed the results.
+with the ALADIN NWP model and analysed the results.
 
 ### Analysis Description
 
@@ -342,9 +345,10 @@ tools called [nc_dump](https://github.com/peterkuma/nc_dump)[^nc-dump]
 and [dump2h5](https://github.com/peterkuma/dump2h5)[^dump2h5] were developed.
 These made it possible to export fields into NetCDF/HDF5 files, which were
 subsequently analysed using a set of short programs made
-in the statistical programming language R. The entire analysis is
-available openly at
-\url{https://github.com/peterkuma/acraneb2-intermittency-analysis}.
+in the statistical programming language R[^acraneb2-intermittency-analysis].
+
+[^acraneb2-intermittency-analysis]: The full analysis is
+available at \url{https://github.com/peterkuma/acraneb2-intermittency-analysis}.
 
 [^nc-dump]: https://github.com/peterkuma/nc_dump
 [^dump2h5]: https://github.com/peterkuma/dump2h5
@@ -419,15 +423,15 @@ a significant reduction. See Tab.\ \ref{tab:performance} for details.
 
 \begin{table}
 \caption{
-  \textbf{Impact of solar intermittency on the model computation time.}
+  \textbf{Impact of shortwave intermittency on the model computation time.}
   The table lists full NWP model computation time of 6-hour integration,
   180-s time step (case 2012-07-01T00:00:00Z) for a number of different
   configurations. Time is expressed relative to the baseline case.
-  \textit{Note:} Memory increase due to solar intermittency was 2.4\ \%. 
+  \textit{Note:} Memory increase due to shortwave intermittency was 2.4\ \%. 
   \label{tab:performance}
 }
 \begin{tabular*}{\hsize}{@{\extracolsep{\fill}} llr}
-\textbf{Day/night computation} & \textbf{Solar intermittency} & \textbf{Time (relative)}\\
+\textbf{Day/night computation} & \textbf{Shortwave intermittency} & \textbf{Time (relative)}\\
 \hline
 Yes                   & No                  & 1.00\\
 No                    & No                  & 1.02\\
@@ -442,20 +446,11 @@ Conclusion
 ----------
 
 shortwave intermittency is a viable approximation in plane-parallel broadband
-radiative transfer schemes. By avoiding calculation of solar gaseous optical
-thicknesses at every time step we gain a signification reduction in
+radiative transfer schemes. By avoiding calculation of shortwave gaseous optical
+thickness at every time step we gain a signification reduction in
 computation time, while maintaining good accuracy of heating rates.
 
 Linear interpolation of optical thickness on logarithic scale is
 enough to account for the dependence of optical thickness on the relatively 
-quickly-changing zenith angle for intermittence periods up to 2 hours long
+quickly-changing zenith angle for intermittency periods up to 2 hours long
 (at least).
-
-Additional Materials
---------------------
-
-All additional materials used in the analysis can be found at
-[https://github.com/peterkuma/solar-intermittence](https://github.com/peterkuma/solar-intermittence).
-
-The ACRANEB2 single column model and changes to the code
-cannot be made publicly available as they are proprietary.
