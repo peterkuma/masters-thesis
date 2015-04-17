@@ -3,13 +3,13 @@ Radiatively Active Gases
 
 Radiation passing through the Earth's atmosphere is modified by the processes of
 absorption and scattering. Both of the processes are wavelength-dependent, but
-while scattering can be analysed by Rayleigh scattering, Mie theory and
-geometric optics, in order to fully grasp absorption we need to be know the
+while scattering is determined by Rayleigh scattering, Mie theory and
+geometric optics, in order to fully determine absorption we need to be know the
 specifc absorption lines of radiatively active gases.
 
-Absorption functions of gas molecules can have immensely complicated structure.
-Figure \ref{fig:co2-absorption} shows the absorption coefficient of CO~2~ in
-various levels of magnification. Clearly, one needs a very large amount of
+Absorption spectrum of gas molecules can have immensely complicated structure.
+Figure \ref{fig:co2-absorption} shows the absorption coefficient of $\text{CO}_2$
+in various levels of magnification. Clearly, one needs a very large amount of
 information to describe the structure fully. As it turns out, smooting the curve
 by averaging out the details is of little use in calculation of transmittance
 due to saturation at wavelengths where absorption is strongest (line centers).
@@ -18,16 +18,22 @@ efficiently.
 
 ![CO~2~ absorption coefficient.]
 
+Spectroscopic data about absorption lines of gases are available from
+spectroscopic databases. One such database is HITRAN[^hitran] [@rothman2009].
+
+[^hitran]: \url{https://www.cfa.harvard.edu/hitran/}.
+The HITRAN database can be browsed conventiently at
+‘HITRAN on the Web’ (\url{http://hitran.iao.ru}).
+
 Types of Transitions
 --------------------
 
-Gases absorb and emit radiation radiation at only precise wavelengths[^1]
-due to restrictions imposed by the quantum theory. In particular, the energy
-has to match of of the allowed _electronic_, _vibrational_ or _rotational_
-transitions.
-
-[^1]: But considering line broadening and continua discussed later in this
-chapter.
+Gases can absorb and emit radiation only in the vicinity of precise wavelengths
+– absorption lines, due to restrictions imposed by the quantum theory.
+In particular, the energy
+has to match one of the allowed *electronic*, *vibrational* or *rotational*
+transitions, up to a perturbation due to a collision (pressure broadening)
+and velocity (Doppler broadening).
 
 ### Electronic Transitions
 
@@ -95,28 +101,61 @@ to have a dipole moment, or an intrinsic magnetic moment (as is the case with
 O~2~).
 
 
-Shortwave Spectrum
-------------------
+Shortwave Absorption
+--------------------
 
-In the shortwave spectrum, absorption takes place mostly in the high-frequency
-part of the spectrum (Fig. \ref{fig:shortwave-absorption}).
+In the shortwave spectrum,
+absorption takes place mostly in the high-frequency
+range.
 In particular, gamma radiation, X-rays, UV-C and UV-B
 are almost entirely absorbed early in their travel through the atmosphere,
 mostly by oxygen and ozone. As such, and because they consitute only a small
 contribution of energy to low and mid-altitudes, they are of little
 concern to us. Above these wavelengths in the visible part of the spectrum,
 the atmosphere is relatively transparent, with only a few weak bands of ozone and
-oxygen. In near-infrared, radiation is again absorbed strongly by bands of water
-vapour and CO~2~. This time we have to be concerned, because water
+oxygen. In near IR, radiation is again absorbed strongly by bands of water
+vapour and $\text{CO}_2$. This time we have to be concerned, because water
 vapour is mostly located in the troposphere, where it contributes to heating
 of atmospheric layers, and the absorption is not flat-out as in very short wave
 radiation.
 
-### O3
+Figure\ \ref{fig:shortwave-heating-rate-gases} shows shortwave heating
+rate attributed to atmospheric gases.
 
-Ozone exhibits a number of bands in the shortwave spectrum in three groups:
+In the shortwave spectrum, radiation is absorbed significantly
+(in terms of energy budged) by the following gases:
+
+1. Water vapour ($\mathrm{H_2O}$, $\mathrm{H_3O}$)
+2. Ozone ($\mathrm{O_3}$) and oxygen ($\mathrm{O_2}$, $\mathrm{O}$)
+3. Carbon dioxide ($\mathrm{CO_2}$)
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{img/shortwave-heating-rate-gases.pdf}
+\caption{
+\textbf{Shortwave heating rate profile due absorption by atmospheric gases.}
+This profile was derived for cloud-free tropical conditions and solar
+zenith angle of 30°. Adapted from \cite{petty2006}. Figure courtesy
+of S. Ackerman.
+\label{fig:shortwave-heating-rate-gases}
+}
+\end{figure}
+
+### Water Vapour
+
+Water vapour is the most important shortwave absorption gas. It is abundant
+in the troposphere, where it falls off sharply with height due to condensation.
+It is also highly spatially and temporally variable.
+
+Water vapour absorbs in a number of regions in the shortwave spectrum,
+most importantly in bands centered at $2.7\ \mathrm{\mu m}$,
+$1.87\ \mathrm{\mu m}$ and $1.38\ \mathrm{\mu m}$ [@goody1995;@liou2002].
+
+### Ozone
+
+Ozone exhibits a number of bands in the shortwave part of the spectrum:
 _Hartley bands_, _Huggins bands_ and _Chappuis bands_
-(Figure \ref{fig:ozone-shortwave-bands}]). All of them are in the form
+(Figure \ref{fig:ozone-shortwave-bands}). All of them are in the form
 of continuum due to photodissociation, although Huggins bands have more
 irregular structure.
 
@@ -128,12 +167,22 @@ in the mesopshere and stratosphere.
 \includegraphics[width=\textwidth]{ozone-absorption/ozone-absorption.pdf}
 \caption{
 \label{fig:ozone-shortwave-bands}
-\textbf{Ozone shortwave bands.}
-Absorbed solar radiation (red) and absorption cross section
-(blue) of $\mathrm{O_3}$.
+\textbf{Ozone shortwave absorption.}
+Absorbed solar radiation (\textbf{red}) and absorption cross section
+(\textbf{blue}) of $\text{O}_3$.
 Indicated are approximate regions of the Hartley, Huggins and Chappius
 absorption bands.
 Data from \cite{serdyuchenko2012}.
+}
+\vspace{0.5cm}
+\centering
+\includegraphics[width=11cm]{img/oxygen-absorption.png}
+\caption{
+\textbf{Oxygen shortwave absorption.}
+Absorption cross section of oxygen $\mathrm{^{16}O^{16}O}$
+in the ultraviolet band.
+Adopted from \cite{goody1995}. After Brasseur and Solomon (1984).
+\label{fig:oxygen-absorption}
 }
 \end{figure}
 
@@ -144,29 +193,38 @@ atomospheric absorption, because they lie in the region of 450–750 nm,
 where solar radiation is the strongest. Their principal location of absorption
 is in the troposhpere.
 
-### O2
+### Carbon Dioxide
 
-Oxygen absorption happens mostly in the ultraviolet, where it is associated
-with electronic transitions.
+### Oxygen
 
-Even thouh O~2~ is a homonuclear diatomic molecule with no electic dipole
-moment, it has a permanent magnetic moment, enabling rotational transitions
-to occur.
+Oxygen ($\mathrm{O_2}$) absorption happens mostly in the ultraviolet,
+where it is associated with electronic transitions.
+UV absorption cross section is
+shown in Figure\ \ref{fig:oxygen-absorption}. The strength of this absorption
+means that little UV radiation penetrates the atmosphere in this region.
 
-Outside of the ultraviolet region, oxygen absorbs in the _red_ and _infra-red_
-bands. They are associated with the $\mathrm{a\leftarrow X}$ (resp.
+Even thouh $\mathrm{O_2}$ is a homonuclear diatomic molecule with no electic
+dipole moment, it has a permanent magnetic moment,
+enabling rotational transitions to occur. 
+
+Outside of the UV band, oxygen absorbs in the *red* and *infrared*
+‘atmospheric’ bands [@goody1995].
+They are associated with the $\mathrm{a\leftarrow X}$ (resp.
 $\mathrm{b\leftarrow X}$) electronic transition in combination with
 vibrational-rotational transitions. The red bands comprise band A centered
-at 762 nm, band B
-at 688 nm, and band γ at 628 nm. Infra-red bands are centered at 1.58 μm, 1.27
-μm and 1.06 μm. Although relatively sparse, the red bands are important to the
+at 762\ nm, band B
+at 688\ nm, and band $\gamma$ at 628\ nm. Infrared bands are centered at
+$1.58\ \mathrm{\mu m}$, $1.27\ \mathrm{\mu m}$
+and $1.06\ \mathrm{\mu m}$.
+Although relatively sparse, the red bands are important to the
 troposheric energy budget, because they they are located at the peak of the
 solar spectrum [@liou2002].
 
 Oxygen molecules are known to form dimers with some other
-atmospheric constituents, notably O~2~.N~2~ and O~4~. These have additional
-bands belived to contribute roughly 1 Wm^-2^ to the total atmospheric absorption
-[@solomon1998].
+atmospheric constituents, notably $\mathrm{O_2}.\mathrm{N_2}$
+and $\mathrm{O_4}$. These have additional
+bands belived to contribute roughly $1\ \mathrm{Wm^{-2}}$
+to the total atmospheric absorption [@solomon1998].
 
 Longwave Spectrum
 -----------------

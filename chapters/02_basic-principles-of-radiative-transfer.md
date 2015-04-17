@@ -5,21 +5,24 @@ This chapter introduces a number of concepts related to radiative transfer
 in the Earth's atmosphere, and terms necessary for understanding later chapters
 unambiguously (as there are many notations in general use).
 Only the most relevant parts are covered, interested reader is advised
-to look at @petty2006, @zdunkowski2007 and @goody1995 for a more comprehensive
+to see @petty2006, @zdunkowski2007 and @goody1995 for a more comprehensive
 development of the radiative transfer theory.
 
 The Electromagnetic Spectrum
 -----------------------------
 
-Radiation in the atmosphere is for the most part well represented by
-electromagnetic (EM) waves. Electromagnetic waves originate from multiple
+Radiation in the atmosphere can for the most part represented by
+electromagnetic (EM) waves. In this context, EM waves
+can originate from multiple
 sources, most importantly the Sun, the Earth's surface and atmospheric gases and
-continutents (clouds and suspended particles). They have different wavelengths
-depending on the temperature of the radiating object through the Planck's law.
-Radiation of different wavelenghts is subject to different levels of absorption
-and scattering when passing through the atmosphere. Traditionally, the
-electromagnetic spectrum is split into a number of regions
-(Fig. \ref{fig:em-spectrum}):
+constituents (clouds and suspended particles such as aerosols).
+EM waves have different wavelength
+depending on the temperature of the radiating object through the Planck's law
+(assuming local thermodynamic equilibrium).
+Radiation is subject to different levels of absorption
+and scattering depending on the wavelength when passing through the atmosphere.
+Traditionally, the EM spectrum is divided into a number of *bands*
+according to the wavelength (optionally divided further into *subbands*):
 
 * Gamma radiation
 * X-rays
@@ -29,29 +32,31 @@ electromagnetic spectrum is split into a number of regions
 * Microwaves
 * Radio waves 
 
-Not all of them will be of our interset, because they are not represented in the
-atmosphere in energies high enough to influence its thermal structure.
-Specifically, our interest will be on everything between UV-C and far infrared.
+Most of them are not of interest to radiative transfer in NWP models and GCM,
+because they are not present in the atmosphere in energies high enough to
+influence its heating rates. Specifically, of interest are the
+UV, visible light and IR bands.
 
 ### Ultraviolet Radiation
 
 Ultraviolet radiation (UV) is radiated in appreciable amounts only by very hot
-objects, such as the Sun. It is highly energetic, capable of causing electrons
-to be released from atoms (photoionisation) and breaking up molecules
-(photodissociation). Ultraviolet radiation spans wavelengths 10 – 400 nm.
-The UV spectrm is further split into multiple subregions,
-out which only the last three are of interest to atmospheric radiative
-transmission[^uv-definition]:
+objects, such as the Sun. It is highly energetic, capable of releasing electrons
+from atoms (*photoionisation*) and breaking up molecules
+(*photodissociation*). UV radiation spans wavelengths 10–400\ nm.
+The UV band is further divided into multiple subbands,
+of which only the last three are of interest to atmospheric radiative
+trasfer[^uv-definition]:
 
 * UV-C: 100 nm–280 nm
 * UV-B: 280 nm–320 nm
 * UV-A: 320 nm–400 nm
 
-Much of ultraviolet radiation is absorbed high in the atmosphere (stratosphere
+Much of UV radiation is absorbed high in the atmosphere (stratosphere
 and mesosphere) by ozone and oxygen, though UV-A reaches the Earth's sufrace
-with little attenuation. Ultraviolet radiation has to be considered in radiation
-schemes, because it contributes sigificantly to heating of stratosphere. It is
-also imporant due to its influence on atmospheric chemistry (Chapman reactions).
+with little attenuation. UV radiation has to be considered in radiation
+schemes, because it contributes sigificantly to heating rates in the
+stratosphere. It is also imporant due to its influence on atmospheric chemistry
+(Chapman reactions).
 
 [^uv-definition]: The precise choice of boundaries is somewhat arbitrary,
 and various definitions can be found.
@@ -59,47 +64,52 @@ and various definitions can be found.
 ### Visible Light
 
 The visible part of the spectrum comprises wavelengths which humans can percept
-with their sight. The likely reason which gave rise to this ability is twofold.
-(1) This is where the peak power of Sun's radiation is located, and (2) the
+with their sight. The likely reason which gave rise to this ability is twofold:
+(1) this is where the peak power of Sun's radiation is located, and (2) the
 clear-sky atmosphere is almost transparent in the visible spectrum. Visible
 light spans the region of about 400 nm–700 nm. In radiation models it has to be
 considered due to its scattering and absorption by clouds and aerosols, but also
-due to relatively weak absorption by oxygen and ozone in a number of bands.
+due to relatively weak absorption by oxygen and ozone in a number of absorption
+bands.
 
 ### Infrared Radiation
 
-Infrared radiation (IR) is emitted by objects of temperatures commonly found on
-Earth. Infrared spectrum can be split into three additional subregions:
+Infrared radiation (IR) is emitted by objects of temperatures commonly found
+in the Earth's environment.
+The IR band is divided into three additional subbands:
 
 * Near infrared: 700 nm–4.6 $\mu$m
 * Thermal infrared: 4.6 $\mu$m–50 $\mu$m
 * Far infrared: 50 $\mu$m–1 mm
 
-Radiation in near infrared comes mostly from the Sun, while standard temperature
-objects emit in the thermal and far infrared. The atmosphere is rather opaque to
+Radiation in the near IR comes mostly from the Sun, while standard temperature
+objects emit in the thermal and far IR. The atmosphere is rather opaque to
 the infrared radiation. It is absorbed strongly (but not uniformly) by
-greenhouse gases: water vapour, CO~2~, O~3~, CH~4~, CO, N~2~O~ and CFCs, but
+greenhouse gases: water vapour, $\text{CO}_2$, $\text{O}_3$, $\text{CH}_4$,
+CO, $\text{N}_2\text{O}$ and CFCs, but
 also by clouds and aerosols. As it is the main means of radiative energy
 exchange between the surface, atmospheric layers and space, it is of paramount
-importance to radiation models. Radiation in far infrared approx. above 100 μm
-gradually ceases to be energetically important due to low power emitted at
-longer wavelengths.
+importance to radiation schemes. Radiation in far infrared (approx. above
+$100\ \mathrm{\mu m}$) gradually ceases to be energetically important due to low
+power emitted at longer wavelengths.
 
 ### Shortwave and Longwave Parts of the Spectrum
 
 For the purpose of radiation schemes, it is convenient to adopt two even broader
-spectral regions -- _shortwave_ (solar) and _longwave_ (thermal) radiation.
-Though the choice of precise values is arbitrary,
-we will settle on the following definition:
+spectral regions -- *shortwave* (*solar*) and *longwave* (*thermal*) radiation.
+Though the choice of precise boundaries is arbitrary,
+we settle on the following definition:
 
-* Shortwave radiation (UV, visible, near IR): 0–4.6 $\mu$m
-* Longwave radiation (thermal and far IR) : 4.6 $\mu$m–100 $\mu$m
+* Shortwave radiation (UV, visible, near IR): 0.1–4.6 $\mu$m
+* Longwave radiation (thermal, far IR) : 4.6–100 $\mu$m
 
 The justification for this choice is that the Sun emits radiation mostly between
-0.2–4.6 $\mu$m, while the Earth's surface and atmosphere emit mostly at wavelengths
+0.1–4.6 $\mu$m, while the Earth's surface and atmosphere emit mostly at wavelengths
 longer than 4.6 $\mu$m, with little overlap between the two
 (Fig. \ref{fig:sun-earth-spectrum}). This coincidence allows for decoupling of
-radiative transfer calculations in the two regions.
+radiative transfer calculations in the two regions. The Sun can, however,
+be a significant source of radiation even in the thermal IR when
+considering direct solar radiation or sun glint [@petty2006, Sec. 6.3].
 
 \begin{figure}
 \includegraphics[width=\textwidth]{img/shortwave-longwave.pdf}
@@ -189,7 +199,41 @@ F^\mathrm{net} = F^\uparrow - F^\downarrow
 _exitance_. The latter two are reserved for radiance incoming on, and emitted
 from a surface (resp.).
 
-### Absorption Coefficient and Cross Section
+### Mass and Volume Absorption/Extinction Coefficients
+
+The fractional loss in radiance $\mathrm{d}I$ due to absorption
+over a path $\mathrm{d}s$ can be expressed with the
+*volume absorption coefficient* $\beta_a$:
+
+\begin{align}
+\mathrm{d}I = -I\beta_a\mathrm{d}s
+\label{eq:volume-absorption-coefficient}
+\end{align}
+
+In gases, this process depends only on the amount of absorber per unit
+area along the path $\mathrm{d}u = \rho\mathrm{d}s$, and
+\ref{eq:volume-absorption-coefficient}
+can be expresses equivalently with the *mass absorption coefficient*
+$k_a = \beta_a/\rho$:
+
+\begin{align}
+\mathrm{d}I = -Ik_a\mathrm{d}u
+\end{align}
+
+Both $k_a$ and $\beta_a$ depend on the type of absorber and are functions
+of wavelength. In addition, they may depend on pressure and temperature,
+which determine absorption line properties:
+
+\begin{align}
+k_a &= k_{a,\lambda,\mathrm{absorber}}(p, T),\\
+\beta_a &= \beta_{a,\lambda,\mathrm{absorber}}(\mathbf{r}, p, T).
+\end{align}
+
+*Volume extinction coefficient* $\beta_e$ and *mass extinction coefficient*
+$k_e$ are defined in the same manner, but here we consider total loss of
+radiance due to absorption and scattering to all directions,
+as discussed in the section on radiative transfer equation
+(Sec.\ \ref{sec:rte}).
 
 ### Emissivity and Albedo
 
@@ -204,6 +248,7 @@ to air molecules and airborne particles in the layer.
 
 The Radiative Transfer Equation
 -------------------------------
+\label{sec:rte}
 
 Fundamentally, radiative tranfer is goverened by the Maxwell equations and
 quantum mechanical principles. However, it is ofen not neccessary to be
@@ -269,6 +314,22 @@ principles.
 
 ### Beer's Law
 
+If the volume absorption coefficient is constant over a finite path $s$,
+we can integrate the differential equation for absorption in a closed-form:
+
+\begin{align}
+\frac{\mathrm{d}I}{I} &= -\beta_a\mathrm{d}s \quad/\int_0^s (...)\mathrm{d}s\\
+I(s) &= I(0)\exp(-\beta_a s)
+\end{align}
+
+This relationship is the *Beer's law* – monochromatic radiance falls of
+exponentially in a uniform absorbing, non-scattering medium.
+The same relationship applies to absorbers whose volume absorption coefficient
+is independent of wavelength (over the interval of interest),
+also called *gray bodies*[^gray-body].
+
+[^gray-body]: In analogy to visible light, in which they appear gray.
+
 ### Radiative Transfer Equation
 
 The full form of the *radiative transfer equation* (RTE) combines the
@@ -303,25 +364,31 @@ number ways, as discussed in the following chapters.
 Solar Constant
 --------------
 
-The Sun emits radiation which closely matches that of black body of temperature
-about 5800 K. A fraction of the radiation reaches the top of the atmosphere
-(ToA).
-Because of the large distance of Earth from the Sun, the radiation
+The Sun emits radiation which roughly matches that of a black body with
+temperature of about $5800\ \mathrm{K}$.
+A fraction of the radiation reaches the top of the atmosphere
+(TOA).
+Because of the large distance of the Earth from the Sun, the radiation
 can be considered parallel for most practical purposes.
-The solar flux density S at ToA
-in the direction of the Sun varies seasonally with Earth-Sun distance
-from about 1330 Wm^-2^ in July to 1420 Wm^-2^ in January (in contrast to
-seasons in the Northern Hemisphere).
+The solar flux density S at TOA
+in the direction of the Sun varies seasonally with the Sun–Earth distance
+from about $1330\ \mathrm{Wm^{-2}}$ in July to $1420\ \mathrm{Wm^{-2}}$ in January.
 The solar flux density
-at mean distance is called _solar constant_, and denoted $S_0$. Solar constant
-is ofter cited to have value 1366 Wm^-2^, though the exact value is time
-variable. One such variability is associated with the ~11-year solar cycle,
-but its amplitude is only about 1 Wm^-2^. Longer-term variability also exists,
+at mean distance is called _solar constant_, and denoted $S_0$.
+The solar constant is often cited to have value of
+$1368\ \mathrm{Wm^{-2}}$ [e.g. @thomas2002]. The solar constant varies in time,
+one such variability is associated with the ~11-year solar cycle,
+but its amplitude is only about $1\ \mathrm{Wm^{-2}}$.
+Longer-term variability also exists,
 but it is of little importance to NWP applications.
 
-The solar constant and solar spectrum are best determined from space,
+<!-- 
+The solar constant and solar spectrum are best determined from the space,
 where there is unhindered view of the Sun. There have been a number of such
-satellite-borne measurements performed over the past decades [@liou2002].
+satellite-borne measurements performed over the past decades [@liou2002]. -->
+
+The radiation scheme ACRANEB2 discussed later in this text uses
+solar spectrum according to @labs1970; @neckel1984.
 
 Scattering on Spherical Particles
 ---------------------------------

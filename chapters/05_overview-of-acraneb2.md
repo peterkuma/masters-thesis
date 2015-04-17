@@ -1,19 +1,19 @@
 Overview of the Radiation Scheme ACRANEB2
 =========================================
 
-ACRANEB2 [@geleyn1979;@ritter1992;@geleyn2005;@masek2014] is a broadband
+ACRANEB [@geleyn1979;@ritter1992;@geleyn2005;@masek2014] is a broadband
 radiation scheme
 developed as an alternative to k-distribution radiation schemes.
 k-distribution schemes are currently the most popular method of solving the
 radiative transfer equation in NWP models, thanks to their superior properties
 to narrow band models used previously. Their computation complexity, however,
 precludes frequent recalculation of fluxes due to changing cloudiness.
-The bradband approach in ACRANEB2 allows for computational intermittency and
+The bradband approach in ACRANEB allows for computational intermittency and
 decoupling of quickly changing cloudiness from slowly changing gaseous absorption
 in radiative computations. As a result, the radiative code can be called at
-every time step, responding rapidly to evolution of cloud cover.
+every time step, responding rapidly to the development of cloud cover.
 
-We can characterise the scheme by choices of methods and approximations:
+We can characterise the scheme by the choices of methods and approximations:
 
 - horizontally homogeneous
 - $\delta$-two stream approximation
