@@ -5,7 +5,7 @@
 
 O3_AMOUNT <- 300  # dobson units.
 XLIM <- c(220, 1000)  # nm.
-YLIM <- c(0, 0.7)  # W/nm.
+YLIM <- c(0, 0.72)  # W/nm.
 S0 <- 1361  # W/m2 (solar constant).
 
 # O3 optical depth for amount in dobson units and cross-section sigma in cm2.
@@ -29,9 +29,10 @@ power_fn <- approxfun(solar$v[-1], power)
 
 absorption <- (1-exp(-optdepth(O3_AMOUNT, o3$sigma)))*power_fn(o3$v)
 
-cairo_pdf('ozone-absorption.pdf', 14, 8)
+cairo_pdf('ozone-absorption.pdf', 14.5/cm(1), 10/cm(1))
+par(cex=0.8)
 
-par(cex=1.5)
+#par(cex=1.5)
 par(mar=c(4,4,4,4))
 plot(NULL,
     type='n',
@@ -48,6 +49,7 @@ rect(310, YLIM[1]-1, 340, YLIM[2]+1, col='#dddddd', border=NA)  # Huggins.
 rect(450, YLIM[1]-1, 750, YLIM[2]+1, col='#f3f3f3', border=NA)  # Chappuis.
 
 par(new=TRUE)
+par(cex=0.8)
 plot(o3$v, absorption,
     type='l',
     xlim=XLIM,
@@ -56,7 +58,7 @@ plot(o3$v, absorption,
     ylab='Absorbed radiation (W/nm)',
     xaxp=c(200, 1000, 8),
     col='#d40000',
-    lwd=2
+    lwd=1
 )
 title('Absorption by 300 DU of O3, S0 = 1361 W/m², T = 253 K')
 
@@ -67,6 +69,7 @@ text(600, 0.71, 'Chappuis')
 #plot(o3$v, o3$sigma, 'l', xlim=XLIM, log='y', xlab='Wavelength (nm)', ylab='Absorption cross section (cm²)')
 
 par(new=TRUE)
+par(cex=0.8)
 plot(o3$v, o3$sigma,
     type='l',
     xlim=XLIM,
@@ -75,9 +78,9 @@ plot(o3$v, o3$sigma,
     ylab='',
     yaxt='n',
     col='#0169c9',
-    lwd=2
+    lwd=1
 )
 axis(4)
-mtext('Absorption cross section (cm²)',side=4,line=3, cex=1.5)
+mtext('Absorption cross section (cm²)',side=4,line=3, cex=0.8)
 
 dev.off()
