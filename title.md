@@ -27,7 +27,7 @@ Master's Thesis
 \vspace{2cm}
 
 {\large
-\textbf{Degree Programme}: Physics\\[0.5em]
+\textbf{Degree Programme}: 4.1.1 Physics\\[0.5em]
 \textbf{Field of Study}: Meteorology and Climatology\\[0.5em]
 \textbf{Department}: Division of Meteorology and Climatology,\\
             Department of Astronomy, Physics of the Earth and Meteorology\\[0.5em]
