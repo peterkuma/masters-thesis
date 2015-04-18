@@ -660,7 +660,7 @@ increase to be progressively more sublinear. Shown is a Malkmus model as in
 }
 \end{figure}
 
-### Optical saturation
+### Optical Saturation
 
 From the equation for Malkmus model \eqref{eq:malkmus-model} we can see
 that the increase of optical depth with absorber amount $u$ is nonlinear.

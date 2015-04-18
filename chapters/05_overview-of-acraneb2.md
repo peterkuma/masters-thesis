@@ -1,61 +1,72 @@
 Overview of the Radiation Scheme ACRANEB2
 =========================================
 
-ACRANEB [@geleyn1979;@ritter1992;@geleyn2005;@masek2014] is a broadband
+ACRANEB2 [@geleyn1979;@ritter1992;@geleyn2005;@masek2014] is a broadband
 radiation scheme
 developed as an alternative to k-distribution radiation schemes.
-k-distribution schemes are currently the most popular method of solving the
-radiative transfer equation in NWP models, thanks to their superior properties
-to narrow band models used previously. Their computation complexity, however,
-precludes frequent recalculation of fluxes due to changing cloudiness.
-The bradband approach in ACRANEB allows for computational intermittency and
-decoupling of quickly changing cloudiness from slowly changing gaseous absorption
-in radiative computations. As a result, the radiative code can be called at
-every time step, responding rapidly to the development of cloud cover.
+k-distribution schemes, in particular RRTM [@mlawer1997],
+are currently one of the most popular methods of
+solving the radiative transfer equation in NWP models,
+thanks to their superior properties to narrow band models. 
+Their computation complexity, however,
+precludes frequent recalculation of fluxes,
+necessitating either reduced temporal or spatial precision.
+As a result, changing cloud cover is not resolved with enough accuracy
+as one might wish.
+The bradband approach in ACRANEB2 allows for computational intermittency in
+both shortwave and longwave parts of the spectrum by
+decoupling quickly changing cloud optical depths from slowly
+changing gaseous optical depths. This makes calling the radiation scheme
+at every model time step feasible,
+responding rapidly to the development of cloud cover.
 
-We can characterise the scheme by the choices of methods and approximations:
+We can characterise the ACRANEB2 scheme by the choices of methods
+and approximations:
 
-- horizontally homogeneous
+- Horizontally homogeneous (1D)
 - $\delta$-two stream approximation
-- broadband model based (two bands: shortwave and longwave)
-- adding method for flux computation
+- Broadband model based (two bands: shortwave and longwave)
+- Adding method for flux computation
 
-ACRANEB2 is currently used operatively in the NWP model ALADIN/ALARO of
-the RC LACE[^rc-lace] community. Work on version 2 of ACRANEB commenced in 2011,
-and this text incorporates the recent developments.
+ACRANEB2 is currently available as an optional radiation scheme
+in the NWP model ALADIN of the RC LACE[^rc-lace] community.
 
-[^rc-lace]: Regional Cooperation for Limited Area modeling in Central Europe.
+[^rc-lace]: Regional Cooperation for Limited Area modeling in Central Europe
+(\url{http://www.rclace.eu/}).
 
 Operation Overview
 ------------------
 
-The ACRANEB scheme is run on a single cell of the model computational grid.
+The ACRANEB2 scheme performs calculations independently for every
+column in the model grid[^vectorisation].
 Vertically, the atmosphere is split into layers, on which the computation
-is discretizated. In the ALARO model, the layers are defined in hybrid
-_eta cooridates_, transitioning smoothly from σ-coordinates near the surface
+is discretised. In the ALADIN model, layers are defined in hybrid
+_eta cooridates_, transitioning smoothly from
+$\sigma$-coordinates near the surface
 to pressure coordinates in the free atmosphere. Therefore, boundary layers
 follow the ground, while upper layers follow isobaric surfaces.
+Apart from an NWP model, ACRANEB2 can be run in isolation inside a
+single column model. This is useful mostly for diagnostic purposes.
 
-Apart from an NWP model, ACRANEB can be run in isolation inside a
-single-cell model. This is useful mostly for diagnostic purposes.
+[^vectorisation]: Thugh in parallel, in order to allow for vectorisation.
 
-### Input and output
+### Input and Output
 
 The input to the radiation scheme consists of:
 
-* Pressure profile
+* Pressure profile (definition of layers)
 * Temperature profile
 * Concentration of gases
+  (water vapour, $\mathrm{O_3}$, $\mathrm{CO_2+}$ composite)
 * Cloud fraction and cloud water/ice content
 * Aerosol fraction and properties
-* Surface temperature and albedo/emissivity
-* Solar constant
+* Surface temperature, albedo and emissivity
+* Solar constant and the solar zenith angle
 
-The output of the scheme are broadband fluxes at layer interfaces,
-from which the heating rate of layers can be calculated by the rest of the
-NWP model.
+The output of the scheme are shortwave and longwave fluxes at layer interfaces,
+from which the heating rate of layers can be calculated by the NWP model.
 
-### General principle of operation
+### General Principle of Operation
 
 The general operation of the scheme can be summarised as follows:
 
@@ -81,15 +92,15 @@ coefficients as an input.
 Broadband Regions
 -----------------
 
-The ACRANEB scheme operates in two spectral regions:
+The ACRANEB2 scheme operates in two spectral regions:
 
-* Shortwave: 245 nm – 4.642 μm
-* Longwave: 4.642 μm – 105.000 μm
+* Shortwave: $245\ \mathrm{nm}$ – $4.642\ \mathrm{\mu m}$
+* Longwave: $4.642\ \mathrm{\mu m}$ – $105.000\ \mathrm{\mu m}$
 
-In the shortwave region, there is a single source of radiation
-(the Sun, resp. Moon), which undergoes scattering and absorption in every layer.
+In the shortwave spectrum, there is a single source of radiation
+(the Sun, which undergoes scattering and absorption in every model layer.
 
-In the longwave region, the surface and every layer is a source of radiation
+In the longwave spectrum, the surface and every layer is a source of radiation
 through thermal emission, but this complexity is somewhat reduced by the fact
 that scattering of infrared radiation by gases in the atmosphere is weak enough
 to be neglected, although scattering of infrared radiation by clouds and
@@ -133,39 +144,29 @@ are determined by fitting the transmission
 function to a range of transmissions calculated by an external narrow-band
 model SPLIDACO.
 
-### Representation of Gases in ACRANEB
+### Representation of Gases in ACRANEB2
 
-ACRANEB contain representation of all atmospheric gases which contribute
+ACRANEB2 contain representation of all atmospheric gases which contribute
 significantly to the radiative energy budget in shortwave and longwave part
 of the spectrum:
 
 * Water vapour
-* O~3~`
-* CO2+ (CO~2~, CH~4~, CO, N~2~O, O~2~)
+* $\mathrm{O_3}$
+* ‘CO2+’ ($\mathrm{CO_2}$, $\mathrm{CH_4}$, $\mathrm{CO}$,
+  $\mathrm{N_2O}$, $\mathrm{O_2}$)
 
-CO~2~, CH~4~, CO, N~2~O and O~2~ are treated as a single _composite gas_
+CO~2~, CH~4~, CO, N~2~O and O~2~ are treated as a single composite gas
 (‘CO2+’), because they are well-mixed, and their concentration in the atmosphere
-is relatively constant[^gases-concentration]
-(Fig. \ref{fig:gases-concentration}).
+is relatively constant[^gases-concentration].
 
 The absorption structure of each gas is described by a total of 16 parameters
 (8 for both parts of the spectrum), as detailed above.
-
-\begin{figure}
-\includegraphics[width=\textwidth]{img/atmospheric-composition.pdf}
-\caption{
-\label{fig:atmospheric-composition}
-\textbf{Atmospheric composition.}
-Schematic figure showing concentration of some radiatively active gases in the
-atmosphere. Adapted from \cite{goody1989}.
-}
-\end{figure}
 
 [^gases-concentration]: This is not neccessrily true for all conditions,
 because some of these gases have sources near the surface, e.g. CO~2~
 is released by vegetation and exhibits both spatial and seasonal variability.
 Nevertheless, this simplification is justified, because the impact on
-atmospheric heating rate is low [citation?].
+atmospheric heating rate is small.
 
 Solving the RTE
 ---------------
@@ -371,7 +372,7 @@ exchange with surface and space are generally stronger than exchanges between
 layers. The space is not a radiation source (rather a ‘sink’), but the situation
 can be mathematically inverted to treat it as a source instead.
 
-ACRANEB, being a broadband radiative model, has to make a number of simplifying
+ACRANEB2, being a broadband radiative model, has to make a number of simplifying
 assumptions in order to be able to leverage the adding method.
 
 
@@ -379,8 +380,3 @@ assumptions in order to be able to leverage the adding method.
 
 ### Autoevaluation
 
-Verification
-------------
-
-ACRANEB belongs to the category of less accurate but fast radiative transfer
-models. As such, it can use RRTM or LBL models as a verification target.

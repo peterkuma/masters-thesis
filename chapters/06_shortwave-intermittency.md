@@ -24,7 +24,7 @@ ALADIN.
 Theoretical Considerations
 --------------------------
 
-### Monochromatic light
+### Monochromatic Light
 
 Let us first consider the simple case of monochromatic radiation passing through
 a homogeneous atmospheric layer. Direct radiation passing at cosine of the
@@ -59,7 +59,7 @@ $$
 \tau := \mu_0 \tau(z_1, z_2; \mu_0)
 $$
 
-### Downward and upward broadband optical thickness
+### Downward and Upward Broadband Optical Thickness
 
 <!-- We can define *broadband optical thickness* as optical path taken by parallel
 radiation through a layer normalized by cosine of the zenith angle
@@ -94,7 +94,7 @@ radiation at the given zenith angle.
 The geometry of the downward case is depicted in Fig.\ \ref{fig:geometry}.
 
 
-### Modified cosine of the zenith angle
+### Modified Cosine of the Zenith Angle
 
 The actual angle at which radiation passes through an atmospheric
 layer is not the same as the zenith angle. This is due to the sphericity
@@ -147,7 +147,7 @@ which is much more variable. However, this dependence can be accounted for by
 interpolating gaseous optical thicknesses on the interval between the minimal
 and maximal zenith an gles attained during a chosen intermittence period.-->
 
-### Dependece of optical thickness on the zenith angle
+### Dependece of Optical Thickness on the Zenith Angle
 
 <!-- In the monochromatic RTE, the depnedence of optical path on the inverse of
 cosine of the zenith angle $\mu_0$ is linear:
@@ -223,7 +223,7 @@ atmosphere and a number of additional cases.
 }
 \end{figure}
 
-### Linear interpolation of optical thicknesses
+### Linear Interpolation of Optical Thickness
 
 As justified by the empirical analysis of optical thickness dependence
 on the zenith angle, we performed an experiment with the single column
@@ -239,7 +239,7 @@ the cosine of the zenith angle. The difference was within 0.1\ K/day (5 %)
 for all but the top layers, which is an acceptable loss of accuracy compared
 to the rest of the broadband radiative scheme.
 
-### More cases
+### More Cases
 
 We performed the same analysis as above on multiple other cases:
 a *cloudy atmosphere* with the same temperature and composition profiles,
@@ -252,7 +252,7 @@ within 0.5\ K/day.
 [^more-cases]: Plots of all studied cases can be found in the
 Additional Materials (see the end of this report).
 
-Shortwave intermittency Implementetion in a 3D Model
+Shortwave Intermittency Implementetion in a 3D Model
 ------------------------------------------------
 
 The results from the Single Colomn Model support the application of
@@ -264,7 +264,7 @@ in the ACRANEB2 scheme in the ALADIN[^2] model.
 In the 3D model, the radiative transfer scheme calculates radiative transfer
 independently for each grid point of the model domain.
 
-### Overview of the implementation
+### Overview of the Implementation
 
 At the beginning of an intermittency period
 (*full* radiative time step):
@@ -288,7 +288,7 @@ At every time step *within* the intermittency period
 2. Calculate optical thicknesses by interpolating between the extreme optical
    thicknesses as stored in the global arrays.
 
-### Technical considerations
+### Technical Considerations
 
 There were a number of additional technical considerations which needed to be
 taken into account when implementing shortwave intermittency in a 3D model:
@@ -340,9 +340,10 @@ chosen evenly from the whole domain (Figure \ref{fig:domain-points}).
 A 24-h summer day convective situation starting at 0:00 UTC,
 29 May 2009 was chosen for the analysis.
 
-For the purpose of gathering data from the selected points during model run,
+For the purpose of gathering data from the selected points during model runs,
 tools called [nc_dump](https://github.com/peterkuma/nc_dump)[^nc-dump]
-and [dump2h5](https://github.com/peterkuma/dump2h5)[^dump2h5] were developed.
+and [dump2h5](https://github.com/peterkuma/dump2h5)[^dump2h5] for the
+ALADIN model were developed.
 These made it possible to export fields into NetCDF/HDF5 files, which were
 subsequently analysed using a set of short programs made
 in the statistical programming language R[^acraneb2-intermittency-analysis].
@@ -383,6 +384,14 @@ The following experiments were performed:
     * Based on *Shortwave Intermittency Base*.
     * Shortwave gaseous transmissivities computed once per 1\ h.
 
+2. **Shortwave Intermittency 30\ min**
+
+    Shortwave intermittency enabled with 30\ min intermittency:
+
+    * Based on *Shortwave Intermittency Base*.
+    * Shortwave gaseous transmissivities computed once per 30\ min.
+
+
 ### Accuracy
 
 In order to determine how the shortwave intermittency affects accuracy,
@@ -417,15 +426,34 @@ compared to the accuracy of the scheme. -->
 ### Performance
 
 We measured performance of the new scheme using a 24-h run of the NWP model
-on 4 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU). The decrease in total model
-computation time with 2-h shortwave intermittency was 5\ %, which is in our experience
-a significant reduction. See Tab.\ \ref{tab:performance} for details.
+on 4 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU).
+The decrease in total model
+computation time with 30-min and 1-h shortwave intermittency was
+on the order of 1–10\ %. Unfortunately, the uncertainty due to task scheduling
+was obscuring the results.
+The bar chart in Figure\ \ref{fig:shortwave-intermittency-performance}
+shows the results of the three experiments in terms of CPU time.
+Also Table\ \ref{tab:performance} shows preliminary results obtained
+with 1-h shortwave intermittency.
+
+\begin{figure}
+\centering
+\includegraphics[width=7cm]{img/shortwave-intermittency-performance.pdf}
+\caption{
+\textbf{Shortwave intermittency performance.}
+Shown is the total model run time as user CPU time (i.e. \textit{not}
+wall-clock time) of 30-min and 1-h shortwave intermittency experiments
+compared to baseline with no shortwave intermittency. Experiments were run
+on 4 CPUs of NEC SX-9 (100 GFLOP per CPU) in a shared job scheduling class.
+\label{fig:shortwave-intermittency-performance}
+}
+\end{figure}
 
 \begin{table}
 \caption{
   \textbf{Impact of shortwave intermittency on the model computation time.}
   The table lists full NWP model computation time of 6-hour integration,
-  180-s time step (case 2012-07-01T00:00:00Z) for a number of different
+  3-min time step (case 2012-07-01T00:00:00Z) for a number of different
   configurations. Time is expressed relative to the baseline case.
   \textit{Note:} Memory increase due to shortwave intermittency was 2.4\ \%. 
   \label{tab:performance}

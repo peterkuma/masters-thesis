@@ -7,9 +7,9 @@ This appendix documents some of the configuration parameters used in the
 ACRANEB2 radiation scheme, esp. those relevant to computational
 intermittency.
 The parameters are set as variables in a Fortran namelist supplied to
-the SCM (single column model) or the NWP model ALARO.
+the SCM (single column model) or the NWP model ALADIN.
 More configuration parameters are documented briefly in `Arp/module/yomphy.F90`
-in the ALADIN/ALARO source code.
+in the ALADIN source code.
 
 ## Intermittency Parameters
 

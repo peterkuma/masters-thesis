@@ -5,19 +5,19 @@ This chapter introduces a number of concepts related to radiative transfer
 in the Earth's atmosphere, and terms necessary for understanding later chapters
 unambiguously (as there are many notations in general use).
 Only the most relevant parts are covered, interested reader is advised
-to see @petty2006, @zdunkowski2007 and @goody1995 for a more comprehensive
-development of the radiative transfer theory.
+to see @petty2006, @zdunkowski2007, @liou2002, @thomas2002 and @goody1995
+for a more comprehensive development of the radiative transfer theory.
 
 The Electromagnetic Spectrum
 -----------------------------
 
-Radiation in the atmosphere can for the most part represented by
+Radiation in the atmosphere can for the most part be represented by
 electromagnetic (EM) waves. In this context, EM waves
 can originate from multiple
 sources, most importantly the Sun, the Earth's surface and atmospheric gases and
 constituents (clouds and suspended particles such as aerosols).
-EM waves have different wavelength
-depending on the temperature of the radiating object through the Planck's law
+EM waves have different wavelength distribution
+depending on the temperature of the radiating body through the Planck's law
 (assuming local thermodynamic equilibrium).
 Radiation is subject to different levels of absorption
 and scattering depending on the wavelength when passing through the atmosphere.
@@ -34,7 +34,7 @@ according to the wavelength (optionally divided further into *subbands*):
 
 Most of them are not of interest to radiative transfer in NWP models and GCM,
 because they are not present in the atmosphere in energies high enough to
-influence its heating rates. Specifically, of interest are the
+influence the heating rates. Specifically, of interest are the
 UV, visible light and IR bands.
 
 ### Ultraviolet Radiation
@@ -42,7 +42,7 @@ UV, visible light and IR bands.
 Ultraviolet radiation (UV) is radiated in appreciable amounts only by very hot
 objects, such as the Sun. It is highly energetic, capable of releasing electrons
 from atoms (*photoionisation*) and breaking up molecules
-(*photodissociation*). UV radiation spans wavelengths 10–400\ nm.
+(*photodissociation*). UV radiation spans wavelengths of 10-400\ $\mathrm{nm}$.
 The UV band is further divided into multiple subbands,
 of which only the last three are of interest to atmospheric radiative
 trasfer[^uv-definition]:
@@ -63,11 +63,12 @@ and various definitions can be found.
 
 ### Visible Light
 
-The visible part of the spectrum comprises wavelengths which humans can percept
+The visible spectrum comprises wavelengths which humans can percept
 with their sight. The likely reason which gave rise to this ability is twofold:
 (1) this is where the peak power of Sun's radiation is located, and (2) the
 clear-sky atmosphere is almost transparent in the visible spectrum. Visible
-light spans the region of about 400 nm–700 nm. In radiation models it has to be
+light spans the region of about 400–700\ $\mathrm{nm}$.
+In radiation models it has to be
 considered due to its scattering and absorption by clouds and aerosols, but also
 due to relatively weak absorption by oxygen and ozone in a number of absorption
 bands.
@@ -85,8 +86,9 @@ The IR band is divided into three additional subbands:
 Radiation in the near IR comes mostly from the Sun, while standard temperature
 objects emit in the thermal and far IR. The atmosphere is rather opaque to
 the infrared radiation. It is absorbed strongly (but not uniformly) by
-greenhouse gases: water vapour, $\text{CO}_2$, $\text{O}_3$, $\text{CH}_4$,
-CO, $\text{N}_2\text{O}$ and CFCs, but
+greenhouse gases: water vapour,
+$\mathrm{CO_2}$, $\mathrm{O_3}$, $\mathrm{CH_4}$, $\mathrm{CO}$,
+$\mathrm{N_2O}$, $\mathrm{O_2}$ and CFCs, but
 also by clouds and aerosols. As it is the main means of radiative energy
 exchange between the surface, atmospheric layers and space, it is of paramount
 importance to radiation schemes. Radiation in far infrared (approx. above
@@ -109,7 +111,8 @@ longer than 4.6 $\mu$m, with little overlap between the two
 (Fig. \ref{fig:sun-earth-spectrum}). This coincidence allows for decoupling of
 radiative transfer calculations in the two regions. The Sun can, however,
 be a significant source of radiation even in the thermal IR when
-considering direct solar radiation or sun glint [@petty2006, Sec. 6.3].
+considering direct solar radiation or sun glint, important to remote sensing
+applications [@petty2006, Sec. 6.3].
 
 \begin{figure}
 \includegraphics[width=\textwidth]{img/shortwave-longwave.pdf}
@@ -129,8 +132,7 @@ Terms and Definitions
 
 This section summarises terms and definitions of the radiative transfer theory
 used in later chapters. Especially, there is a number of different notations
-in use today. We follow those of @petty2006 due to their clarity
-for most quantities discussed in this text.
+in use today. We follow those of @petty2006 due to their clarity.
 
 ### Frequency, Wavelength and Wavenumber
 

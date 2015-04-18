@@ -100,6 +100,15 @@ wave has to be able to exert torque on the molecule. Especially, it needs
 to have a dipole moment, or an intrinsic magnetic moment (as is the case with
 O~2~).
 
+\begin{figure}
+\includegraphics[width=\textwidth]{img/atmospheric-composition.pdf}
+\caption{
+\label{fig:atmospheric-composition}
+\textbf{Atmospheric composition.}
+Vertical profiles of mixing ratio of selected species at equinox.
+Adapted from \cite{goody1995}. After Allen et. al. (1981, 1984).
+}
+\end{figure}
 
 Shortwave Absorption
 --------------------
@@ -137,6 +146,8 @@ and above $3\ \mathrm{\mu m}$.
 Absorption bands of gases important to solar absorption (discussed in
 the following sections) can be seen in
 Figure\ \ref{fig:zenith-transmittance-gases},
+Figure\ \ref{fig:atmospheric-composition} shows concentration of gases
+in the atmosphere,
 and Figure\ \ref{fig:shortwave-heating-rate-gases} shows heating
 rates attributed to the major shortwave absorbing atmospheric gases.
 
