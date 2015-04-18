@@ -19,7 +19,8 @@ clean:
 	rm -f build/*
 
 $(NAME).pdf: build/$(NAME).pdf
-	pdftk cover.pdf build/$(NAME).pdf cat output $(NAME).pdf
+	#pdftk cover.pdf build/$(NAME).pdf cat output $(NAME).pdf
+	cp build/$(NAME).pdf $(NAME).pdf
 
 #build/$(NAME).pdf: build/$(NAME).tex
 #	latexmk -e '$$pdflatex=q/xelatex -synctex=1 -interaction=nonstopmode/' -pdf -jobname=build/$(NAME) build/$(NAME).tex
