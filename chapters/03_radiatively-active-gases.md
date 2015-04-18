@@ -104,30 +104,52 @@ O~2~).
 Shortwave Absorption
 --------------------
 
-In the shortwave spectrum,
-absorption takes place mostly in the high-frequency
-range.
-In particular, gamma radiation, X-rays, UV-C and UV-B
+In the shortwave spectrum, solar radiation is absorbed significantly
+(in terms of energy budged) by the following gases:
+
+* Water vapour ($\mathrm{H_2O}$, $\mathrm{H_3O}$)
+* Ozone ($\mathrm{O_3}$)
+* Carbon dioxide ($\mathrm{CO_2}$)
+* Oxygen ($\mathrm{O_2}$, $\mathrm{O}$)
+* Methane ($\mathrm{CH_4}$)
+* Nitrous oxide ($\mathrm{N_2O}$)
+
+Solar absorption is the greatest in the
+high-frequency range. In particular, gamma radiation, X-rays and UV-C
 are almost entirely absorbed early in their travel through the atmosphere,
 mostly by oxygen and ozone. As such, and because they consitute only a small
 contribution of energy to low and mid-altitudes, they are of little
-concern to us. Above these wavelengths in the visible part of the spectrum,
-the atmosphere is relatively transparent, with only a few weak bands of ozone and
-oxygen. In near IR, radiation is again absorbed strongly by bands of water
-vapour and $\text{CO}_2$. This time we have to be concerned, because water
-vapour is mostly located in the troposphere, where it contributes to heating
-of atmospheric layers, and the absorption is not flat-out as in very short wave
-radiation.
+concern to NWP. In the UV spectrum, radiation is strongly absorbed by
+bands of ozone (Hartley, Huggins bands), important in the stratosphere.
+In the visible spectrum, clear-sky atmosphere is almost transparent,
+with a few weaker bands of ozone (Chappius band) and oxygen
+(‘red bands’). In the near IR,
+radiation is again absorbed strongly by multiple bands of water
+vapour, but also carbon dioxide, oxygen (‘infrared bands’), methane and nitrous
+oxide. Both absorption in the visible and near IR spectrum has to be accounted
+for for an accurate radiative transfer prediction in NWP.
+The importance of absorption bands in the shortwave spectrum is given
+not only by their strength (absorption cross section) and concentration
+of the absorbing gas, but also by the
+solar spectrum, which falls off quickly below about $0.2\ \mathrm{\mu m}$,
+and above $3\ \mathrm{\mu m}$.
 
-Figure\ \ref{fig:shortwave-heating-rate-gases} shows shortwave heating
-rate attributed to atmospheric gases.
+Absorption bands of gases important to solar absorption (discussed in
+the following sections) can be seen in
+Figure\ \ref{fig:zenith-transmittance-gases},
+and Figure\ \ref{fig:shortwave-heating-rate-gases} shows heating
+rates attributed to the major shortwave absorbing atmospheric gases.
 
-In the shortwave spectrum, radiation is absorbed significantly
-(in terms of energy budged) by the following gases:
-
-1. Water vapour ($\mathrm{H_2O}$, $\mathrm{H_3O}$)
-2. Ozone ($\mathrm{O_3}$) and oxygen ($\mathrm{O_2}$, $\mathrm{O}$)
-3. Carbon dioxide ($\mathrm{CO_2}$)
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{img/zenith-transmittance-gases.png}
+\caption{
+\textbf{Zenith clear-sky transmittance in midlatitude summer attributed to
+gases.} Panels show absorption contribution of atmospheric gases. Molecular
+scattering is not considered. Adopted from \cite{petty2006}.
+\label{fig:zenith-transmittance-gases}
+}
+\end{figure}
 
 \begin{figure}
 \centering
@@ -147,21 +169,30 @@ Water vapour is the most important shortwave absorption gas. It is abundant
 in the troposphere, where it falls off sharply with height due to condensation.
 It is also highly spatially and temporally variable.
 
-Water vapour absorbs in a number of regions in the shortwave spectrum,
-most importantly in bands centered at $2.7\ \mathrm{\mu m}$,
-$1.87\ \mathrm{\mu m}$ and $1.38\ \mathrm{\mu m}$ [@goody1995;@liou2002].
+Water vapour absorbs radiation in a number of bands in the shortwave spectrum,
+most importantly in the near IR centered at $2.7\ \mathrm{\mu m}$ ($\chi$),
+$1.87\ \mathrm{\mu m}$ ($\Omega$), $1.38\ \mathrm{\mu m}$ ($\psi$),
+$1.1\ \mathrm{\mu m}$ ($\varphi$), $0.94\ \mathrm{\mu m}$ ($\rho, \sigma, \tau$),
+$0.82\ \mathrm{\mu m}$ and $0.72\ \mathrm{\mu m}$ [@goody1995;@liou2002].
+All of these are important to solar heating in the atmosphere.
+There are also absorption lines in the visible spectrum, but are said
+not to contribute significantly to heating rates [@liou2002].
 
 ### Ozone
 
-Ozone exhibits a number of bands in the shortwave part of the spectrum:
+Ozone ($\mathrm{O_3}$) exhibits a number of bands in the shortwave spectrum:
 _Hartley bands_, _Huggins bands_ and _Chappuis bands_
 (Figure \ref{fig:ozone-shortwave-bands}). All of them are in the form
-of continuum due to photodissociation, although Huggins bands have more
+of continuum due to photodissociation, although Huggins bands have a more
 irregular structure.
-
-Of the three, Hartley bands are the strongest. They cover the region between
+Of the three, Hartley bands are the strongest. They cover the region of
 240–310 nm. Because of their strength, they absort most incident solar radiation
 in the mesopshere and stratosphere.
+Huggins bands cover the region of 310–340 nm.
+Although Chappuis bands are the weakest of the three, they are important for
+atomospheric absorption, because they lie in the region of 450–750 nm,
+where solar radiation is the strongest. Their principal location of absorption
+is in the troposhpere.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ozone-absorption/ozone-absorption.pdf}
@@ -186,20 +217,19 @@ Adopted from \cite{goody1995}. After Brasseur and Solomon (1984).
 }
 \end{figure}
 
-Huggins bands cover the region of 310–340 nm.
-
-Although Chappuis bands are the weakest of the three, they are important for
-atomospheric absorption, because they lie in the region of 450–750 nm,
-where solar radiation is the strongest. Their principal location of absorption
-is in the troposhpere.
-
 ### Carbon Dioxide
+
+Carbon dioxide ($\mathrm{CO_2}$) is mostly active in the longwave spectrum,
+but exhibits a number of bands in the shortwave as well. The strongest is
+centered at $2.7\ \mathrm{\mu m}$, and a number of weaker bands are at
+$2.0\ \mathrm{\mu m}$, $1.6\ \mathrm{\mu m}$, $1.4\ \mathrm{\mu m}$
+[@liou2002].
 
 ### Oxygen
 
-Oxygen ($\mathrm{O_2}$) absorption happens mostly in the ultraviolet,
-where it is associated with electronic transitions.
-UV absorption cross section is
+Oxygen ($\mathrm{O_2}$, $\mathrm{O}$) absorption happens mostly in the
+ultraviolet, where it is associated with electronic transitions.
+High-frequency UV absorption cross section is
 shown in Figure\ \ref{fig:oxygen-absorption}. The strength of this absorption
 means that little UV radiation penetrates the atmosphere in this region.
 
@@ -225,6 +255,20 @@ atmospheric constituents, notably $\mathrm{O_2}.\mathrm{N_2}$
 and $\mathrm{O_4}$. These have additional
 bands belived to contribute roughly $1\ \mathrm{Wm^{-2}}$
 to the total atmospheric absorption [@solomon1998].
+
+### Methane
+
+Methane ($\mathrm{CH_4}$) is not active in the visible spectrum,
+but has a number of bands in the near IR clustered between 3
+and $4\ \mathrm{\mu m}$ (3.38, 3.53, 3.26), 2 and
+$2.5\ \mathrm{\mu m}$ (2.37, 2.30, 2.20) and at $1.66\ \mathrm{\mu m}$.
+
+### Nitrous Oxide
+
+Nitrous oxide ($\mathrm{N_2O}$) has a few absorption bands in the near IR
+spectrum important to solar absorption: $4.06\ \mathrm{\mu m}$,
+$3.90\ \mathrm{\mu m}$, $2.97\ \mathrm{\mu m}$ and $2.87\ \mathrm{\mu m}$
+[@liou2002].
 
 Longwave Spectrum
 -----------------
