@@ -373,8 +373,8 @@ The following experiments were performed:
 
     Base configuration for shortwave intermittency evaluation:
 
-    * Shortwave gaseous transmissivities computed at every time step.
-    * Longwave gaseous transmissivities computed once per 1\ h.
+    * Shortwave gaseous optical thickness computed at every time step.
+    * Longwave gaseous optical thickness computed once per 1\ h.
     * Calibration of longwave NER weights computed once per 3\ h.
 
 2. **Shortwave Intermittency 1\ h**
@@ -382,14 +382,14 @@ The following experiments were performed:
     Shortwave intermittency enabled with 1\ h intermittency:
 
     * Based on *Shortwave Intermittency Base*.
-    * Shortwave gaseous transmissivities computed once per 1\ h.
+    * Shortwave gaseous optical thickness computed once per 1\ h.
 
 2. **Shortwave Intermittency 30\ min**
 
     Shortwave intermittency enabled with 30\ min intermittency:
 
     * Based on *Shortwave Intermittency Base*.
-    * Shortwave gaseous transmissivities computed once per 30\ min.
+    * Shortwave gaseous optical thickness computed once per 30\ min.
 
 
 ### Accuracy

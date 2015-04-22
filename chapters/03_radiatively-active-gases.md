@@ -18,7 +18,7 @@ efficiently.
 
 ![CO~2~ absorption coefficient.]
 
-Spectroscopic data about absorption lines of gases are available from
+Spectroscopic data of absorption lines of gases are available from
 spectroscopic databases. One such database is HITRAN[^hitran] [@rothman2009].
 
 [^hitran]: \url{https://www.cfa.harvard.edu/hitran/}.
@@ -114,9 +114,9 @@ Shortwave Absorption
 --------------------
 
 In the shortwave spectrum, solar radiation is absorbed significantly
-(in terms of energy budged) by the following gases:
+(in terms of the energy budget) by the following gases:
 
-* Water vapour ($\mathrm{H_2O}$, $\mathrm{H_3O}$)
+* Water vapour ($\mathrm{H_2O}$)
 * Ozone ($\mathrm{O_3}$)
 * Carbon dioxide ($\mathrm{CO_2}$)
 * Oxygen ($\mathrm{O_2}$, $\mathrm{O}$)
@@ -467,9 +467,9 @@ explained sources of continuum absoprtion at lower frequencies due to:
 * _Foreign continuum_
 * Absorption by dimers and multimers
 
-Event though contiuum absorption is generally weak comparable to line absorption
-(with the exception of UV)
-it is still of great importance, because it convers large parts of the spectrum,
+Even though contiuum absorption is generally weak compared to line absorption
+(with the exception of UV),
+it is still of great importance, because it covers large parts of the spectrum,
 often in places where there is absence of line absorption
 (_atmospheric windows_).
 

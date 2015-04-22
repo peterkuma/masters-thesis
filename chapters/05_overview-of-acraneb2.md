@@ -7,7 +7,7 @@ developed as an alternative to k-distribution radiation schemes.
 k-distribution schemes, in particular RRTM [@mlawer1997],
 are currently one of the most popular methods of
 solving the radiative transfer equation in NWP models,
-thanks to their superior properties to narrow band models. 
+thanks to their superior properties to narrow-band models. 
 Their computation complexity, however,
 precludes frequent recalculation of fluxes,
 necessitating either reduced temporal or spatial precision.
@@ -61,7 +61,7 @@ The input to the radiation scheme consists of:
 * Cloud fraction and cloud water/ice content
 * Aerosol fraction and properties
 * Surface temperature, albedo and emissivity
-* Solar constant and the solar zenith angle
+ Solar constant and the solar zenith angle
 
 The output of the scheme are shortwave and longwave fluxes at layer interfaces,
 from which the heating rate of layers can be calculated by the NWP model.
@@ -70,7 +70,7 @@ from which the heating rate of layers can be calculated by the NWP model.
 
 The general operation of the scheme can be summarised as follows:
 
-1. Optical thickness and transmissivity/reflectivity coefficients of layers are
+1. Optical thickness and transmittance/reflectance coefficients of layers are
 calculated. These are due to gases, clouds and aerosols. The resulting
 layer coefficients are a weighted sum of layer coefficients for the particular
 processes, weighted by optical thickness [@masek2014]:
@@ -109,64 +109,76 @@ aerosols still needs to be taken into account.
 Gaseous Transmission
 --------------------
 
-The radiation model depends on the ability to calculate gaseous transmission
-function between arbitrary layers. Transmission functions are approximated by a
-_modified Malkmus model_.
-The complex absorption structure of a gas is parametrised by a small number
-of parameters as it is in the classical narrow-band Malkmus model,
-but in this case they describe the whole broadband region
-(shorwave or longwave). This greatly reduces the number of calculations
-needed to to compute a transmission function between two layers, but
-necessitate a range of compromises to be made.
-
-### Modified Malkmus Model
-
-The modified Malkmus model is given by a heuristically derived formula
-based on the original Malkmus formula [@masek2012]:
-
-$$
-\tau_M = \frac{a}{2b}\left(\sqrt{1 + \frac{4bu}{1 - c/a} - 1} \right)
-$$
-$$
-\tau = \frac{\tau_0}{\alpha}\left[\left(1 + \frac{\tau_M}{\tau_0}\right)^{\alpha} - 1\right]
-$$
-
-Coefficients a, b, and c depend on pressure and temperature by:
-
-$$
-a = a_0 (T/T_0)^{\alpha_a},
-b = b_0 (p_0/p) (T/T_0)^{\alpha_b},
-c = c_0 (p/p_0) (T/T_0)^{\alpha_c}
-$$
-
-The parameters a~0~, b~0~, c~0~, α~a~, α~b~, α~c~, α and τ~0~
-are determined by fitting the transmission
-function to a range of transmissions calculated by an external narrow-band
-model SPLIDACO.
-
 ### Representation of Gases in ACRANEB2
 
 ACRANEB2 contain representation of all atmospheric gases which contribute
-significantly to the radiative energy budget in shortwave and longwave part
-of the spectrum:
+significantly to the radiative energy budget in the shortwave and longwave
+spectrum:
 
 * Water vapour
 * $\mathrm{O_3}$
-* ‘CO2+’ ($\mathrm{CO_2}$, $\mathrm{CH_4}$, $\mathrm{CO}$,
+* ‘CO2+’ ($\mathrm{CO_2}$, $\mathrm{CH_4}$,
   $\mathrm{N_2O}$, $\mathrm{O_2}$)
 
-CO~2~, CH~4~, CO, N~2~O and O~2~ are treated as a single composite gas
+where $\mathrm{CO_2}$, $\mathrm{CH_4}$, $\mathrm{N_2O}$ and $\mathrm{O_2}$
+are treated as a single composite gas
 (‘CO2+’), because they are well-mixed, and their concentration in the atmosphere
 is relatively constant[^gases-concentration].
-
-The absorption structure of each gas is described by a total of 16 parameters
-(8 for both parts of the spectrum), as detailed above.
 
 [^gases-concentration]: This is not neccessrily true for all conditions,
 because some of these gases have sources near the surface, e.g. CO~2~
 is released by vegetation and exhibits both spatial and seasonal variability.
 Nevertheless, this simplification is justified, because the impact on
 atmospheric heating rate is small.
+
+
+### Modified Malkmus Model
+
+The radiation scheme depends on the ability to calculate gaseous optical
+paths between arbitrary layers. Broadband optical paths are approximated by a
+*modified Malkmus model*. The scheme uses the narrow-band Malkmus band model
+as its bases, but adding additional parameters in order to account for
+secondary saturation and Voigt line shape, and increase accuracy over a range
+of common atmospheric conditions (temperature and pressure).
+
+The modified Malkmus band model is defined as follows [@masek2014]:
+
+\begin{align}
+\tau_\mathrm{I} &= \frac{a}{2b}(\sqrt{1 + X(B,Z) + 4bu} - 1)\nonumber\\
+\tau_\mathrm{II} &= \frac{\tau_\mathrm{crit}}{\alpha}\left(
+  \left(1 + \frac{\tau_\mathrm{M}}{\tau_\mathrm{crit}}\right)^\alpha - 1
+\right)\\
+\tau_\mathrm{III} &= \tau_\mathrm{II}\max\left(0,
+  P_{00}(T) +
+  \frac{\tau_\mathrm{II}}{\tau_\mathrm{II} + D}
+  \sum_{j = 0}^5 P_j(T)(\ln\tau_\mathrm{II})^j
+\right)\\
+\tau_\mathrm{gas} &= \tau_\mathrm{III}\max\left(0,
+  1 + \frac{Q(p)}{1 + \tau_\mathrm{III}}
+\right)
+\end{align}
+
+where:
+
+- $\tau_\mathrm{I}$ is the narrow-band Malkmus model
+\eqref{eq:malkmus-model} with an additional
+term $X(B,Z)$, $B = 4bu\alpha_L/\alpha_D$, $Z = \alpha_D/\alpha_L$,
+in order to account for Doppler broadening of line shape [@geleyn2005].
+
+- $\tau_\mathrm{II}$ is an expression to modify the asymptotic power behaviour 
+  of $\tau_\mathrm{I}$ with respect to $u$ to $u^{\alpha/2}$.
+
+- $\tau_\mathrm{III}$ and $\tau_\mathrm{gas}$ are secondary corrective fits,
+  in order to obtain greater accuracy in heating rates. $P$ and $Q$ are
+  second order polynomials in temperature and pressure (resp.).
+
+The final formula $\tau_\mathrm{gas}$ involves 33 parameters,
+which need to be fitted for a broad range of atmospheric conditions
+to a reference model. The reference model is a narrow-band model with
+408 bands. Reference broadband optical paths are calculated for a set of
+$(u, p, T)$ combinations by a
+weighted average of the narrow-band optical paths, weighted by the spectral
+composition of the incoming solar flux.
 
 Solving the RTE
 ---------------

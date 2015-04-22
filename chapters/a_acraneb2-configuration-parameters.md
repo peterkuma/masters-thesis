@@ -19,7 +19,7 @@ in the ALADIN source code.
     NSORAYFR=-<h>
 
 Shortwave (solar) intermittency interval length.
-Shortwave gaseus transmissivities are calculated every
+Shortwave gaseus optical thickness is calculated every
 `<n>` steps, resp. every `<h>` hours.
 
 ### NRAUTOEV
@@ -43,5 +43,5 @@ computation is restricted to ‘day’ grid cells, possibly improving performanc
     NTHRAYFR=-<h>
 
 Longwave (thermal) intermittency interval length.
-Longwave gaseous transmissivities are calculated every
+Longwave gaseous optical thickness is calculated every
 `<n>` steps, resp. every `<h>` hours.

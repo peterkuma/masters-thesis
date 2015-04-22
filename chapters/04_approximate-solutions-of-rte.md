@@ -441,8 +441,8 @@ More concisely, these can be expressed using
 
 where:
 
-- $\alpha_1 = 2(1 - \tilde{\omega}(1 - b))$ is diffuse transmissivity,
-- $\alpha_2 = 2b\tilde{\omega}$ is diffuse reflectivity,
+- $\alpha_1 = 2(1 - \tilde{\omega}(1 - b))$ is diffuse transmittance,
+- $\alpha_2 = 2b\tilde{\omega}$ is diffuse reflectance,
 - $\alpha_3 = b_0\tilde{\omega}$ is solar to diffuse backscattering,
 - $\alpha_4 = (1 - b_0)\tilde{\omega}$ is solar to diffuse forward scattering.
 
@@ -575,21 +575,25 @@ Radiatively active gases usually have many more absorption lines than can
 be integrated over in NWP models in a time-effective manner.
 A number of statistical approaches to this problem have been invented.
 One well-established approach is _band models_, whereby
-line strengths are given by a statistical distribution specified by a limited
-number of parameters in each band (range of walengths). For suitably
-chosen distributions, the integration can be done analytically, leading
-to an expression for broadband transmissivity as a function of path length
-and distribution parameters. Traditionally, the band size has to be small
-enough that radiant power (Planck function) can be assumed constant
-within the band. With some effort this restriction can be lifted, at the
-cost of more complicating matters such as secondary saturation.
+line strengths are assumed to have a particular statistical distribution
+with a limited number of parameters in each band (walength interval).
+For suitably chosen distributions,
+the integration over wavelength and a finite path can be done in a closed-form,
+leading to an expression for band-averaged transmittance
+as a function of path length and distribution parameters.
+Traditionally, the band interval has to be small
+enough, so that radiance (given by the Planck's law) can be assumed constant
+within the band. Such bands are called *narrow-band*.
+As discussed later, with some effort this restriction can be lifted,
+and band models can be applied to much larger *broadband* intervals,
+such as the entire shortwave or longwave spectrum.
 
 ### Malkmus Model
 
-One of the most popular _narrow-band_ models is the _Malkmus model_. It is
+One of the most popular narrow-band models is the *Malkmus model*. It is
 based on the assumption that there is a given number of randomly
 distributed absorption lines in each band, and their stength has
-probability density:
+the probability density:
 
 $$
 p(S) = \frac{1}{S} e^{-S/S_0}
@@ -603,7 +607,7 @@ $$
 \tau = ku = \sum_{n=0}^N S_i u f(\nu) = \sum_{n=0}^N \frac{S_i u\alpha}{\pi[(\nu-\nu_i)^2 + \alpha^2]}
 $$
 
-where $f(\nu)$ is the Voigt line shape, and narrow-band transmissivity
+where $f(\nu)$ is the Voigt line shape, and narrow-band transmittance:
 
 $$
 \mathcal{T} = \frac{1}{\Delta\nu} \int_{\nu_1}^{\nu_2} e^{-\tau}d\nu
@@ -611,7 +615,7 @@ $$
 $$
 
 The above expression is a random variable (because $S_i$ and $\nu_i$ are random
-variables). Therefore, we have to compute mean transmissivity to be useful:
+variables). Therefore, we have to compute mean transmittance to be useful:
 
 $$
 \bar{\mathcal{T}} = \int_\mathbf{S} \int_\mathbf{\nu} \mathcal{T} p(\mathbf{\nu})p(\mathbf{S}) d\mathbf{\nu}d{\mathbf{S}}
@@ -620,7 +624,7 @@ $$
 where $\mathbf{S} = (S_1,...,S_N)$ and $\mathbf{\nu} = (\nu_1,...,\nu_N)$
 are vectors of line strengths and line positions.
 This integration can be performed analytically [see e.g. @zdunkowski2007],
-leading to the _Malkmus formula_ for optical depth:
+leading to the *Malkmus formula* for narrow-band optical thickness:
 
 $$
 \tau_M = \frac{\pi\alpha}{2\delta}\left(\sqrt{1+\frac{4\bar{S}u}{\pi\alpha}} - 1\right)
@@ -652,9 +656,9 @@ $$
 \includegraphics[width=\textwidth]{img/optical-saturation.pdf}
 \caption{
 \label{fig:optical-saturation}
-\textbf{Monochromatic and narrow band optical depth.}
+\textbf{Monochromatic and narrow-band optical depth.}
 In the monochromatic case (\textbf{left}), the increase in optical depth is linear,
-whereas in a narrow band model (\textbf{right}) optical saturation causes
+whereas in a narrow-band model (\textbf{right}) optical saturation causes
 increase to be progressively more sublinear. Shown is a Malkmus model as in
 \eqref{eq:malkmus-model}.
 }
@@ -665,7 +669,7 @@ increase to be progressively more sublinear. Shown is a Malkmus model as in
 From the equation for Malkmus model \eqref{eq:malkmus-model} we can see
 that the increase of optical depth with absorber amount $u$ is nonlinear.
 This phenomenon is sometimes called *optical saturation*,
-i.e. absorption by an absorption line can contribute to narrow band optical
+i.e. absorption by an absorption line can contribute to narrow-band optical
 depth only until substantial
 fraction of radiation at the wavelength is depleted. After that,
 the radiation no longer contains certain wavelengths and optical depth
@@ -674,17 +678,17 @@ This is in contrast with monochromatic absorption
 and gray broadband absorption, when optical depth increases linearly
 with absorber amount at all times (Figure\ \ref{fig:optical-saturation}).
 
-We should note that the asymptotic behaviour of the narrow band Malkmus model
+We should note that the asymptotic behaviour of the narrow-band Malkmus model
 is:
 
 - $\tau \propto u$ for relatively small absorber amount (weak limit)
 - $\tau \propto \sqrt{u}$ for relatively large absorber amount (strong limit)
 
-When considering optical depth of larger spectral intervals (where narrow band
+When considering optical depth of larger spectral intervals (where narrow-band
 approximation no longer applies), we can observe *secondary saturation*,
 when diminising rate of optical depth increase is caused by variability
 of extinction with wavelength such as in Rayleigh scattering, and in cloud
-absorption and scattering. While this is not an issue to narrow band model
+absorption and scattering. While this is not an issue to narrow-band model
 radiation schemes, it has to be taken into account in broadband model
 radiation schemes *in addition* to optical saturation.
 
@@ -692,7 +696,7 @@ radiation schemes *in addition* to optical saturation.
 
 The Malkmus formula has a number of drawbacks. One of the more serious is
 that the line width α is assumed to be constant over the path. In reality,
-we often need to compute transmissivity over large parts of the atmosphere,
+we often need to compute transmittance over large parts of the atmosphere,
 where α varies with pressure and temperature due to line broadening. This
 situation is handled by the _Curtis-Godson approximation_  for inhomogeous
 atmospheres.
@@ -748,8 +752,8 @@ $$
 \mathbb{A}\mathbf{F} = \mathbf{S}
 $$
 
-where $\mathbb{A}$ is a matrix of coefficients (layer transmissivities and
-reflectivities), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
+where $\mathbb{A}$ is a matrix of coefficients (layer transmittances and
+reflectances), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
 vector of sources. This system can then be solved for $\mathbf{F}$, which
 is the desired outcome of the adding method.
 
@@ -763,9 +767,9 @@ Computational Intermittence
 
 Because the temporal variability of all quantities coming as an input 
 to the RTE is not the same, it is convenient to avoid repeated computation
-of certain results. E.g., the rate of change of cloudiness is much higher
-than that of gas concentrations. Therefore, it is possible skip or linearise
-the computation of gaseous transmission functions. Other intermediate
+of certain results. E.g., the rate of change of cloud cover is much higher
+than that of gas concentrations. Therefore, it is possible skip or
+interpolate gaseous optical thickness. Other intermediate
 results may also be reused, depending on the actual implementation of the
 solution.
 

@@ -173,7 +173,7 @@ Radiance has units $\mathrm{Wm^{-2}sr^{-1}}$.
 As *monochromatic radiance*
 will be discussed freqently in this text, we will call it simply ‘radiance’
 and denote $I$ and state explicitly if *radiance* is considered by calling it
-*narrowband* or *broadband radiance*. We will also assume implicit dependence
+*narrow-band* or *broadband radiance*. We will also assume implicit dependence
 on $\mathbf{r}$ in order to make equations more readable.
 
 ### Flux Density and Net Flux Density
@@ -239,7 +239,37 @@ as discussed in the section on radiative transfer equation
 
 ### Emissivity and Albedo
 
-### Optical Path and Transmissivity
+### Optical Path, Optical Depth, Optical Thickness and Transmittance
+
+*Optical path* $\tau$ is defined as the integral of volume extinction
+coefficient over a finite path through an absorbing medium:
+
+\begin{align}
+\tau(s_1, s_2) \equiv \int_{s_1}^{s_2} \beta_e(s)\mathrm{d}s
+\end{align}
+
+*Optical depth* is denoted by the same symbol $\tau$, and is the vertical
+optical path between the top of the atmosphere and a height $z$:
+
+\begin{align}
+\tau(z) \equiv \int_z^\infty \beta_e(z')\mathrm{d}z
+\end{align}
+
+*Optical thickness* $\Delta\tau$ is the vertical optical path
+between two levels
+$z_1$ and $z_2$:
+
+\begin{align}
+\Delta\tau \equiv \tau(z_2) - \tau(z_1)
+\end{align}
+
+*Transmittance* (or *transmissivity*) $t$ is the fraction of radiance passing
+through a layer of absorber. In a non-scattering medium with no sources,
+it is related to optical thickness $\Delta\tau$ by:
+
+\begin{align}
+t = \exp(-\Delta\tau)
+\end{align}
 
 ### Heating Rate
 
