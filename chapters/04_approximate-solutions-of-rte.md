@@ -446,8 +446,8 @@ where:
 - $\alpha_3 = b_0\tilde{\omega}$ is solar to diffuse backscattering,
 - $\alpha_4 = (1 - b_0)\tilde{\omega}$ is solar to diffuse forward scattering.
 
-This system of equations simplifies in both shortwave and longwave parts of
-the spectrum: in shortwave $B = 0$, in longwave $S = 0$.
+This system of equations simplifies in both the shortwave and longwave spectrum:
+in shortwave $B = 0$, in longwave $S = 0$.
 
 ### Integral Form of the Radiative Transfer Equation
 
@@ -615,7 +615,7 @@ $$
 $$
 
 The above expression is a random variable (because $S_i$ and $\nu_i$ are random
-variables). Therefore, we have to compute mean transmittance to be useful:
+variables). Therefore, we have to compute the mean to be useful:
 
 $$
 \bar{\mathcal{T}} = \int_\mathbf{S} \int_\mathbf{\nu} \mathcal{T} p(\mathbf{\nu})p(\mathbf{S}) d\mathbf{\nu}d{\mathbf{S}}
@@ -627,7 +627,8 @@ This integration can be performed analytically [see e.g. @zdunkowski2007],
 leading to the *Malkmus formula* for narrow-band optical thickness:
 
 $$
-\tau_M = \frac{\pi\alpha}{2\delta}\left(\sqrt{1+\frac{4\bar{S}u}{\pi\alpha}} - 1\right)
+\tau_\mathrm{M} =
+\frac{\pi\alpha}{2\delta}\left(\sqrt{1+\frac{4\bar{S}u}{\pi\alpha}} - 1\right)
 $$
 
 where $\delta$ is the average line spacing.
@@ -639,7 +640,7 @@ parameters $a$ and $b$:
 
 $$
 \label{eq:malkmus-model}
-\tau_M = \frac{a}{2b}\left(\sqrt{1+4bu} - 1\right)
+\tau_\mathrm{M} = \frac{a}{2b}\left(\sqrt{1+4bu} - 1\right)
 $$
 
 By making approximations for $4bu \ll 1$ and $4bu \gg 1$ match the
@@ -718,13 +719,12 @@ is fitted by measured values.
 Adding Method
 -------------
 
-The _adding method_ is a method of finding a solution to fluxes for given
-optical depths and temperature of layers. The adding method assumes that the
-plane parallel approximation, δ-two stream approximation and layer
-discretisation have been made.
+The *adding method* is a method of finding a solution to fluxes for given
+optical depths and temperature of layers. The adding method assumes the
+$\delta$-two stream approximation and layer discretisation.
 
 A relationship between fluxes at the top and bottom interfaces of a layer
-can be found from the δ-two-stream differential equations.
+can be found from the $\delta$-two stream differential equations.
 
 $$
 \begin{pmatrix}

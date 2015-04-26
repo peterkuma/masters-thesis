@@ -281,17 +281,6 @@ spectrum important to solar absorption: $4.06\ \mathrm{\mu m}$,
 $3.90\ \mathrm{\mu m}$, $2.97\ \mathrm{\mu m}$ and $2.87\ \mathrm{\mu m}$
 [@liou2002].
 
-Longwave Spectrum
------------------
-
-### Water Vapour
-
-### CO2
-
-### O3
-
-### Trace Gases
-
 Distribution of Gases in the Atmosphere
 ---------------------------------------
 

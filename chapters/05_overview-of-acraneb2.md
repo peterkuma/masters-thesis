@@ -42,7 +42,7 @@ column in the model grid[^vectorisation].
 Vertically, the atmosphere is split into layers, on which the computation
 is discretised. In the ALADIN model, layers are defined in hybrid
 _eta cooridates_, transitioning smoothly from
-$\sigma$-coordinates near the surface
+$\sigma$ coordinates near the surface
 to pressure coordinates in the free atmosphere. Therefore, boundary layers
 follow the ground, while upper layers follow isobaric surfaces.
 Apart from an NWP model, ACRANEB2 can be run in isolation inside a
@@ -76,7 +76,7 @@ layer coefficients are a weighted sum of layer coefficients for the particular
 processes, weighted by optical thickness [@masek2014]:
 
     \begin{align}
-    \alpha_i = \frac{1}{\Delta\delta}\sum_j \alpha_{i,j}\Delta\delta_j, \quad \Delta\delta = \sum_j \Delta\delta_j
+    \alpha_i = \frac{1}{\tau}\sum_j \alpha_{i,j}\tau_j, \quad \tau = \sum_j \tau_j
     \end{align}
 
 2. Integral layer coefficients $a_1, ..., a_4$ are calculated from
@@ -217,10 +217,10 @@ equal to the sum of CTS, EWS and EBL terms. For a suitable choice of sources,
 Longwave Solution
 -----------------
 
-In the longwave part of of the spectrum, there are many sources of
+In the longwave spectrum, there are many sources of
 radiation: the Earth's surface and each atmospheric layer. This fact
-makes the situation more complicated than in the shortwave part of the spectrum,
-as broadband optical thickness of layers depends on the path travelled by
+makes the situation more complicated than in the shortwave spectrum,
+as the broadband optical thickness of layers depends on the path travelled by
 radiation, which is ambiguous. The adding method can accomodate only a
 single choice of optical thickness per layer. However, it is possible to
 overcome this problem with improved accuracy
@@ -312,7 +312,7 @@ in EBL (exchange between layers) terms should be between two extreme values:
 
 \begin{align}
 \mathbf{F} &= (1 - \alpha)(\mathbf{F}_1 - \mathbf{F}_{1,\mathsf{CTS}} - \mathbf{F}_{1,\mathsf{EWS}}) +
-\alpha(\mathbf{F}_2 - \mathbf{F}_{2,\mathsf{CTS}} - \mathbf{F}_{2,\mathsf{EWS}}) +\\
+\alpha(\mathbf{F}_2 - \mathbf{F}_{2,\mathsf{CTS}} - \mathbf{F}_{2,\mathsf{EWS}}) +\nonumber\\
 &+ \mathbf{F}_\mathsf{CTS} + \mathbf{F}_\mathsf{EWS}
 \end{align}
 
