@@ -192,7 +192,7 @@ radiation, and express the phase function approximately as:
 \begin{align}
 p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \approx
   (1 - f)p'(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) +
-  f\delta(\mathbf{\hat{\Omega}'}\cdot\mathbf{\hat{\Omega}} - 1)
+  2f\delta(\mathbf{\hat{\Omega}'}\cdot\mathbf{\hat{\Omega}} - 1)
 \end{align}
 
 where $p'(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}})$
