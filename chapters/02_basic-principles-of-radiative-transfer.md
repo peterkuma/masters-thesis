@@ -94,7 +94,8 @@ importance to radiation schemes. Radiation in far infrared (approx. above
 $100\ \mathrm{\mu m}$) gradually ceases to be energetically important due to low
 power emitted at longer wavelengths.
 
-### Shortwave and Longwave Parts of the Spectrum
+### Shortwave and Longwave Spectrum
+\label{sec:shortwave-and-longwave-spectrum}
 
 For the purpose of radiation schemes, it is convenient to adopt two even broader
 spectral regions -- *shortwave* (*solar*) and *longwave* (*thermal*) radiation.
