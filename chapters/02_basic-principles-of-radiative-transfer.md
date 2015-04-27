@@ -151,7 +151,9 @@ where $x$ is wavenumber and $y$ is wavelength (and vice-versa).
 
 ### Monochromatic Radiance and Radiance
 
-*Monochromatic radiance*[^radiance] is power transmitted by an electromagnetic
+*Monochromatic radiance*
+(or *spectral intensity*, *radiant intensity*)
+is power transmitted by an electromagnetic
 wave at certain wavelength passing through a unit surface in a particular
 direction. Monochromatic radiance depends on wavelength $\lambda$,
 position $\mathbf{r}$ and direction given by a unit vector
@@ -196,10 +198,6 @@ densities:
 \begin{align}
 F^\mathrm{net} = F^\uparrow - F^\downarrow
 \end{align}
-
-[^radiance]: Radiance is sometimes referred to as _intensity_, _irradiance_ or
-_exitance_. The latter two are reserved for radiance incoming on, and emitted
-from a surface (resp.).
 
 ### Mass and Volume Absorption/Extinction Coefficients
 
