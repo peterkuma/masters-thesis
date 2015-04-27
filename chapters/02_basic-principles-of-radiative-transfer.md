@@ -185,8 +185,14 @@ geometry, depending on the hemisphere we speak of _upward_ or _downward_ flux
 density:
 
 \begin{align}
-F^\uparrow = \int_\uparrow I(\mathbf{\hat{\Omega}})\mathrm{d}\omega\\
-F^\downarrow = \int_\downarrow I(\mathbf{\hat{\Omega}})\mathrm{d}\omega
+F^\uparrow = \int_\uparrow
+  I(\mathbf{\hat{\Omega}})
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \mathrm{d}\omega\\
+F^\downarrow = \int_\downarrow
+  I(\mathbf{\hat{\Omega}})
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \mathrm{d}\omega
 \end{align}
 
 where $\int_\uparrow$, $\int_\downarrow$ represent integration over the top
