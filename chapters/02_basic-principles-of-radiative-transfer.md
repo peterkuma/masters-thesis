@@ -69,9 +69,8 @@ with their sight. The likely reason which gave rise to this ability is twofold:
 clear-sky atmosphere is almost transparent in the visible spectrum. Visible
 light spans the region of about 400–700\ $\mathrm{nm}$.
 In radiation models it has to be
-considered due to its scattering and absorption by clouds and aerosols, but also
-due to relatively weak absorption by oxygen and ozone in a number of absorption
-bands.
+considered due to scattering and absorption by air molecules,
+clouds and aeorosols. The only significant source of visible light is the Sun.
 
 ### Infrared Radiation
 
