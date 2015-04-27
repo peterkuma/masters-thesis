@@ -198,7 +198,10 @@ p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \approx
 where $p'(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}})$
 is the *$\delta$-scaled phase function*, and $f$ is the fraction
 scattered in the direction of the forward peak, i.e. we approximate
-the forward peak by an equivalent Dirac $\delta$ peak.
+the forward peak by an equivalent Dirac $\delta$ peak. The factor 2 in the second
+term arises from the normalisation condition for the phase function
+\eqref{eq:phase-function-normalisation}, assuming $p'$ satisfies the same
+condition.
 
 Integrating \eqref{eq:rte-dir} over the $\delta$ peak:
 
