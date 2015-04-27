@@ -25,8 +25,12 @@ and approximations:
 
 - Horizontally homogeneous (1D)
 - $\delta$-two stream approximation
-- Broadband model based (two bands: shortwave and longwave)
-- Adding method for flux computation
+- Broadband model based (two bands: shortwave and longwave),
+  with modified Malkmus band model transmission approximation
+- Curtis-Godson approximation of inhomegeneous path transmission
+- Adding method for flux computation to account for multiple scattering
+  in shortwave and longwave spectrum
+- Computational intermittency in longwave and shortwave spectrum
 
 ACRANEB2 is currently available as an optional radiation scheme
 in the NWP model ALADIN of the RC LACE[^rc-lace] community.
