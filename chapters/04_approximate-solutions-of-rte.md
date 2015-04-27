@@ -93,15 +93,18 @@ the vertical coordinate $z$.
 }
 \end{figure}
 
-Delta-Two Stream Approximation
+$\delta$-Two Stream Approximation
 ------------------------------
 
-In the *delta-two stream approximation* radiance is assumed to be constant over
-hemispheres, with the exception of a forward peak (if present) from direct
-solar radiation. The forward peak is treated seperately in order to preserve
-good accuracy, as direct radiation can be orders of magnitude greater than
-diffuse radiation. There is no azimuthal or zenith dependence of diffuse
+In the *$\delta$-two stream approximation* radiance is assumed to be constant over
+hemispheres, with the exception of a peak[^peak] from direct
+solar radiation (if present).
+The peak is treated seperately in order to preserve
+good accuracy, as direct radiance can be orders of magnitude greater than
+diffuse radiance. There is no azimuthal or zenith dependence of diffuse
 radiance, and the total radiance is the sum of diffuse and direct radiance:
+
+[^peak]: Not to be confused with the forward peak of the phase function.
 
 \begin{align}
 I &= I_\mathrm{diff} + I_\mathrm{dir}\\
@@ -115,29 +118,36 @@ I_\mathrm{diff}(\mu,\phi) &=
 where $I^\uparrow$ and $I^\downarrow$ are upward and downward radiance.
 $I^\uparrow$ and $I^\downarrow$ are functions
 of position only. This allows integration over each hemisphere to be performed
-analytically to get upward, downward and solar flux density:
+in a closed-form to get upward, downward and solar flux density:
 
 \begin{align}
 &F^\uparrow =
-  \int_\uparrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})\mathrm{d}\omega =
-  \int_0^{2\pi}\int_0^1 I_\mathrm{diff}(\mu,\varphi) \mathrm{d}\mu \mathrm{d}\varphi =
-  2\pi I^\uparrow\\
+  \int_\uparrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \ \mathrm{d}\omega =
+  \int_0^{2\pi}\int_0^1 I_\mathrm{diff}(\mu,\varphi)\mu
+  \ \mathrm{d}\mu\mathrm{d}\varphi =
+  \pi I^\uparrow\\
 &F^\downarrow =
-  \int_\downarrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})\mathrm{d}\omega =
-  2\pi I^\downarrow\\
-&S = \int_{4\pi} I_\mathrm{dir}(\mathbf{\hat{\Omega}})\mathrm{d}\omega
+  \int_\downarrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \ \mathrm{d}\omega =
+  \pi I^\downarrow\\
+&S = \int_{4\pi} I_\mathrm{dir}(\mathbf{\hat{\Omega}})
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \ \mathrm{d}\omega
 \end{align}
 
 Therefore, radiance is fully represented by two diffuse
-flux densities (upward and downward) and flux density of direct (solar)
+flux densities (upward and downward) and the flux density of direct (solar)
 radiation.
 The upward and downward diffuse flux densities will be denoted as $F_\uparrow$
-and $F_\downarrow$, and flux density of solar radiation as $S$. Here,
+and $F_\downarrow$, and the flux density of solar radiation as $S$. Here,
 we assume that $S$ is coming from the Sun, and so always has a direction
 somewhere in the bottom hemisphere.
 
 The $\delta$-two stream approximation is justified by the fact that (1)
-the solar radiation can be orders of magnitude greater that diffuse radiation
+the solar radiance can be orders of magnitude greater than diffuse radiance
 and (2) the scattering phase function of gases and atmospheric particles tends
 to be uniform with direction, with the exception of a strong and narrow
 forward peak.
@@ -163,7 +173,8 @@ of the right hand side is alloted to the change in diffuse radiation
 $\mathrm{d}I_\mathrm{diff}$ and direct radiation $\mathrm{d}I_\mathrm{dir}$
 on the left hand side. Therefore, we postulate that the change in direct
 radiation is only due to extinction of direct radiation and scattering of
-direct radiation in the direction of the forward $\delta$ peak:
+direct radiation in the direction of the forward $\delta$ peak of the phase
+function:
 
 \begin{align}
 \label{eq:rte-dir}
@@ -176,18 +187,21 @@ direct radiation in the direction of the forward $\delta$ peak:
     \mathbf{\hat{\Omega}} \in \delta
 \end{align}
 
-To simplify further, we define that the forward peak has the shape of
-the Dirac $\delta$ function[^note]:
+To simplify further, we define that the peak of solar radiance
+has the shape of the Dirac $\delta$ function[^note]:
 
 \begin{align}
-I_\mathrm{dir}(\mathbf{\hat{\Omega}}) = S\delta(\mathbf{\hat{\Omega}}\cdot\mathbf{\hat{\Omega}}_0 - 1)
+I_\mathrm{dir}(\mathbf{\hat{\Omega}}) = 
+  \frac{S}{\mu_0}\delta(\mathbf{\hat{\Omega}}\cdot\mathbf{\hat{\Omega}}_0 - 1)
 \end{align}
 
 [^note]: Even though in reality direct solar radiation is spread over a range of
 directions.
 
 where $\mathbf{\hat{\Omega}}_0$ is a unit vector in the direction of the
-radiation, and express the phase function approximately as:
+radiation, and $\mu_0 = -\mathbf{\hat{\Omega}}_0\cdot\mathbf{\hat{e}_z}$
+the corresponding cosine of the zenith angle,
+and express the phase function approximately as:
 
 \begin{align}
 p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \approx
@@ -197,23 +211,22 @@ p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \approx
 
 where $p'(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}})$
 is the *$\delta$-scaled phase function*, and $f$ is the fraction
-scattered in the direction of the forward peak, i.e. we approximate
-the forward peak by an equivalent Dirac $\delta$ peak. The factor 2 in the second
+scattered in the direction of the forward peak of the phase function,
+i.e. we approximate the forward peak by an equivalent Dirac $\delta$ peak.
+The factor 2 in the second
 term arises from the normalisation condition for the phase function
 \eqref{eq:phase-function-normalisation}, assuming $p'$ satisfies the same
 condition.
 
-Integrating \eqref{eq:rte-dir} over the $\delta$ peak:
+Integrating \eqref{eq:rte-dir} over the solar radiation $\delta$ peak:
 
 \begin{align}
 \label{eq:rte-solar-raw}
-- \mu_0\frac{\mathrm{d}S}{\mathrm{d}\tau} = S - \tilde{\omega}fS =
-  S(1 - \tilde{\omega}f)
+- \frac{\mathrm{d}S}{\mathrm{d}\tau} =
+  \frac{S}{\mu_0} - \tilde{\omega}f\frac{S}{\mu_0} =
+  \frac{S}{\mu_0}(1 - \tilde{\omega}f)
 \end{align}
 
-where $\mu_0$ is cosine of the zenith angle correspoding to
-$\mathbf{\hat{\Omega}}_0$:
-$\mu_0 = -\mathbf{\hat{\Omega}}_0\cdot\mathbf{\hat{e}_z}$.
 This motivates us to introduce *delta scaling*
 $\tau' \equiv \tau(1 - \tilde{\omega}f)$,
 so that the radiative transfer equation for direct radiation now resembles
@@ -228,7 +241,7 @@ the Beer's law:
 
 In the $\delta$-two stream approximation, the plane parallel
 radiative transfer equation \eqref{eq:plane-parallel-rte}
-can be integrated analytically over each hemisphere to get a simplified
+can be integrated in a closed-form over each hemisphere to get a simplified
 set of differential equations expressed in terms of upward and downward
 flux density. Integration over the top hemisphere is:
 
@@ -247,8 +260,8 @@ flux density. Integration over the top hemisphere is:
 \end{align}
 
 \begin{align}
-&\frac{1}{2}\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau} =
-  F^\uparrow -
+&\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau} =
+  2F^\uparrow -
   (1 - \tilde{\omega}) 2\pi B^\uparrow -\nonumber\\
   &-\frac{\tilde{\omega}}{4\pi}\left[
     \int_{\uparrow}\int_\uparrow
@@ -266,12 +279,12 @@ flux density. Integration over the top hemisphere is:
       \mathrm{d}\omega'
       \mathrm{d}\omega
   \right] =\nonumber\\
-  &= F^\uparrow -
+  &= 2F^\uparrow -
   (1 - \tilde{\omega}) 2\pi B^\uparrow -
   \tilde{\omega}\left[
-    (1 - b) F^\uparrow +
-    b F^\downarrow +
-    \frac{1}{2}b_0(1 - f) S
+    (1 - b) 2F^\uparrow +
+    b 2F^\downarrow +
+    b_0(1 - f)\frac{S}{\mu_0}
   \right]
 \end{align}
 
@@ -328,9 +341,9 @@ top hemisphere:
 \end{align}
 
 \begin{align}
-&\frac{1}{2}\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} +
-  \mu_0\frac{\mathrm{d}S}{\mathrm{d}\tau} =
-  F^\downarrow + S -
+&\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} +
+  \frac{\mathrm{d}S}{\mathrm{d}\tau} =
+  2F^\downarrow + \frac{S}{\mu_0} -
   (1 - \tilde{\omega}) 2\pi B^\downarrow -\nonumber\\
   &-\frac{\tilde{\omega}}{4\pi}\left[
     \int_{\downarrow}\int_\uparrow
@@ -348,13 +361,13 @@ top hemisphere:
       \mathrm{d}\omega'
       \mathrm{d}\omega
   \right] =\nonumber\\
-  &= F^\downarrow + S -
+  &= 2F^\downarrow + \frac{S}{\mu_0} -
   (1 - \tilde{\omega}) 2\pi B^\downarrow -
   \tilde{\omega}\left[
-    (1 - b) F^\downarrow +
-    b F^\uparrow +
-    \frac{1}{2}(1 - b_0)(1 - f)S +
-    fS
+    (1 - b) 2F^\downarrow +
+    b 2F^\uparrow +
+    (1 - b_0)(1 - f)\frac{S}{\mu_0} +
+    f\frac{S}{\mu_0}
   \right]
 \end{align}
 
@@ -363,13 +376,13 @@ from which we can subtract the equation for direct radiation
 
 \begin{align}
 \label{eq:rte-diff-bottom}
-\frac{1}{2}\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} =
-  F^\downarrow -
+\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} =
+  2F^\downarrow -
   (1 - \tilde{\omega}) 2\pi B^\downarrow -
   \tilde{\omega}\left[
-    (1 - b) F^\downarrow +
-    b F^\uparrow +
-    \frac{1}{2}(1 - b_0)(1 - f)S
+    (1 - b) 2F^\downarrow +
+    b 2F^\uparrow +
+    (1 - b_0)(1 - f)\frac{S}{\mu_0}
   \right]
 \end{align}
 
@@ -381,16 +394,16 @@ the final radiative transfer equations in the $\delta$-two stream approximation
 are:
 
 \begin{align}
-\frac{1}{2}\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau} &=
-  F^\uparrow -
+\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau} &=
+  2F^\uparrow -
   (1 - \tilde{\omega}) 2\pi B^\uparrow -
-  \tilde{\omega}(1 - b)F^\uparrow - \tilde{\omega}bF^\downarrow -
-  \tilde{\omega}b_0(1 - f)\frac{S}{2\mu_0}\\
--\frac{1}{2}\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} &=
-  F^\downarrow -
+  \tilde{\omega}(1 - b)2F^\uparrow - \tilde{\omega}b2F^\downarrow -
+  \tilde{\omega}b_0(1 - f)\frac{S}{\mu_0}\\
+-\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau} &=
+  2F^\downarrow -
   (1 - \tilde{\omega}) 2\pi B^\downarrow -
-  \tilde{\omega}(1 - b)F^\downarrow - \tilde{\omega}bF^\uparrow +
-  \tilde{\omega}(1 - b_0)(1 - f)\frac{S}{2\mu_0}\\
+  \tilde{\omega}(1 - b)2F^\downarrow - \tilde{\omega}b2F^\uparrow +
+  \tilde{\omega}(1 - b_0)(1 - f)\frac{S}{\mu_0}\\
 \frac{\mathrm{d}S}{\mathrm{d}\tau'} &= -\frac{S}{\mu_0}
 \end{align}
 
@@ -408,16 +421,16 @@ b_0' &= b_0
 after which the equations for diffuse radiation become:
 
 \begin{align}
-\frac{1}{2}\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau'} &=
-  F^\uparrow -
+\frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau'} &=
+  2F^\uparrow -
   (1 - \tilde{\omega}') 2\pi B^\uparrow -
-  \tilde{\omega}'(1 - b')F^\uparrow - \tilde{\omega}'b'F^\downarrow -
-  \tilde{\omega}'b_0'\frac{S}{2\mu_0}\\
--\frac{1}{2}\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau'} &=
-  F^\downarrow -
+  \tilde{\omega}'(1 - b')2F^\uparrow - \tilde{\omega}'b'2F^\downarrow -
+  \tilde{\omega}'b_0'\frac{S}{\mu_0}\\
+-\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau'} &=
+  2F^\downarrow -
   (1 - \tilde{\omega}') 2\pi B^\downarrow -
-  \tilde{\omega}'(1 - b')F^\downarrow - \tilde{\omega}'b'F^\uparrow +
-  \tilde{\omega}'(1 - b_0')\frac{S}{2\mu_0}
+  \tilde{\omega}'(1 - b')2F^\downarrow - \tilde{\omega}'b'2F^\uparrow +
+  \tilde{\omega}'(1 - b_0')\frac{S}{\mu_0}
 \end{align}
 
 
@@ -452,7 +465,7 @@ where:
 This system of equations simplifies in both the shortwave and longwave spectrum:
 in shortwave $B = 0$, in longwave $S = 0$.
 
-### Integral Form of the Radiative Transfer Equation
+### Integral Form of the Radiative Transfer Equation for a Homogeneous Layer
 
 The coupled system of linear ordinary differential equations
 \eqref{eq:differential-rte-upward}–\eqref{eq:differential-rte-solar}
@@ -539,7 +552,7 @@ In the two stream approximation:
 \begin{align}
 \mu\frac{\mathrm{d}I}{\mathrm{d}\tau} &= -I
   \quad /\int_\downarrow (...)\mathrm{d}\omega\\
-\frac{1}{2}\frac{\mathrm{d}F_\downarrow}{\mathrm{d}\tau} &= -F_\downarrow\\
+\frac{\mathrm{d}F_\downarrow}{\mathrm{d}\tau} &= -2F_\downarrow\\
 F_\downarrow(\tau) &= F_\downarrow(0)\exp(-2\tau)
   \label{eq:flux-without-diffusivity-factor}
 \end{align}
@@ -547,8 +560,13 @@ F_\downarrow(\tau) &= F_\downarrow(0)\exp(-2\tau)
 However, the true $F_\downarrow(\tau)$ is:
 
 \begin{align}
-F_\downarrow(\tau) = \int_\downarrow I(\tau)\mathrm{d}\omega =
-  \int_\downarrow \int_0^\tau I(0)\exp(-\tau')\mathrm{d}\tau'\mathrm{d}\omega
+F_\downarrow(\tau) =
+  \int_\downarrow I(\tau)
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \ \mathrm{d}\omega =
+  \int_\downarrow \int_0^\tau I(0)\exp(-\tau')\mathrm{d}\tau'
+  \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
+  \ \mathrm{d}\omega
   \label{eq:flux-exact}
 \end{align}
 
@@ -626,7 +644,7 @@ $$
 
 where $\mathbf{S} = (S_1,...,S_N)$ and $\mathbf{\nu} = (\nu_1,...,\nu_N)$
 are vectors of line strengths and line positions.
-This integration can be performed analytically [see e.g. @zdunkowski2007],
+This integration can be performed in a closed-form [see e.g. @zdunkowski2007],
 leading to the *Malkmus formula* for narrow-band optical thickness:
 
 $$
