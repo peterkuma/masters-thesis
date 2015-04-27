@@ -120,7 +120,7 @@ applications [@petty2006, Sec. 6.3].
 \textbf{Planck's function for the approximate temperature of the Sun (6000 K)
 and the surface of the Earth (300 K).} The small overlap allows for decoupling
 of radiative transfer calculations in the shortwave and longwave parts of the
-spectrum. The value is normalized to equal areas. The vertical line
+spectrum. The value is normalised to equal areas. The vertical line
 show the division at $4.6\ \mathrm{\mu m}$ (see text).
 Adapted from \cite{petty2006}.
 \label{fig:sun-earth-spectrum}
