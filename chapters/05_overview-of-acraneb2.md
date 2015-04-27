@@ -66,6 +66,23 @@ The input to the radiation scheme consists of:
 The output of the scheme are shortwave and longwave fluxes at layer interfaces,
 from which the heating rate of layers can be calculated by the NWP model.
 
+### Broadband Regions
+
+The ACRANEB2 scheme operates in two spectral regions, matching closely the
+common distinction between shortwave in longwave spectrum
+(Sec.\ \ref{sec:shortwave-and-longwave-spectrum}):
+
+* Shortwave: $245\ \mathrm{nm}$ – $4.642\ \mathrm{\mu m}$
+* Longwave: $4.642\ \mathrm{\mu m}$ – $105.000\ \mathrm{\mu m}$
+
+In the shortwave spectrum, there is a single source of radiation (the Sun),
+whereas in the longwave spectrum, the surface and every layer is a source
+of radiation
+through thermal emission, but this complexity is somewhat reduced by the fact
+that scattering of longwave radiation by gases in the atmosphere is weak enough
+to be neglected, although scattering of longwave radiation by clouds and
+aerosols still needs to be taken into account.
+
 ### General Principle of Operation
 
 The general operation of the scheme can be summarised as follows:
@@ -88,23 +105,6 @@ coefficients as an input.
     **Longwave:** The adding method is performed in total five times with
     different choices of ‘idealised’ optical thickess, i.e. thickness assuming
     radiation exchanged with the surface, space, or neighouring layers (resp.).
-
-Broadband Regions
------------------
-
-The ACRANEB2 scheme operates in two spectral regions:
-
-* Shortwave: $245\ \mathrm{nm}$ – $4.642\ \mathrm{\mu m}$
-* Longwave: $4.642\ \mathrm{\mu m}$ – $105.000\ \mathrm{\mu m}$
-
-In the shortwave spectrum, there is a single source of radiation
-(the Sun, which undergoes scattering and absorption in every model layer.
-
-In the longwave spectrum, the surface and every layer is a source of radiation
-through thermal emission, but this complexity is somewhat reduced by the fact
-that scattering of infrared radiation by gases in the atmosphere is weak enough
-to be neglected, although scattering of infrared radiation by clouds and
-aerosols still needs to be taken into account.
 
 Gaseous Transmission
 --------------------
