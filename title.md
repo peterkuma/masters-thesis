@@ -7,7 +7,7 @@ Faculty of Mathematics, Physics and Informatics\\
 \rule{\textwidth}{.1pt}
 \end{center}
 
-\vspace{1cm}
+\vspace{0.5cm}
 
 \begin{center}
 \huge\sffamily\bfseries
@@ -24,10 +24,10 @@ Cost Versus Accuracy Study
 Master's Thesis
 \end{center}
 
-\vspace{2cm}
+\vspace{1.5cm}
 
 {\large
-\textbf{Degree Programme}: 4.1.1 Physics\\[0.5em]
+\textbf{Degree Programme}: 1160 Physics\\[0.5em]
 \textbf{Field of Study}: Meteorology and Climatology\\[0.5em]
 \textbf{Department}: Division of Meteorology and Climatology,\\
             Department of Astronomy, Physics of the Earth and Meteorology\\[0.5em]
@@ -49,4 +49,8 @@ Bratislava, 2015
   This work is licensed under a Creative Commons Attribution 4.0 International
   License:\\
   \texttt{http://creativecommons.org/licenses/by/4.0/}.
+  
+  The source text of this thesis, accompanying programs
+  and materials are available at:\\
+  \texttt{https://github.com/peterkuma/masters-thesis.}
 }
