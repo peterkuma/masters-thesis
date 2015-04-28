@@ -428,35 +428,6 @@ Chapter\ \ref{chap:approximate-solutions-of-the-rte}.
     + \beta_\mathrm{a}\mathrm{d}s B(\phi,\theta)
 -->
 
-Solar Constant
---------------
-
-The Sun emits radiation which roughly matches that of a black body with
-temperature of about $5800\ \mathrm{K}$.
-A fraction of the radiation reaches the top of the atmosphere
-(TOA).
-Because of the large distance of the Earth from the Sun, the radiation
-can be considered parallel for most practical purposes.
-The solar flux density S at TOA
-in the direction of the Sun varies seasonally with the Sun–Earth distance
-from about $1330\ \mathrm{Wm^{-2}}$ in July to $1420\ \mathrm{Wm^{-2}}$ in January.
-The solar flux density
-at mean distance is called _solar constant_, and denoted $S_0$.
-The solar constant is often cited to have value of
-$1368\ \mathrm{Wm^{-2}}$ [e.g. @thomas2002]. The solar constant varies in time,
-one such variability is associated with the ~11-year solar cycle,
-but its amplitude is only about $1\ \mathrm{Wm^{-2}}$.
-Longer-term variability also exists,
-but it is of little importance to NWP applications.
-
-<!-- 
-The solar constant and solar spectrum are best determined from the space,
-where there is unhindered view of the Sun. There have been a number of such
-satellite-borne measurements performed over the past decades [@liou2002]. -->
-
-The radiation scheme ACRANEB2 discussed later in this text uses
-solar spectrum according to @labs1970; @neckel1984.
-
 Scattering on Spherical Particles
 ---------------------------------
 
