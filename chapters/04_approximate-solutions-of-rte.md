@@ -1,5 +1,6 @@
 Approximate Solutions of the Radiative Transfer Equation
 ========================================================
+\label{chap:approximate-solutions-of-the-rte}
 
 In order to make solution of the radiative transfer equation computationally
 feasible, and number of approximations are commonly taken in operational
@@ -744,13 +745,6 @@ k-distribution Method
 Continuum
 ---------
 
-### MT_CKD
-
-One of the most comprehensive model of continuum absorption is MT_CKD produced
-by AER [@mlawer2012]. It includes continuum absorption by water vapor, nitrogen,
-oxygen, carbon dioxide and ozone. The model uses a semi-empirical approach in
-which theoretical imact line shape modified by a χ-function
-is fitted by measured values.
 
 Adding Method
 -------------

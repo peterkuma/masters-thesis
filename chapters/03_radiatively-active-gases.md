@@ -2,24 +2,26 @@ Radiatively Active Gases
 ========================
 
 Radiation passing through the Earth's atmosphere is modified by the processes of
-absorption and scattering. Both of the processes are wavelength-dependent, but
+absorption and scattering. Both of these processes are wavelength-dependent, but
 while scattering is determined by Rayleigh scattering, Mie theory and
 geometric optics, in order to fully determine absorption we need to be know the
 specifc absorption lines of radiatively active gases.
 
-Absorption spectrum of gas molecules can have immensely complicated structure.
-Figure \ref{fig:co2-absorption} shows the absorption coefficient of $\text{CO}_2$
-in various levels of magnification. Clearly, one needs a very large amount of
-information to describe the structure fully. As it turns out, smooting the curve
+Absorption spectrum of gas molecules can have immensely complicated structure,
+and one needs a very large amount of information to describe the structure
+fully. Additionally, smooting the curve
 by averaging out the details is of little use in calculation of transmittance
 due to saturation at wavelengths where absorption is strongest (line centers).
-This will be discussed later, along with shortcuts to handle the situation
-efficiently.
-
-![CO~2~ absorption coefficient.]
+This chapter discusses the pysical basis of absorption by gases, while
+Chapter\ \ref{chap:approximate-solutions-of-the-rte} introduces approaches
+to overcoming this problem.
 
 Spectroscopic data of absorption lines of gases are available from
-spectroscopic databases. One such database is HITRAN[^hitran] [@rothman2009].
+spectroscopic databases. One of the most comprehensive databases
+is HITRAN[^hitran] [@rothman2009]. For gases where continuum
+absorption is imporatnt, one needs to use an additional model such as
+MT_CKD produced by AER [@mlawer2012], which includes continuum absorption
+of water vapor, nitrogen, oxygen, carbon dioxide and ozone.
 
 [^hitran]: \url{https://www.cfa.harvard.edu/hitran/}.
 The HITRAN database can be browsed conventiently at
