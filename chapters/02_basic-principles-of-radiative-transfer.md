@@ -372,10 +372,34 @@ also called *gray bodies*[^gray-body].
 
 ### Emission
 
+Thermal emission of radiation by a body is bounded by the Planck's law:
+
+\begin{align}
+B_\lambda(T) = \frac{2hc^2}{\lambda^5(e^{hc/k_B\lambda T} - 1)}
+\end{align}
+
+where $B_\lambda(T)$ is radiance emitted by a *blackbody* with temperature $T$.
+Bodies which are not perfectly black emit less radiation according to their
+*emissivity*.
+In the case of bodies which are not a surface, such the air, the volume
+absorption coefficient $\beta_a$ has the role of emissivity, and the true
+radiance emitted by such a body over a path $\mathrm{d}s$ in the direction
+of $\mathrm{d}s$ is:
+
+\begin{align}
+\mathrm{d}I_\mathrm{emit} = \beta_a B\mathrm{d}s
+\end{align}
+
+We do not need to introduce any volume emission coefficient, as by
+the *Kirchoff's law* under the condition of a local thermodynamic equilibrium
+(LTE) absorbitivy is equal to emissivity. This condition is satisfied in parts
+of the atmosphere where radiative energy budget calculations are important
+to NWP (troposhere and stratosphere).
+
 ### Radiative Transfer Equation
 
 The full form of the *radiative transfer equation* (RTE) combines the
-contributions of extinction, scattering, and emission in a single equation:
+contributions of extinction, emission and scattering in a single equation:
 
 \begin{align}
 \label{eq:rte}
@@ -394,7 +418,8 @@ where $\mathrm{d}s$ is in the direction of $\mathbf{\hat{\Omega}}$.
 It is the purpose of radiation schemes to find an approximate solution to
 the radiative transfer equation. Before this task becomes computationally
 feasible in operational NWP models, the equation has to be simplified in a
-number ways, as discussed in the following chapters.
+number ways, as discussed in
+Chapter\ \ref{chap:approximate-solutions-of-the-rte}.
 
 <!--
 \mathrm{d}I(\theta,\phi) = 
