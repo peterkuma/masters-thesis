@@ -1,8 +1,8 @@
 CHAPTERS=$(wildcard chapters/*.md)
+BEFORE=$(wildcard before/*.md)
 IMAGES=$(wildcard images/*)
 TEMPLATES=$(wildcard templates/*)
 BIBLIOGRAPHY=$(wildcard bib/*)
-TITLE=title.md
 
 NAME:=thesis
 PANDOC:=pandoc
@@ -19,17 +19,16 @@ clean:
 	rm -f build/*
 
 $(NAME).pdf: build/$(NAME).pdf
-	#pdftk cover.pdf build/$(NAME).pdf cat output $(NAME).pdf
 	cp build/$(NAME).pdf $(NAME).pdf
 
-#build/$(NAME).pdf: build/$(NAME).tex
-#	latexmk -e '$$pdflatex=q/xelatex -synctex=1 -interaction=nonstopmode/' -pdf -jobname=build/$(NAME) build/$(NAME).tex
+build/before.tex: $(BEFORE)
+	$(PANDOC) -Vdocumentclass=book -o build/before.tex $(BEFORE)
 
 build/$(NAME).pdf: build/$(NAME).tex build/$(NAME).bbl
 	$(LATEX_ENGINE) $(LATEX_FLAGS) build/$(NAME).tex
 
-build/$(NAME).tex: $(TITLE) $(CHAPTERS) $(IMAGES) $(TEMPLATES)
-	$(PANDOC) $(PANDOC_FLAGS) -B title.md -H templates/header.tex --template templates/default.latex --bibliography bib/bibliography.bib $(CHAPTERS) -o build/$(NAME).tex
+build/$(NAME).tex: build/before.tex $(CHAPTERS) $(IMAGES) $(TEMPLATES)
+	$(PANDOC) $(PANDOC_FLAGS) -B build/before.tex -H templates/header.tex --template templates/default.latex --bibliography bib/bibliography.bib $(CHAPTERS) -o build/$(NAME).tex
 
 build/$(NAME).bbl: $(BIBLIOGRAPHY) build/$(NAME).bcf
 	$(BIBER) build/$(NAME)
