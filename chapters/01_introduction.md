@@ -1,8 +1,5 @@
-Introduction
+Introduction{-}
 ============
-
-Radiation Schemes
------------------
 
 *Radiation schemes* (or *radiative transfer codes*) are modules of numerical
 weather prediction (NWP) models and general circulation models (GCM)
