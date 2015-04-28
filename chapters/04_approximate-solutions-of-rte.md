@@ -495,7 +495,22 @@ F^\uparrow(\tau_b)
 \end{bmatrix}
 \end{align}
 
-where the *integral layer coefficients* $a_1$, ..., $a_5$ can be interpreted as:
+where the *integral layer coefficients* $a_1$, ..., $a_5$:
+
+\begin{align}
+&a_1 = \exp\left(-\frac{\tau}{\mu_0}\right), \quad \tau = \tau_b - \tau_t \\
+&a_2 = -a_4\gamma_2 - a_5\gamma_1 a_1 + \gamma_2 a_1\\
+&a_3 = -a_5\gamma_2 - a_4\gamma_1 a_1 + \gamma_1\\
+&a_4 = \frac{E(1 - M^2)}{1 - E^2M^2}\\
+&a_5 = \frac{M(1 - E^2)}{1 - E^2M^2}\\
+&\gamma_1 = \frac{a_3 - \mu_0(a_1a_3 + a_2a_4)}{1 - \epsilon^2\mu_0^2}\\
+&\gamma_2 = \frac{-a_4 - \mu_0(a_1a_4 + a_2a_3)}{1 - \epsilon^2\mu_2}\\
+&E = \exp(-\epsilon\tau), \quad
+M = \frac{a_2}{a_1 + \epsilon}, \quad
+\epsilon = \sqrt{a_1^2 - a_2^2}
+\end{align}
+
+The integral layer coefficients can be interpreted as:
 
 * $a_1$: *direct transmittance*
 * $a_2$: *direct to diffuse transmittance*
