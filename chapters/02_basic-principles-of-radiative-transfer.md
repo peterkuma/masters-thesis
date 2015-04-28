@@ -206,6 +206,7 @@ F^\mathrm{net} = F^\uparrow - F^\downarrow
 \end{align}
 
 ### Mass and Volume Absorption/Extinction Coefficients
+\label{sec:mass-and-volume-absorption-coefficients}
 
 The fractional loss in radiance $\mathrm{d}I$ due to absorption
 over a path $\mathrm{d}s$ can be expressed with the
@@ -335,36 +336,41 @@ in all directions, compensated by radiation scattered into the direction of
 $\mathbf{\hat{\Omega}}$ from all other directions.
 
 
-### Absoprtion
+### Absoprtion and Beer's Law
 
-Passing radiation can be absorbed by molecules and particles, whereby the energy
-of a photon is absorbed to cause an electronic, vibrational or rotational
-transition (discussed later) in a molecule. This can be later turned into
-kinetic energy, causing an increase in temperature.
+Radiation passing through the atmosphere can be absorbed by air molecules
+and larger objects present in the atmosphere (such as cloud droplets and
+aerosol particles). In the process, the energy of a photon is absorbed
+to cause an electronic, vibrational or rotational transition in an atom or
+molecule. This can be later turned into kinetic energy,
+causing an increase in temperature.
 The photon is lost in the process, and radiance is reduced by the corresponding
-amount of energy. The process of absorption follows quantum mechanical
-principles.
+amount of energy.
 
-
-### Emission
-
-### Beer's Law
-
-If the volume absorption coefficient is constant over a finite path $s$,
-we can integrate the differential equation for absorption in a closed-form:
+The influence of absoprtion on radiance is described by the volume
+absorption coefficient $\beta_a$ (discussed in
+Sec.\ \ref{sec:mass-and-volume-absorption-coefficients}):
 
 \begin{align}
-\frac{\mathrm{d}I}{I} &= -\beta_a\mathrm{d}s \quad/\int_0^s (...)\mathrm{d}s\\
+\mathrm{d}I = -I\beta_a\mathrm{d}s
+\end{align}
+
+If we integrate this equation over a finite path, assuming $\beta_a$
+is constant, we get the *Beer's law*:
+
+\begin{align}
 I(s) &= I(0)\exp(-\beta_a s)
 \end{align}
 
-This relationship is the *Beer's law* – monochromatic radiance falls of
-exponentially in a uniform absorbing, non-scattering medium.
+i.e. monochromatic radiance falls of
+exponentially in a homegeneous, absorbing, non-scattering medium.
 The same relationship applies to absorbers whose volume absorption coefficient
 is independent of wavelength (over the interval of interest),
 also called *gray bodies*[^gray-body].
 
 [^gray-body]: In analogy to visible light, in which they appear gray.
+
+### Emission
 
 ### Radiative Transfer Equation
 
