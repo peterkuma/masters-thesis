@@ -147,12 +147,6 @@ and $F_\downarrow$, and the flux density of solar radiation as $S$. Here,
 we assume that $S$ is coming from the Sun, and so always has a direction
 somewhere in the bottom hemisphere.
 
-The $\delta$-two stream approximation is justified by the fact that (1)
-the solar radiance can be orders of magnitude greater than diffuse radiance
-and (2) the scattering phase function of gases and atmospheric particles tends
-to be uniform with direction, with the exception of a strong and narrow
-forward peak.
-
 <!-- In Reyleigh scattering regime
 this holds to great accuracy, while in the Mie regime the approximation is
 somewhat less sound. -->
@@ -179,13 +173,12 @@ function:
 
 \begin{align}
 \label{eq:rte-dir}
-\mu\frac{\mathrm{d}I_\mathrm{dir}(\mathbf{\hat{\Omega}})}{\mathrm{d}\tau} =
+\mu\frac{\mathrm{d}I_\mathrm{dir}(\mathbf{\hat{\Omega}})}{\mathrm{d}\tau} \equiv
   I_\mathrm{dir}(\mathbf{\hat{\Omega}}) -
-  \frac{\tilde{\omega}}{4\pi}\int_{4\pi}
-    p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}})
-    I_\mathrm{dir}(\mathbf{\hat{\Omega}'})
-    \mathrm{d}\omega',\quad
-    \mathbf{\hat{\Omega}} \in \delta
+  \frac{\tilde{\omega}}{4\pi}\int_{\delta}
+    p(\mathbf{\hat{\Omega}}, \mathbf{\hat{\Omega}'})
+    I_\mathrm{dir}(\mathbf{\hat{\Omega}})
+    \mathrm{d}\omega'
 \end{align}
 
 To simplify further, we define that the peak of solar radiance
@@ -228,7 +221,7 @@ Integrating \eqref{eq:rte-dir} over the solar radiation $\delta$ peak:
   \frac{S}{\mu_0}(1 - \tilde{\omega}f)
 \end{align}
 
-This motivates us to introduce *delta scaling*
+This motivates us to introduce *$\delta$-scaling*
 $\tau' \equiv \tau(1 - \tilde{\omega}f)$,
 so that the radiative transfer equation for direct radiation now resembles
 the Beer's law:
@@ -406,6 +399,7 @@ are:
   \tilde{\omega}(1 - b)2F^\downarrow - \tilde{\omega}b2F^\uparrow +
   \tilde{\omega}(1 - b_0)(1 - f)\frac{S}{\mu_0}\\
 \frac{\mathrm{d}S}{\mathrm{d}\tau'} &= -\frac{S}{\mu_0}
+\label{eq:delta-scaled-solar-flux}
 \end{align}
 
 We can apply the delta scaling $\tau' = \tau(1 - \tilde{\omega}f)$ to the
@@ -426,19 +420,25 @@ after which the equations for diffuse radiation become:
   2F^\uparrow -
   (1 - \tilde{\omega}') 2\pi B^\uparrow -
   \tilde{\omega}'(1 - b')2F^\uparrow - \tilde{\omega}'b'2F^\downarrow -
-  \tilde{\omega}'b_0'\frac{S}{\mu_0}\\
+  \tilde{\omega}'b_0'\frac{S}{\mu_0}
+  \label{eq:delta-scaled-upward-flux}\\
 -\frac{\mathrm{d}F^\downarrow}{\mathrm{d}\tau'} &=
   2F^\downarrow -
   (1 - \tilde{\omega}') 2\pi B^\downarrow -
   \tilde{\omega}'(1 - b')2F^\downarrow - \tilde{\omega}'b'2F^\uparrow +
   \tilde{\omega}'(1 - b_0')\frac{S}{\mu_0}
+  \label{eq:delta-scaled-downward-flux}
 \end{align}
 
 
 ### Differential Form of the Radiative Transfer Equation
 
-More concisely, these can be expressed using
-*differential layer coefficients* $\alpha_1$, ..., $\alpha_4$:
+The equations \ref{eq:delta-scaled-upward-flux},
+\ref{eq:delta-scaled-downward-flux} and
+\ref{eq:delta-scaled-solar-flux} can be expressed more concisely
+using a set of *differential layer coefficients*
+$\alpha_1$, ..., $\alpha_4$ (the $\delta$-scaling prime index was dropped
+for brevity):
 
 \begin{align}
 \frac{\mathrm{d}F^\uparrow}{\mathrm{d}\tau} &=
