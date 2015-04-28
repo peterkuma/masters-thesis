@@ -259,20 +259,20 @@ optical path between the top of the atmosphere and a height $z$:
 \tau(z) \equiv \int_z^\infty \beta_e(z')\mathrm{d}z
 \end{align}
 
-*Optical thickness* $\Delta\tau$ is the vertical optical path
-between two levels
+*Optical thickness* $\tau$ (again denoted by the same symbol)
+is the vertical optical path between two levels
 $z_1$ and $z_2$:
 
 \begin{align}
-\Delta\tau \equiv \tau(z_2) - \tau(z_1)
+\tau \equiv \tau(z_2) - \tau(z_1)
 \end{align}
 
 *Transmittance* (or *transmissivity*) $t$ is the fraction of radiance passing
 through a layer of absorber. In a non-scattering medium with no sources,
-it is related to optical thickness $\Delta\tau$ by:
+it is related to optical thickness $\tau$ by:
 
 \begin{align}
-t = \exp(-\Delta\tau)
+t = \exp(-\tau)
 \end{align}
 
 ### Heating Rate
