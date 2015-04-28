@@ -35,8 +35,6 @@ has to match one of the allowed *electronic*, *vibrational* or *rotational*
 transitions, up to a perturbation due to a collision (pressure broadening)
 and velocity (Doppler broadening).
 
-### Electronic Transitions
-
 Electronic transitions are the most energetic, associated with electrons
 transitioning into other energy levels within atoms, or breaking free entirely,
 in which case there is a continuum absorption, because any extra energy
@@ -44,61 +42,37 @@ can transform into kinetic energy of the escaping electon. Electronic
 transitions are mostly responsible for absorption in the high-frequency
 part of the spectrum below 300 nm.
 
-### Vibrational Transitions
-
 Vibrational transitions are less energetic than electronic, but more energetic
-than rotation transitions. They are due to transitions between vibrational
-modes of multi-atomic molecules. In quantum theory, they can be described
-by energy levels of a harmonic oscillator, having equally spaced levels
-obeying the equation
-
-$$
-E_\nu = hv'(\nu + 1/2)
-$$
-
-where ν (Greek ‘nu’) is the _vibrational quantum number_.
-Not all molecules are capable of having
-vibrational transitions. They are subject to the condition that electromagnetic
+than rotational transitions. They are due to transitions between vibrational
+modes of multi-atomic molecules.
+Not all molecules have vibrational transitions.
+They are subject to the condition that EM
 wave has the be able to excert force on the atoms, for which the molecule
 needs to have a dipole moment (be polarised). Notably, the most abundant
-atmospheric gas N~2~ does not a dipole moments, and therefore does not posses
-vibrational modes[^2]. The number of vibrational modes generally depend
+atmospheric gas $\mathrm{N_2}$ does not have a dipole moment,
+and therefore does not posses
+vibrational modes[^vibrational-modes].
+The number of vibrational modes generally depend
 on the number of atoms in the molecule.
 
-[^2]: However, vibrational transitions sometimes can occur even in these
-molecules if they are affected by EM wave at the time when there is a collision
+[^vibrational-modes]:
+However, vibrational transitions sometimes can occur even in these
+molecules if they are affected by an EM wave at the time when there
+is a collision
 with another molecule of air, temporarily creating a dipole. Some molecules
 also form compounds in the form of dimers or multimers, in which case
 new modes may become available.
 
-### Rotational Transitions
-
 Rotational transitions are caused transitions between rotational modes of
-multi-atomic molecules. Rotational modes are quantised by the equation
-
-$$
-E_J = \frac{1}{2I}L_J^2
-    = \frac{1}{2I}\left(\hbar\sqrt{J(J + 1)}\right)^2
-    = \frac{\hbar^2}{2I} J(J + 1)
-$$
-
-and the corresponding transitions between adjacent modes are
-
-$$
-\Delta E = E_{J+1} - E_J = \frac{\hbar^2}{2I}\left[(J+1)(J+2)-J(J+1)\right] = \frac{\hbar^2}{I}(J + 1)
-$$
-
-where J is the _rotational quantum number_ and I is moment of intertia of the
-molecule.
+multi-atomic molecules.
 Rotational transitions are the least energetic. As transitions can occur
 together, and because they are much less energetic than vibrational transitions,
 they combine to produce vibrational bands with fine structure, centered
 at a particular wavelength of a vibrational transition.
-
-Not all molecules have rotational transitions. In particular, electromagnetic
+Not all molecules have rotational transitions. In particular, the EM
 wave has to be able to exert torque on the molecule. Especially, it needs
 to have a dipole moment, or an intrinsic magnetic moment (as is the case with
-O~2~).
+$\mathrm{O_2}$).
 
 \begin{figure}
 \includegraphics[width=\textwidth]{img/atmospheric-composition.pdf}
