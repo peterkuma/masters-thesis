@@ -474,9 +474,10 @@ Total model run time and heating rate error of
 30-min and 1-h shortwave intermittency runs, relative
 to no shortwave intermittency.
 Heating rate error is calculated as
-weighted mean of absolute heating rate error,
+a weighted mean of absolute heating rate error,
 weighted vertically by pressure thickness of layers. Shown
-is a 95-\% confidence band across domain sample points and time steps.
+is a 95-\% confidence band of the weighted mean
+across domain sample points and time steps.
 Run time was measured as CPU time in a benchmark (exclusive) mode
 on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
