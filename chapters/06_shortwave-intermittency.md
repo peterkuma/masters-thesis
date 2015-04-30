@@ -406,15 +406,32 @@ error was on the order of 0.01\ K/day.
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{img/shortwave_heating_rate_error.pdf}\\
-\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_timeseries.pdf}
+\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_timeseries_850.pdf}
 \caption{
-\textbf{Shortwave heating rate error of 1\ h shortwave intermittency.}
+\textbf{Impact of shortwave intermittency on shortwave heating rate error.}
 Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
 of heating rate and 95\ \% confidence bands
-of a model run with 1\ h shortwave intermittency compared to
-no shortwave intermittency. The situation is a convective summer day of
-29 May 2009 over Central Europe.
+of 24-h model runs with 6\ min, 15\ min, 1\ h, 1.5\ h and 2\ h
+shortwave intermittency compared to no shortwave intermittency
+(bands in progressively lighter shades, resp.).
+The situation is a convective summer day of 29 May 2009 over Central Europe.
 \label{fig:shortwave-heating-rate-error}
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=10cm]{img/longwave_heating_rate_error.pdf}\\
+\includegraphics[width=\textwidth]{img/longwave_heating_rate_error_timeseries_850.pdf}
+\caption{
+\textbf{Impact of shortwave intermittency on longwave heating rate error.}
+Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
+of heating rate and 95\ \% confidence bands
+of 24-h model runs with 6\ min, 15\ min, 1\ h, 1.5\ h and 2\ h
+shortwave intermittency compared to no shortwave intermittency
+(bands in progressively lighter shades, resp.).
+The situation is a convective summer day of 29 May 2009 over Central Europe.
+\label{fig:longwave-heating-rate-error}
 }
 \end{figure}
 
@@ -426,11 +443,10 @@ compared to the accuracy of the scheme. -->
 ### Performance
 
 We measured performance of the new scheme using a 24-h run of the NWP model
-on 4 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU).
+on 8 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU).
 The decrease in total model
 computation time with 30-min and 1-h shortwave intermittency was
-on the order of 1–10\ %. Unfortunately, the uncertainty due to task scheduling
-was obscuring the results.
+1.8\ % and 6.3\ %, resp.
 The bar chart in Figure\ \ref{fig:shortwave-intermittency-performance}
 shows the results of the three experiments in terms of CPU time.
 Also Table\ \ref{tab:performance} shows preliminary results obtained
@@ -441,11 +457,29 @@ with 1-h shortwave intermittency.
 \includegraphics[width=7cm]{img/shortwave-intermittency-performance.pdf}
 \caption{
 \textbf{Shortwave intermittency performance.}
-Shown is the total model run time as user CPU time (i.e. \textit{not}
-wall-clock time) of 30-min and 1-h shortwave intermittency experiments
-compared to baseline with no shortwave intermittency. Experiments were run
-on 4 CPUs of NEC SX-9 (100 GFLOP per CPU) in a shared job scheduling class.
+Total model run time of 30-min and 1-h shortwave
+intermittency runs relative to no shortwave intermittency.
+Run time was measured as CPU time in a benchmark (exclusive) mode
+on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance}
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm]{img/performance_accuracy_plot.pdf}
+\caption{
+\textbf{Shortwave intermittency performance vs. accuracy.}
+Total model run time and heating rate error of
+30-min and 1-h shortwave intermittency runs, relative
+to no shortwave intermittency.
+Heating rate error is calculated as
+weighted mean of absolute heating rate error,
+weighted vertically by pressure thickness of layers. Shown
+is a 95-\% confidence band across domain sample points and time steps.
+Run time was measured as CPU time in a benchmark (exclusive) mode
+on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
+\label{fig:shortwave-intermittency-performance-accuracy}
 }
 \end{figure}
 
