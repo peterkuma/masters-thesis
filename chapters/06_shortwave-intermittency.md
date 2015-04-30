@@ -427,7 +427,7 @@ The situation is a convective summer day of 29 May 2009 over Central Europe.
 \textbf{Impact of shortwave intermittency on longwave heating rate error.}
 Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
 of heating rate and 95\ \% confidence bands
-of 24-h model runs with 6\ min, 15\ min, 1\ h, 1.5\ h and 2\ h
+of 24-h model runs with 6-min, 15-min, 30-min, 1-h, 1.5-h and 2-h
 shortwave intermittency compared to no shortwave intermittency
 (bands in progressively lighter shades, resp.).
 The situation is a convective summer day of 29 May 2009 over Central Europe.
@@ -467,17 +467,17 @@ on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 
 \begin{figure}
 \centering
-\includegraphics[width=9cm]{img/performance_accuracy_plot.pdf}
+\includegraphics[width=8cm]{img/performance_accuracy_plot.pdf}
 \caption{
 \textbf{Shortwave intermittency performance vs. accuracy.}
-Total model run time and heating rate error of
+Total model run time and mean heating rate error (\textbf{solid line}) of
 30-min and 1-h shortwave intermittency runs, relative
 to no shortwave intermittency.
 Heating rate error is calculated as
 a weighted mean of absolute heating rate error,
 weighted vertically by pressure thickness of layers. Shown
-is a 95-\% confidence band of the weighted mean
-across domain sample points and time steps.
+is the 95-\% upper bound of the weighted mean
+across domain sample points and time steps (\textbf{dashed line}).
 Run time was measured as CPU time in a benchmark (exclusive) mode
 on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
