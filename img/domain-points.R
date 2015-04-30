@@ -1,12 +1,19 @@
 #!/usr/bin/Rscript
 
+args <- commandArgs(TRUE)
+if (length(args) != 2) {
+    cat(sprintf('Usage: domain-points.R <file> <natural-earth>\n'))
+    quit(status=1)
+}
+filename <- args[1]
+natural.earth.dirname <- args[2]
+land.filename <- sprintf('%s/ne_50m_land/ne_50m_land.shp', natural.earth.dirname)
+countries.filename <- sprintf('%s/ne_50m_land/ne_50m_land.shp', natural.earth.dirname)
+
 library(RNetCDF)
 library(maptools)
 library(maps)
 library(methods)
-#library(geomapdata)
-
-filename <- '../analysis/radiation-E194-24h.nc'
 
 nc <- open.nc(filename)
 
@@ -14,8 +21,8 @@ longitude <- var.get.nc(nc, 'longitude')
 latitude <- var.get.nc(nc, 'latitude')
 
 proj4string <- CRS("+proj=longlat")
-world <- readShapePoly("natural-earth/ne_50m_land/ne_50m_land.shp", proj4string=proj4string)
-countries <- readShapePoly("natural-earth/ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp", proj4string=proj4string)
+world <- readShapePoly(land.filename, proj4string=proj4string)
+countries <- readShapePoly(countries.filename, proj4string=proj4string)
 
 cairo_pdf('domain-points.pdf', width=9/cm(1), height=8/cm(1))
 par(mar=c(2,2,1,1))
