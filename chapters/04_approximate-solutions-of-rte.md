@@ -94,7 +94,7 @@ the vertical coordinate $z$.
 }
 \end{figure}
 
-$\delta$-Two Stream Approximation
+Delta-Two Stream Approximation
 ------------------------------
 
 In the *$\delta$-two stream approximation* radiance is assumed to be constant over
@@ -119,22 +119,24 @@ I_\mathrm{diff}(\mu,\phi) &=
 where $I^\uparrow$ and $I^\downarrow$ are upward and downward radiance.
 $I^\uparrow$ and $I^\downarrow$ are functions
 of position only. This allows integration over each hemisphere to be performed
-in a closed-form to get upward, downward and solar flux density:
+in a closed-form to get upward, downward and solar flux density (notice that
+for convenience we redefine $F^\uparrow$ and $F^\downarrow$ to be
+the diffuse flux only, in contrast to Sec.\ \ref{sec:flux-density}):
 
 \begin{align}
-&F^\uparrow =
+F^\uparrow &\equiv
   \int_\uparrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})
   \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
   \ \mathrm{d}\omega =
   \int_0^{2\pi}\int_0^1 I_\mathrm{diff}(\mu,\varphi)\mu
   \ \mathrm{d}\mu\mathrm{d}\varphi =
   \pi I^\uparrow\\
-&F^\downarrow =
+F^\downarrow &\equiv
   \int_\downarrow I_\mathrm{diff}(\mathbf{\hat{\Omega}})
   \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
   \ \mathrm{d}\omega =
   \pi I^\downarrow\\
-&S = \int_{4\pi} I_\mathrm{dir}(\mathbf{\hat{\Omega}})
+S &\equiv \int_{4\pi} I_\mathrm{dir}(\mathbf{\hat{\Omega}})
   \mathbf{\hat{n}}\cdot\mathbf{\hat{\Omega}}
   \ \mathrm{d}\omega
 \end{align}
