@@ -400,20 +400,22 @@ and its statistical distribution. Figure \ref{fig:shortwave-heating-rate-error}
 shows the error in heating rate of 1\ h shortwave intermittency
 compared to no shortwave intermittency
 (Exp. *Shortwave Intermittency 1\ h* vs. Exp. *Shortwave Intermittency Base*).
-The local error was less than 0.2\ K/day in 95\ % of samples, and the global
-error was on the order of 0.01\ K/day.
+The local error was less than 0.15\ K/day in 90\ % of samples, and the global
+error was on the order of 0.05\ K/day (mean absolute error).
 
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{img/shortwave_heating_rate_error.pdf}\\
-\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_timeseries_850.pdf}
+\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_timeseries.pdf}
 \caption{
 \textbf{Impact of shortwave intermittency on shortwave heating rate error.}
 Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
-of heating rate and 95\ \% confidence bands
+of heating rate and 90\ \% confidence bands
 of 24-h model runs with 6\ min, 15\ min, 1\ h, 1.5\ h and 2\ h
 shortwave intermittency compared to no shortwave intermittency
 (bands in progressively lighter shades, resp.).
+ In the time series plot
+heating rate error is weighted by pressure thickness of layers (by resampling).
 The situation is a convective summer day of 29 May 2009 over Central Europe.
 \label{fig:shortwave-heating-rate-error}
 }
@@ -422,14 +424,15 @@ The situation is a convective summer day of 29 May 2009 over Central Europe.
 \begin{figure}
 \centering
 \includegraphics[width=10cm]{img/longwave_heating_rate_error.pdf}\\
-\includegraphics[width=\textwidth]{img/longwave_heating_rate_error_timeseries_850.pdf}
+\includegraphics[width=\textwidth]{img/longwave_heating_rate_error_timeseries.pdf}
 \caption{
 \textbf{Impact of shortwave intermittency on longwave heating rate error.}
 Shown is a global bias (\textbf{top}) and time series (\textbf{bottom})
-of heating rate and 95\ \% confidence bands
+of heating rate and 90\ \% confidence bands
 of 24-h model runs with 6-min, 15-min, 30-min, 1-h, 1.5-h and 2-h
 shortwave intermittency compared to no shortwave intermittency
-(bands in progressively lighter shades, resp.).
+(bands in progressively lighter shades, resp.). In the time series plot
+heating rate error is weighted by pressure thickness of layers (by resampling).
 The situation is a convective summer day of 29 May 2009 over Central Europe.
 \label{fig:longwave-heating-rate-error}
 }
@@ -470,14 +473,12 @@ on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \includegraphics[width=8cm]{img/performance_accuracy_plot.pdf}
 \caption{
 \textbf{Shortwave intermittency performance vs. accuracy.}
-Total model run time and mean heating rate error (\textbf{solid line}) of
-30-min and 1-h shortwave intermittency runs, relative
-to no shortwave intermittency.
-Heating rate error is calculated as
-a weighted mean of absolute heating rate error,
-weighted vertically by pressure thickness of layers. Shown
-is the 95-\% upper bound of the weighted mean
+Total model run time and mean absolute heating rate error (\textbf{solid line})
+of 30-min and 1-h shortwave intermittency runs, relative
+to no shortwave intermittency. Shown
+is the 90-\% upper bound of the absolute heating rate error
 across domain sample points and time steps (\textbf{dashed line}).
+Heating rate error is weighted by pressure thickness of layers.
 Run time was measured as CPU time in a benchmark (exclusive) mode
 on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
