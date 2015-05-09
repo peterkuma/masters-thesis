@@ -4,7 +4,7 @@ Radiatively Active Gases
 Radiation passing through the Earth's atmosphere is modified by the processes of
 absorption and scattering. Both of these processes are wavelength-dependent, but
 while scattering is determined by Rayleigh scattering, Mie theory and
-geometric optics, in order to fully determine absorption we need to be know the
+geometric optics, in order to fully determine absorption we need to know the
 specifc absorption lines of radiatively active gases.
 
 Absorption spectrum of gas molecules can have immensely complicated structure,
@@ -102,7 +102,7 @@ In the shortwave spectrum, solar radiation is absorbed significantly
 Solar absorption is the greatest in the
 high-frequency range. In particular, gamma radiation, X-rays and UV-C
 are almost entirely absorbed early in their travel through the atmosphere,
-mostly by oxygen and ozone. As such, and because they consitute only a small
+mostly by oxygen and ozone. As such, and because they constitute only a small
 contribution of energy to low and mid-altitudes, they are of little
 concern to NWP. In the UV spectrum, radiation is strongly absorbed by
 bands of ozone (Hartley, Huggins bands), important in the stratosphere.
@@ -173,7 +173,7 @@ _Hartley bands_, _Huggins bands_ and _Chappuis bands_
 of continuum due to photodissociation, although Huggins bands have a more
 irregular structure.
 Of the three, Hartley bands are the strongest. They cover the region of
-240–310 nm. Because of their strength, they absort most incident solar radiation
+240–310 nm. Because of their strength, they absorb most incident solar radiation
 in the mesopshere and stratosphere.
 Huggins bands cover the region of 310–340 nm.
 Although Chappuis bands are the weakest of the three, they are important for
@@ -240,7 +240,7 @@ solar spectrum [@liou2002].
 Oxygen molecules are known to form dimers with some other
 atmospheric constituents, notably $\mathrm{O_2}.\mathrm{N_2}$
 and $\mathrm{O_4}$. These have additional
-bands belived to contribute roughly $1\ \mathrm{Wm^{-2}}$
+bands believed to contribute roughly $1\ \mathrm{Wm^{-2}}$
 to the total atmospheric absorption [@solomon1998].
 
 ### Methane
@@ -257,16 +257,11 @@ spectrum important to solar absorption: $4.06\ \mathrm{\mu m}$,
 $3.90\ \mathrm{\mu m}$, $2.97\ \mathrm{\mu m}$ and $2.87\ \mathrm{\mu m}$
 [@liou2002].
 
-Distribution of Gases in the Atmosphere
----------------------------------------
-
 Absorption Lines
 ----------------
 
-Atmospheric gases do not in fact absorb and emit radiation at exact
-wavelengths – if they did we would probably hardly observe any absorption,
-because the likelihood of an EM wave of exact wavelength interacting with
-a molecule would be negligible. Instead, absorption lines are spread out
+Atmospheric gases do not absorb and emit radiation at exact
+wavelengths. Instead, absorption lines are spread out
 over a range of frequencies by three types of processes:
 
 * Natural broadening
@@ -279,34 +274,39 @@ radiative transfer.
 
 _Doppler broadening_ occurs due to Doppler shift in frequency as observed
 by a moving molecule. It has a normal (Gaussian) shape. Doppler broadening is
-relative strongest in the upper atmosphere.
+the dominant form of broadening in the upper atmosphere.
 
 _Pressure broadening_ is the most important type of broadening to atmospheric
-physics. It occurs due to collisions between molecules, which impose
+radiative transfer. It occurs due to collisions between molecules, which impose
 a finite time limit on absorption and emission of a monochromatic EM wave.
 
 Effects of all three types of broadening are combined together to produce
 a characteristic _line shape_ of an absorbtion line. Line shape is defined
-as function f(ν), such that:
+as function $f(\nu)$, such that the absorption coefficient of an isolated
+line is:
 
 $$
 k_\nu = Sf(\nu)
 $$
 
-where S is the strength of a line. The shape function itself is normalised to
+where $S$ is the line strength. The shape function itself is normalised to
 unity:
 
 $$
 \int_0^\infty f(\nu) \mathrm{d}\nu = 1
 $$
 
+Pressure broadening is described by the *Lorents line shape*,  Doppler
+broadening by the *Doppler line shape*, and together they are described
+by the *Voigt line shape*.
+
 ### Pressure Broadening
 
 Molecules in the atmosphere collide with each other at very high frequency.
-Every time a collision happens any absorption or emission process which
-is underway is interrupted. When a stimulation by a monochromatic wave
+Every time a collision happens any absorption or emission process under way
+is interrupted. When a stimulation by a monochromatic wave
 is limited to a finite amount of time, this is equivalent to stimulation
-by a rage of frequencies, which can be reconstructed by performing Fourier
+by a range of frequencies, which can be reconstructed by performing Fourier
 transform on the amplitude function. By taking into account the statistical
 distribution of time between collisions (Poisson distribution), we can
 calculate the relative probability of absorpiton/emission at every frequency.
@@ -322,7 +322,7 @@ It should be noted that this only applies to high enough wavenumbers
 (compared to the half-width), but this is only concern to microwaves and longer
 wavelengths.
 
-The half-width α depends on the mean time between collision, which can be
+The half-width $\alpha$ depends on the mean time between collision, which can be
 expressed in terms of pressure and temperature as:
 
 $$
@@ -341,8 +341,6 @@ amount of time. Perhaps most importantly, the Lorentz line shape is
 insuffiecient in describing the line shape in far-wings of lines, which
 contribute very significantly to absorption in spectral windows, where
 there is no other absorption, and a far-wings of many distant lines add up.
-
-### Voigt Line Shape
 
 ### Equivalent Width
 

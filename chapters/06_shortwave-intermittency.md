@@ -559,16 +559,3 @@ on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
 }
 \end{figure}
-
-Conclusion
-----------
-
-shortwave intermittency is a viable approximation in plane-parallel broadband
-radiative transfer schemes. By avoiding calculation of shortwave gaseous optical
-thickness at every time step we gain a signification reduction in
-computation time, while maintaining good accuracy of heating rates.
-
-Linear interpolation of optical thickness on logarithic scale is
-enough to account for the dependence of optical thickness on the relatively 
-quickly-changing zenith angle for intermittency periods up to 2 hours long
-(at least).

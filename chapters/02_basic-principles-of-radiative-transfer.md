@@ -52,7 +52,7 @@ trasfer[^uv-definition]:
 * UV-A: 320 nm–400 nm
 
 Much of UV radiation is absorbed high in the atmosphere (stratosphere
-and mesosphere) by ozone and oxygen, though UV-A reaches the Earth's sufrace
+and mesosphere) by ozone and oxygen, though UV-A reaches the Earth's surface
 with little attenuation. UV radiation has to be considered in radiation
 schemes, because it contributes sigificantly to heating rates in the
 stratosphere. It is also imporant due to its influence on atmospheric chemistry
@@ -291,8 +291,8 @@ The Radiative Transfer Equation
 -------------------------------
 \label{sec:rte}
 
-Fundamentally, radiative tranfer is goverened by the Maxwell equations and
-quantum mechanical principles. However, it is ofen not neccessary to be
+Fundamentally, radiative tranfer is governed by the Maxwell equations and
+quantum mechanical principles. However, it is often not neccessary to be
 concerned with the details of the electromagnetic field in the context of energy
 budget calculations, perhaps with the exception of Mie theory of scattering.
 
@@ -304,7 +304,7 @@ together they form the radiative transfer equation.
 
 Scattering of radiation occurs when a charged particle is made to oscillate in
 a passing electromagnetic wave, generating new electromagnetic radiation,
-which modifies the original field. The is no net exchange of energy between
+which modifies the original field. There is no net exchange of energy between
 the particle and the field at the end of the process.
 
 We will define the *scattering phase function* to be a function of two
@@ -341,7 +341,7 @@ in all directions, compensated by radiation scattered into the direction of
 $\mathbf{\hat{\Omega}}$ from all other directions.
 
 
-### Absoprtion and Beer's Law
+### Absorption and Beer's Law
 
 Radiation passing through the atmosphere can be absorbed by air molecules
 and larger objects present in the atmosphere (such as cloud droplets and
@@ -432,7 +432,3 @@ Chapter\ \ref{chap:approximate-solutions-of-the-rte}.
     + \beta_\mathrm{s}\mathrm{d}s \int_{4\pi} I(\theta,\phi) p(\theta,\phi,\theta',\phi') \mathrm{d}\theta' \mathrm{d}{\phi}'
     + \beta_\mathrm{a}\mathrm{d}s B(\phi,\theta)
 -->
-
-Scattering on Spherical Particles
----------------------------------
-

@@ -734,22 +734,6 @@ absorption and scattering. While this is not an issue to narrow-band model
 radiation schemes, it has to be taken into account in broadband model
 radiation schemes *in addition* to optical saturation.
 
-### Curtis-Godson Approximation
-
-The Malkmus formula has a number of drawbacks. One of the more serious is
-that the line width α is assumed to be constant over the path. In reality,
-we often need to compute transmittance over large parts of the atmosphere,
-where α varies with pressure and temperature due to line broadening. This
-situation is handled by the _Curtis-Godson approximation_  for inhomogeous
-atmospheres.
-
-k-distribution Method
----------------------
-
-Continuum
----------
-
-
 Adding Method
 -------------
 
@@ -790,11 +774,6 @@ where $\mathbb{A}$ is a matrix of coefficients (layer transmittances and
 reflectances), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
 vector of sources. This system can then be solved for $\mathbf{F}$, which
 is the desired outcome of the adding method.
-
-Net Exchange Rate Formulation
------------------------------
-
-
 
 Temporal Subsampling
 --------------------
