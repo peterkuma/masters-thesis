@@ -49,7 +49,7 @@ In total 4 experiments were performed:
     * Fluxes computed once per 1 h.
 
 Figure\ \ref{fig:acraneb2-vs-fmr-longwave-heating-rate-error}
-and \ref{fig:acraneb2-vs-fmr-shortwave-heating-rate-error}
+and Figure\ \ref{fig:acraneb2-vs-fmr-shortwave-heating-rate-error}
 show the results obtained from these experiments.
 It is clear that the longwave and shortwave intermittency implementation
 in ACRANEB2 is superior to full intermittency in FMR with the same choice of

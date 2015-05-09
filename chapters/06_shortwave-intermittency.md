@@ -327,6 +327,7 @@ taken into account when implementing shortwave intermittency in a 3D model:
 
 Analysis Description
 --------------------
+\label{sec:shortwave-intermittency-analysis-description}
 
 In order to evaluate accuracy and performance of the implementation of
 shortwave intermittency, we performed a number of simulations (experiments)
