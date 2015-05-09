@@ -150,7 +150,7 @@ The modified Malkmus band model is defined as follows [@masek2014]:
 \begin{align}
 \tau_\mathrm{I} &= \frac{a}{2b}(\sqrt{1 + X(B,Z) + 4bu} - 1)\nonumber\\
 \tau_\mathrm{II} &= \frac{\tau_\mathrm{crit}}{\alpha}\left(
-  \left(1 + \frac{\tau_\mathrm{M}}{\tau_\mathrm{crit}}\right)^\alpha - 1
+  \left(1 + \frac{\tau_\mathrm{I}}{\tau_\mathrm{crit}}\right)^\alpha - 1
 \right)\\
 \tau_\mathrm{III} &= \tau_\mathrm{II}\max\left(0,
   P_{00}(T) +
@@ -218,6 +218,7 @@ when we consider the net exchange rate formulation:
 i.e. when we compute the flux divergence R_k by the adding method, it is
 equal to the sum of CTS, EWS and EBL terms. For a suitable choice of sources,
 
+<!--
 Longwave Solution
 -----------------
 
@@ -358,3 +359,4 @@ their linear combination is taken according to a real parameter $\alpha$,
 and CTS and EWS exchanges are supplied by $\mathbf{F}_\mathsf{CTS}$ and
 $\mathbf{F}_\mathsf{EWS}$.
 
+-->

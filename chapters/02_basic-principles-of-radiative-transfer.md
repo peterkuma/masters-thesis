@@ -179,6 +179,7 @@ and denote $I$ and state explicitly if *radiance* is considered by calling it
 on $\mathbf{r}$ in order to make equations more readable.
 
 ### Flux Density and Net Flux Density
+\label{sec:flux-density}
 
 _Flux density_ is radiance integrated over a hemisphere. In plane parallel
 geometry, depending on the hemisphere we speak of _upward_ or _downward_ flux
@@ -232,9 +233,12 @@ of wavelength. In addition, they may depend on pressure and temperature,
 which determine absorption line properties:
 
 \begin{align}
-k_a &= k_{a,\lambda,\mathrm{absorber}}(p, T),\\
+k_a &= k_{a,\lambda,\mathrm{absorber}}(\mathbf{r}, p, T),\\
 \beta_a &= \beta_{a,\lambda,\mathrm{absorber}}(\mathbf{r}, p, T).
 \end{align}
+
+Note that while $\beta_a$ depends on the absorber density $\rho$,
+$k_a$ generally does not.
 
 *Volume extinction coefficient* $\beta_e$ and *mass extinction coefficient*
 $k_e$ are defined in the same manner, but here we consider total loss of
@@ -317,6 +321,7 @@ subject to normalisation condition (energy conservation):
 
 \begin{align}
 \frac{1}{4\pi}\int_{4\pi} p(\mathbf{\hat{\Omega}'}, \mathbf{\hat{\Omega}}) \mathrm{d}\omega = 1
+\label{eq:phase-function-normalisation}
 \end{align}
 
 In the presence of scattering only, the differential change in radiance is:
@@ -372,7 +377,7 @@ also called *gray bodies*[^gray-body].
 
 ### Emission
 
-Thermal emission of radiation by a body is bounded by the Planck's law:
+Thermal emission of radiation by a body is bounded by the *Planck's law*:
 
 \begin{align}
 B_\lambda(T) = \frac{2hc^2}{\lambda^5(e^{hc/k_B\lambda T} - 1)}

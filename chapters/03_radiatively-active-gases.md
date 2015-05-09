@@ -317,7 +317,7 @@ $$
 f(\nu) = \frac{\alpha}{\pi[(\nu - \nu_0)^2 + \alpha^2]}
 $$
 
-where ν~0~ is the line center and α the line _half-width_.
+where $\nu_0$ is the line center and $\alpha$ is the line *half-width*.
 It should be noted that this only applies to high enough wavenumbers
 (compared to the half-width), but this is only concern to microwaves and longer
 wavelengths.
@@ -329,8 +329,9 @@ $$
 \alpha = \alpha_0 \frac{p}{p_0} \left(\frac{T_0}{T}\right)^n
 $$
 
-where α~0~ is the half-width at reference pressure and temperature p~0~, T~0~,
-and n is empirically determined exponent, which depends on the type of the
+where $\alpha_0$ is the half-width at reference pressure and temperature
+$p_0$, $T_0$,
+and $n$ is an empirically determined exponent, which depends on the type of the
 molecule.
 
 It has to be said that the theory outlined above (_Michelson-Lorentz theory_)
@@ -340,8 +341,6 @@ amount of time. Perhaps most importantly, the Lorentz line shape is
 insuffiecient in describing the line shape in far-wings of lines, which
 contribute very significantly to absorption in spectral windows, where
 there is no other absorption, and a far-wings of many distant lines add up.
-Overall, it has been established that the Lorentz line shape _underestimates_
-absorption in far-wings, and _overestimates_ absorption near line centers.
 
 ### Voigt Line Shape
 
@@ -424,12 +423,11 @@ absoprtion_ occurs in connection with photoionization and photodissociation,
 when the extra energy is consumed by kinetic energy of the escaping electron,
 resp. broken-up molecules. These processes are mostly confined to the
 ultraviolet part of the spectrum, because of the high energies requered. In
-addition to photoionisation and photodissociation, there are other less well-
-explained sources of continuum absoprtion at lower frequencies due to:
+addition to photoionisation and photodissociation, there are other less
+well-explained sources of continuum absoprtion at lower frequencies due to:
 
 * Far-wings of absorption lines
-* _Self continuum_
-* _Foreign continuum_
+* Collision induced absorption
 * Absorption by dimers and multimers
 
 Even though contiuum absorption is generally weak compared to line absorption
@@ -438,11 +436,7 @@ it is still of great importance, because it covers large parts of the spectrum,
 often in places where there is absence of line absorption
 (_atmospheric windows_).
 
-### Water Vapour Continuum
-
 Water vapour is the most important source of contiuum for the energy budget,
 respnsible for as much as 40 % of longwave radiative cooling [@mlawer2012].
 The continuum is mostly of two origins: far wings of lines and collision
 between molecules (self and foreign continuum).
-
-### Continua of Other Gases

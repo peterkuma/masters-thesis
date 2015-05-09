@@ -460,10 +460,10 @@ for brevity):
 
 where:
 
-- $\alpha_1 = 2(1 - \tilde{\omega}(1 - b))$ is diffuse transmittance,
-- $\alpha_2 = 2b\tilde{\omega}$ is diffuse reflectance,
-- $\alpha_3 = b_0\tilde{\omega}$ is solar to diffuse backscattering,
-- $\alpha_4 = (1 - b_0)\tilde{\omega}$ is solar to diffuse forward scattering.
+- $\alpha_1 = 2(1 - \tilde{\omega}(1 - b))$
+- $\alpha_2 = 2b\tilde{\omega}$
+- $\alpha_3 = b_0\tilde{\omega}$
+- $\alpha_4 = (1 - b_0)\tilde{\omega}$
 
 This system of equations simplifies in both the shortwave and longwave spectrum:
 in shortwave $B = 0$, in longwave $S = 0$.
@@ -506,11 +506,11 @@ where the *integral layer coefficients* $a_1$, ..., $a_5$:
 &a_3 = -a_5\gamma_2 - a_4\gamma_1 a_1 + \gamma_1\\
 &a_4 = \frac{E(1 - M^2)}{1 - E^2M^2}\\
 &a_5 = \frac{M(1 - E^2)}{1 - E^2M^2}\\
-&\gamma_1 = \frac{a_3 - \mu_0(a_1a_3 + a_2a_4)}{1 - \epsilon^2\mu_0^2}\\
-&\gamma_2 = \frac{-a_4 - \mu_0(a_1a_4 + a_2a_3)}{1 - \epsilon^2\mu_2}\\
+&\gamma_1 = \frac{\alpha_3 - \mu_0(\alpha_1\alpha_3 + \alpha_2\alpha_4)}{1 - \epsilon^2\mu_0^2}\\
+&\gamma_2 = \frac{-\alpha_4 - \mu_0(\alpha_1\alpha_4 + \alpha_2\alpha_3)}{1 - \epsilon^2\mu_0^2}\\
 &E = \exp(-\epsilon\tau), \quad
-M = \frac{a_2}{a_1 + \epsilon}, \quad
-\epsilon = \sqrt{a_1^2 - a_2^2}
+M = \frac{\alpha_2}{\alpha_1 + \epsilon}, \quad
+\epsilon = \sqrt{\alpha_1^2 - \alpha_2^2}
 \end{align}
 
 The integral layer coefficients can be interpreted as:
@@ -643,25 +643,27 @@ where $S_0 = \int_0^\infty{Sp(S)dS}$ is the mean line strength.
 Optical depth at wavenumber $\nu$ is the sum of contributions of all lines:
 
 $$
-\tau = ku = \sum_{n=0}^N S_i u f(\nu) = \sum_{n=0}^N \frac{S_i u\alpha}{\pi[(\nu-\nu_i)^2 + \alpha^2]}
+\tau = ku = \sum_{i=0}^N S_i u f(\nu) = \sum_{i=0}^N \frac{S_i u\alpha}{\pi[(\nu-\nu_i)^2 + \alpha^2]}
 $$
 
 where $f(\nu)$ is the Voigt line shape, and narrow-band transmittance:
 
 $$
 \mathcal{T} = \frac{1}{\Delta\nu} \int_{\nu_1}^{\nu_2} e^{-\tau}d\nu
-            = \frac{1}{\Delta\nu} \int_{\nu_1}^{\nu_2} \exp\left(-\sum_{n=0}^N \frac{S_i u\alpha}{\pi[(\nu-\nu_i)^2 + \alpha^2]}\right) d\nu
+            = \frac{1}{\Delta\nu} \int_{\nu_1}^{\nu_2} \exp\left(-\sum_{i=0}^N \frac{S_i u\alpha}{\pi[(\nu-\nu_i)^2 + \alpha^2]}\right) d\nu
 $$
 
 The above expression is a random variable (because $S_i$ and $\nu_i$ are random
-variables). Therefore, we have to compute the mean to be useful:
+variables).
+Therefore, we have to compute the mean to be useful:
 
 $$
 \bar{\mathcal{T}} = \int_\mathbf{S} \int_\mathbf{\nu} \mathcal{T} p(\mathbf{\nu})p(\mathbf{S}) d\mathbf{\nu}d{\mathbf{S}}
 $$
 
 where $\mathbf{S} = (S_1,...,S_N)$ and $\mathbf{\nu} = (\nu_1,...,\nu_N)$
-are vectors of line strengths and line positions.
+are vectors of line strengths and line positions,
+and $p$ denotes the probability density function.
 This integration can be performed in a closed-form [see e.g. @zdunkowski2007],
 leading to the *Malkmus formula* for narrow-band optical thickness:
 
@@ -794,8 +796,9 @@ Net Exchange Rate Formulation
 
 
 
-Computational Intermittence
----------------------------
+Temporal Subsampling
+--------------------
+\label{sec:computational-intermittency}
 
 Because the temporal variability of all quantities coming as an input 
 to the RTE is not the same, it is convenient to avoid repeated computation
@@ -805,14 +808,14 @@ interpolate gaseous optical thickness. Other intermediate
 results may also be reused, depending on the actual implementation of the
 solution.
 
-### Diminising Performance Gain of Computational Intermittence
+### Diminising Performance Gain of Temporal Subsampling
 
 \begin{figure}
 \centering
 \includegraphics[width=8cm]{img/diminishing-gain.pdf}
 \caption{
-\textbf{Relative model run time with computational intermittence.}
-The relative run time decreases at a diminishing rate as the intermittence
+\textbf{Relative model run time with temporal subsampling.}
+The relative run time decreases at a diminishing rate as the intermittency
 period increases, eventually converging to a constant.
 In this example, a full step time fraction $q = 0.5$,
 and intermittent step time fraction $q' = 0.5q$ are assumed.
@@ -820,7 +823,7 @@ and intermittent step time fraction $q' = 0.5q$ are assumed.
 }
 \end{figure}
 
-Computational intermittence allows us to reduce the computation time
+Temporal subsampling allows us to reduce the computation time
 of intermittent steps when approximate results are calculated
 (e.g. by interpolation), while full steps take an unchanged
 amount of time (or somewhat greater, depending on implementation details).
@@ -828,7 +831,7 @@ Radiation schemes constitute a fraction of total run time
 of an NWP model, typically 20–60 % (?). Therefore, there is a limit on
 the total time reduction due to performance improvements in
 the radiation scheme alone. Moreover, as we increase the length of
-the intermittence period
+the intermittency period
 (the number of intermittent steps per the number of full steps),
 there is a diminishing improvement in total run time,
 to the point that intermittent steps far outnumber full steps, and the
@@ -845,7 +848,7 @@ t(n) = t_0 + t_m n
 
 If a full step of our module (radiation scheme) takes a fraction $q$ of the
 model time step to compute, and an intermittent step takes $q' < q$,
-and we choose intermittence period of $k$ steps,
+and we choose intermittency period of $k$ steps,
 the total model run time will be:
 
 \begin{align}
@@ -870,5 +873,5 @@ and there is a diminishing gain in performance as $k$ increases.
 Figure\ \ref{fig:diminishing-gain} demonstrates $\tau_k$
 for a particular choice of parameters. We can see that considering
 improvement in the total model run time is important when deciding
-the lenght of the intermittence period, especially considering
-the detrimental effect intermittence might have the result accuracy.
+the lenght of the intermittency period, especially considering
+the detrimental effect intermittency might have the result accuracy.
