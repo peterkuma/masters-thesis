@@ -1,2 +1,1 @@
-Assignment{-}
-==========
+\includepdf[pages=-]{img/assignment-en.pdf}
