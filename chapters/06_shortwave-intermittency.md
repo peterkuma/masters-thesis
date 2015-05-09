@@ -325,16 +325,17 @@ taken into account when implementing shortwave intermittency in a 3D model:
       simultaneously by a single processor
       (on processors which support such a feature).
 
-Analysis
---------
+Analysis Description
+--------------------
 
 In order to evaluate accuracy and performance of the implementation of
 shortwave intermittency, we performed a number of simulations (experiments)
-with the ALADIN NWP model and analysed the results.
+with the ALADIN limited-area NWP model and analysed the results for accuracy
+and performance.
 
-### Analysis Description
-
-The simulations were performed on a domain covering Central Europe.
+The simulations were performed on a domain covering Central Europe
+with coupling to the ARPEGE global model. The horizontal mesh size was
+4.7\ km with 87 vertical layers and time step of 3\ min.
 Values for offline analysis were sampled from a limited number of points
 chosen evenly from the whole domain (Figure \ref{fig:domain-points}).
 A 24-h summer day convective situation starting at 0:00 UTC,
@@ -347,6 +348,15 @@ ALADIN model were developed.
 These made it possible to export fields into NetCDF/HDF5 files, which were
 subsequently analysed using a set of short programs made
 in the statistical programming language R[^acraneb2-intermittency-analysis].
+
+The runs were made on 8 CPUs of the NEC SX-9 supercomputer
+(100 GFLOPS per CPU),
+and performance was measured as the CPU time in an exclusive (benchmark)
+mode of the machine, in order to avoid interference with other concurrent tasks
+(which would be substantial). The SX-9 processors rely heavily on code
+vectorisation, and as such may be less representative of other more common
+architectures. Multithreading in the ALADIN model is implemented using OpenMP,
+distributing computation on blocks of grid points to the threads.
 
 [^acraneb2-intermittency-analysis]: The full analysis is
 available at \url{https://github.com/peterkuma/acraneb2-intermittency-analysis}.
@@ -377,31 +387,111 @@ The following experiments were performed:
     * Longwave gaseous optical thickness computed once per 1\ h.
     * Calibration of longwave NER weights computed once per 3\ h.
 
-2. **Shortwave Intermittency 1\ h**
+2. **Shortwave Intermittency 6-min, 15-min, 30-min, 1-h, 90-min, 2-h**
 
-    Shortwave intermittency enabled with 1\ h intermittency:
-
-    * Based on *Shortwave Intermittency Base*.
-    * Shortwave gaseous optical thickness computed once per 1\ h.
-
-2. **Shortwave Intermittency 30\ min**
-
-    Shortwave intermittency enabled with 30\ min intermittency:
+    Shortwave intermittency enabled with 6-min, 15-min, 30-min, 1-h, 90-min, 2-h
+    intermittency period (resp.):
 
     * Based on *Shortwave Intermittency Base*.
-    * Shortwave gaseous optical thickness computed once per 30\ min.
+    * Shortwave gaseous optical thickness computed once per
+    6\ min, 15\ min, 30\ min, 1\ h, 90\ min, 2\ h (resp).
 
+Results
+-------
 
 ### Accuracy
 
-In order to determine how the shortwave intermittency affects accuracy,
-we looked at the global bias of heating rates, as well as the local error
-and its statistical distribution. Figure \ref{fig:shortwave-heating-rate-error}
+In order to determine how shortwave intermittency affects accuracy,
+we looked at the global bias in heating rate, as well as the local error
+and its statistical distribution. The shortwave intermittency runs were
+compared to the base configuration with no shortwave intermittency.
+The impact on shortwave heating rates and longwave heating rates can
+be seen in Figure\ \ref{fig:shortwave-heating-rate-error}
+and Figure\ \ref{fig:longwave-heating-rate-error}, resp.
+The impact on bias was negligible ($<\ 0.2\ \text{K/day}$)
+in both shortwave and longwave heating rates.
+
+It should be noted that in the time series plot, the time axis is in UTC,
+therefore domain points are not synchronised with respect to local solar time.
+
+From the shortwave heating rate error time series plot, it is clear
+that the magnitude of error is the greatest during the day (up to
+$0.4\ \text{K/day}$ with 2-h shortwave intermittency), whereas during
+the night the error is zero. At the ‘full’ steps when shortwave gaseous
+optical depths are calculated, the error drops markedly, giving rise
+to a tooth-like pattern,
+but a non-reducible error accumaltes with time as the run diverges
+from the reference run.
+
+Shortwave intermittency has an impact on the longwave heating rates,
+leading to error of about 0.6\ K/day in the second half of the simulation,
+i.e. greater than in shortwave heating rates.
+This is likely due the strong sensitivity of longwave fluxes on the temperature
+profile.
+
+<!-- 
 shows the error in heating rate of 1\ h shortwave intermittency
 compared to no shortwave intermittency
 (Exp. *Shortwave Intermittency 1\ h* vs. Exp. *Shortwave Intermittency Base*).
 The local error was less than 0.15\ K/day in 90\ % of samples, and the global
 error was on the order of 0.05\ K/day (mean absolute error).
+ -->
+
+<!-- The plot in Fig.\ \ref{fig:results} shows the average global heating rates
+as calculated by the scheme *with* and *without* 2-h shortwave intermittency.
+We can see that the difference is on the order of K/day, which is small
+compared to the accuracy of the scheme. -->
+
+### Performance
+
+The total model run time of shortwave intermittency experiments is displayed in
+Figure\ \ref{fig:shortwave-intermittency-performance}. The time reduction was up
+to about 5\ % with the longest shortwave intermittency period (2\ h).
+There is a diminishing gain in performance with longer intermittency periods,
+as discussed theoretically in Section\ \ref{sec:computational-intermittency}.
+The 6-min shortwave intermittency run was longer than the base run, which
+is expected as in every ‘full’ step of shortwave intermittency gaseous
+optical thickness is calculated twice
+(for the start and the end of the forthcoming intermittency
+period), and the implementation only introduces overhead compared to the
+base configuration.
+
+**Note:** It has to be noted that the performance analysis had to be performed with
+day/night segmentation
+disabled, as it causes the model run time to be non-monotonic with the length
+of the shortwave intermittency interval. With day/night segmentation enabled,
+time reduction scales up to 96\ % in the 2-h shortwave intermittency case,
+whereas in the results presented, the reduction is up to 94\ %
+(i.e. more pronounced). We belive that this choice is justified by the improved
+clarity of interpretation of the results.
+
+Figure\ \ref{fig:shortwave-intermittency-performance-accuracy}
+compares performance and accuracy of the model runs. As such, it is important
+in deciding the optimal choice of shortwave intermittency period. The exact
+choice depends on the presence of other performance tuning options
+in the whole model configuration,
+as an option with the least error incured per reduction in time should
+be chosen. Therefore, depending on the circumstances it may be viable
+to increase the shortwave intermittency
+period even over 1\ h, although after this point the error starts to grow
+more rapidly with respect to any time reduction. Moreover, there is a hard bound
+on the time saved by shortwave intermittency – when all but the first time step
+are ‘intermittent’. From these results, we can expect it to be about 6–7\ %.
+Users of the radiation scheme are therefore advised to use this chart
+as a guide in deciding the optimum configuration in their particular situation.
+
+We should remark that the error observed in the runs was not normally
+distributed. Rather, many local errors were clustered around zero, descreasing
+gradually in number towards the 95-th percentiles, with the rest distributed
+in heavy-tails. Therefore, we chose the 90\ % confidence intervals and the mean
+absolute error (MAE) to present our results instead of the more traditional
+root-mean-square error (RMSE), which would place very strong emphasis on
+the outliers and could be misleading due to the expectation of normal
+distribution. However, we realise that the presence of outliers is not a
+desirable property, but a more complex analysis would need to be performed
+in order to determine what their source is and whether they can be eliminated.
+
+<!-- Memory increase due to shortwave intermittency was about 2.4\ \%. -->
 
 \begin{figure}
 \centering
@@ -438,30 +528,14 @@ The situation is a convective summer day of 29 May 2009 over Central Europe.
 }
 \end{figure}
 
-<!-- The plot in Fig.\ \ref{fig:results} shows the average global heating rates
-as calculated by the scheme *with* and *without* 2-h shortwave intermittency.
-We can see that the difference is on the order of K/day, which is small
-compared to the accuracy of the scheme. -->
-
-### Performance
-
-We measured performance of the new scheme using a 24-h run of the NWP model
-on 8 CPUs of a NEC SX-9 supercomputer (100 GFLOPS per CPU).
-The decrease in total model
-computation time with 30-min and 1-h shortwave intermittency was
-1.8\ % and 6.3\ %, resp.
-The bar chart in Figure\ \ref{fig:shortwave-intermittency-performance}
-shows the results of the three experiments in terms of CPU time.
-Also Table\ \ref{tab:performance} shows preliminary results obtained
-with 1-h shortwave intermittency.
 
 \begin{figure}
 \centering
-\includegraphics[width=7cm]{img/shortwave-intermittency-performance.pdf}
+\includegraphics[height=6cm]{img/performance_plot.pdf}
 \caption{
 \textbf{Shortwave intermittency performance.}
-Total model run time of 30-min and 1-h shortwave
-intermittency runs relative to no shortwave intermittency.
+Total model run time of shortwave
+intermittency runs relative to no shortwave intermittency (‘Base’).
 Run time was measured as CPU time in a benchmark (exclusive) mode
 on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance}
@@ -470,13 +544,13 @@ on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 
 \begin{figure}
 \centering
-\includegraphics[width=8cm]{img/performance_accuracy_plot.pdf}
+\includegraphics[width=\textwidth]{img/performance_accuracy_plot.pdf}
 \caption{
 \textbf{Shortwave intermittency performance vs. accuracy.}
 Total model run time and mean absolute heating rate error (\textbf{solid line})
-of 30-min and 1-h shortwave intermittency runs, relative
+of shortwave intermittency runs, relative
 to no shortwave intermittency. Shown
-is the 90-\% upper bound of the absolute heating rate error
+is the 95-\% upper bound of the absolute heating rate error
 across domain sample points and time steps (\textbf{dashed line}).
 Heating rate error is weighted by pressure thickness of layers.
 Run time was measured as CPU time in a benchmark (exclusive) mode
@@ -484,27 +558,6 @@ on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
 }
 \end{figure}
-
-\begin{table}
-\caption{
-  \textbf{Impact of shortwave intermittency on the model computation time.}
-  The table lists full NWP model computation time of 6-hour integration,
-  3-min time step (case 2012-07-01T00:00:00Z) for a number of different
-  configurations. Time is expressed relative to the baseline case.
-  \textit{Note:} Memory increase due to shortwave intermittency was 2.4\ \%. 
-  \label{tab:performance}
-}
-\begin{tabular*}{\hsize}{@{\extracolsep{\fill}} llr}
-\textbf{Day/night computation} & \textbf{Shortwave intermittency} & \textbf{Time (relative)}\\
-\hline
-Yes                   & No                  & 1.00\\
-No                    & No                  & 1.02\\
-No                    & Yes, 0 h            & 1.08\\
-No                    & Yes, 1 h            & 1.04\\
-Yes                   & Yes, 0 h            & 1.05\\
-Yes                   & Yes, 1 h            & \textbf{0.95}
-\end{tabular*}
-\end{table}
 
 Conclusion
 ----------
