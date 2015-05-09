@@ -19,7 +19,7 @@ in the ALADIN source code.
     NSORAYFR=-<h>
 
 Shortwave (solar) intermittency interval length.
-Shortwave gaseus optical thickness is calculated every
+Shortwave gaseous optical thickness is calculated every
 `<n>` steps, resp. every `<h>` hours.
 
 ### NRAUTOEV

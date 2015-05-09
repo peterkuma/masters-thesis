@@ -45,7 +45,7 @@ from atoms (*photoionisation*) and breaking up molecules
 (*photodissociation*). UV radiation spans wavelengths of 10-400\ $\mathrm{nm}$.
 The UV band is further divided into multiple subbands,
 of which only the last three are of interest to atmospheric radiative
-trasfer[^uv-definition]:
+transfer[^uv-definition]:
 
 * UV-C: 100 nm–280 nm
 * UV-B: 280 nm–320 nm
@@ -54,8 +54,8 @@ trasfer[^uv-definition]:
 Much of UV radiation is absorbed high in the atmosphere (stratosphere
 and mesosphere) by ozone and oxygen, though UV-A reaches the Earth's surface
 with little attenuation. UV radiation has to be considered in radiation
-schemes, because it contributes sigificantly to heating rates in the
-stratosphere. It is also imporant due to its influence on atmospheric chemistry
+schemes, because it contributes significantly to heating rates in the
+stratosphere. It is also important due to its influence on atmospheric chemistry
 (Chapman reactions).
 
 [^uv-definition]: The precise choice of boundaries is somewhat arbitrary,
@@ -63,14 +63,14 @@ and various definitions can be found.
 
 ### Visible Light
 
-The visible spectrum comprises wavelengths which humans can percept
+The visible spectrum comprises wavelengths which humans can perceive
 with their sight. The likely reason which gave rise to this ability is twofold:
 (1) this is where the peak power of Sun's radiation is located, and (2) the
 clear-sky atmosphere is almost transparent in the visible spectrum. Visible
 light spans the region of about 400–700\ $\mathrm{nm}$.
 In radiation models it has to be
 considered due to scattering and absorption by air molecules,
-clouds and aeorosols. The only significant source of visible light is the Sun.
+clouds and aerosols. The only significant source of visible light is the Sun.
 
 ### Infrared Radiation
 
@@ -137,8 +137,8 @@ in use today. We follow those of @petty2006 due to their clarity.
 ### Frequency, Wavelength and Wavenumber
 
 _Frequency_ of a monochromatic EM wave will be denoted $\tilde{\nu}$. Frequency
-is realted to _wavelength_ $\lambda$ via the speed of light
-$c = \tilde{\nu}\lambda$. Longer wavelengths are sometimes indentified by
+is related to _wavelength_ $\lambda$ via the speed of light
+$c = \tilde{\nu}\lambda$. Longer wavelengths are sometimes identified by
 _wavenumber_[^frequency-vs-wavenumber]
 $\nu = 1/\lambda$, which is often preferred in the infrared spectrum.
 
@@ -147,7 +147,7 @@ sometimes reversed, with $\tilde{\nu}$ denoting wavenumber, and $\nu$ frequency.
 
 It is notable that wavenumbers in $\mathrm{cm^{-1}}$ can be conveniently
 converted to wavelengths in $\mathrm{\mu m}$ by the expression $y = 10000/x$,
-where $x$ is wavenumber and $y$ is wavelength (and vice-versa).
+where $x$ is wavenumber and $y$ is wavelength (and vice versa).
 
 ### Monochromatic Radiance and Radiance
 
@@ -173,7 +173,7 @@ I = \int_{\Delta\lambda} I_\lambda \mathrm{d}\lambda =
 
 Radiance has units $\mathrm{Wm^{-2}sr^{-1}}$.
 As *monochromatic radiance*
-will be discussed freqently in this text, we will call it simply ‘radiance’
+will be discussed frequently in this text, we will call it simply ‘radiance’
 and denote $I$ and state explicitly if *radiance* is considered by calling it
 *narrow-band* or *broadband radiance*. We will also assume implicit dependence
 on $\mathbf{r}$ in order to make equations more readable.
@@ -291,13 +291,13 @@ The Radiative Transfer Equation
 -------------------------------
 \label{sec:rte}
 
-Fundamentally, radiative tranfer is governed by the Maxwell equations and
-quantum mechanical principles. However, it is often not neccessary to be
+Fundamentally, radiative transfer is governed by the Maxwell equations and
+quantum mechanical principles. However, it is often not necessary to be
 concerned with the details of the electromagnetic field in the context of energy
 budget calculations, perhaps with the exception of Mie theory of scattering.
 
 There are three energetically important processes in which radiation interacts
-with matter in the atmopshere: _scattering_, _absorption_ and _emission_. Put
+with matter in the atmosphere: _scattering_, _absorption_ and _emission_. Put
 together they form the radiative transfer equation.
 
 ### Scattering
@@ -352,7 +352,7 @@ causing an increase in temperature.
 The photon is lost in the process, and radiance is reduced by the corresponding
 amount of energy.
 
-The influence of absoprtion on radiance is described by the volume
+The influence of absorption on radiance is described by the volume
 absorption coefficient $\beta_a$ (discussed in
 Sec.\ \ref{sec:mass-and-volume-absorption-coefficients}):
 
@@ -368,7 +368,7 @@ I(s) &= I(0)\exp(-\beta_a s)
 \end{align}
 
 i.e. monochromatic radiance falls of
-exponentially in a homegeneous, absorbing, non-scattering medium.
+exponentially in a homogeneous, absorbing, non-scattering medium.
 The same relationship applies to absorbers whose volume absorption coefficient
 is independent of wavelength (over the interval of interest),
 also called *gray bodies*[^gray-body].
@@ -396,10 +396,10 @@ of $\mathrm{d}s$ is:
 \end{align}
 
 We do not need to introduce any volume emission coefficient, as by
-the *Kirchoff's law* under the condition of a local thermodynamic equilibrium
-(LTE) absorbitivy is equal to emissivity. This condition is satisfied in parts
+the *Kirchhoff's law* under the condition of a local thermodynamic equilibrium
+(LTE) absorptivity is equal to emissivity. This condition is satisfied in parts
 of the atmosphere where radiative energy budget calculations are important
-to NWP (troposhere and stratosphere).
+to NWP (troposphere and stratosphere).
 
 ### Radiative Transfer Equation
 

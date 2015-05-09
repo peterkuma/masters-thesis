@@ -5,26 +5,26 @@ Radiation passing through the Earth's atmosphere is modified by the processes of
 absorption and scattering. Both of these processes are wavelength-dependent, but
 while scattering is determined by Rayleigh scattering, Mie theory and
 geometric optics, in order to fully determine absorption we need to know the
-specifc absorption lines of radiatively active gases.
+specific absorption lines of radiatively active gases.
 
 Absorption spectrum of gas molecules can have immensely complicated structure,
 and one needs a very large amount of information to describe the structure
-fully. Additionally, smooting the curve
+fully. Additionally, smoothing the curve
 by averaging out the details is of little use in calculation of transmittance
-due to saturation at wavelengths where absorption is strongest (line centers).
-This chapter discusses the pysical basis of absorption by gases, while
+due to saturation at wavelengths where absorption is strongest (line centres).
+This chapter discusses the physical basis of absorption by gases, while
 Chapter\ \ref{chap:approximate-solutions-of-the-rte} introduces approaches
 to overcoming this problem.
 
 Spectroscopic data of absorption lines of gases are available from
 spectroscopic databases. One of the most comprehensive databases
 is HITRAN[^hitran] [@rothman2009]. For gases where continuum
-absorption is imporatnt, one needs to use an additional model such as
+absorption is important, one needs to use an additional model such as
 MT_CKD produced by AER [@mlawer2012], which includes continuum absorption
-of water vapor, nitrogen, oxygen, carbon dioxide and ozone.
+of water vapour, nitrogen, oxygen, carbon dioxide and ozone.
 
 [^hitran]: \url{https://www.cfa.harvard.edu/hitran/}.
-The HITRAN database can be browsed conventiently at
+The HITRAN database can be browsed conveniently at
 ‘HITRAN on the Web’ (\url{http://hitran.iao.ru}).
 
 Types of Transitions
@@ -40,7 +40,7 @@ and velocity (Doppler broadening).
 Electronic transitions are the most energetic, associated with electrons
 transitioning into other energy levels within atoms, or breaking free entirely,
 in which case there is a continuum absorption, because any extra energy
-can transform into kinetic energy of the escaping electon. Electronic
+can transform into kinetic energy of the escaping electron. Electronic
 transitions are mostly responsible for absorption in the high-frequency
 part of the spectrum below 300 nm.
 
@@ -49,7 +49,7 @@ than rotational transitions. They are due to transitions between vibrational
 modes of multi-atomic molecules.
 Not all molecules have vibrational transitions.
 They are subject to the condition that EM
-wave has the be able to excert force on the atoms, for which the molecule
+wave has the be able to exert force on the atoms, for which the molecule
 needs to have a dipole moment (be polarised). Notably, the most abundant
 atmospheric gas $\mathrm{N_2}$ does not have a dipole moment,
 and therefore does not posses
@@ -69,7 +69,7 @@ Rotational transitions are caused transitions between rotational modes of
 multi-atomic molecules.
 Rotational transitions are the least energetic. As transitions can occur
 together, and because they are much less energetic than vibrational transitions,
-they combine to produce vibrational bands with fine structure, centered
+they combine to produce vibrational bands with fine structure, centred
 at a particular wavelength of a vibrational transition.
 Not all molecules have rotational transitions. In particular, the EM
 wave has to be able to exert torque on the molecule. Especially, it needs
@@ -157,7 +157,7 @@ in the troposphere, where it falls off sharply with height due to condensation.
 It is also highly spatially and temporally variable.
 
 Water vapour absorbs radiation in a number of bands in the shortwave spectrum,
-most importantly in the near IR centered at $2.7\ \mathrm{\mu m}$ ($\chi$),
+most importantly in the near IR centred at $2.7\ \mathrm{\mu m}$ ($\chi$),
 $1.87\ \mathrm{\mu m}$ ($\Omega$), $1.38\ \mathrm{\mu m}$ ($\psi$),
 $1.1\ \mathrm{\mu m}$ ($\varphi$), $0.94\ \mathrm{\mu m}$ ($\rho, \sigma, \tau$),
 $0.82\ \mathrm{\mu m}$ and $0.72\ \mathrm{\mu m}$ [@goody1995;@liou2002].
@@ -174,12 +174,12 @@ of continuum due to photodissociation, although Huggins bands have a more
 irregular structure.
 Of the three, Hartley bands are the strongest. They cover the region of
 240–310 nm. Because of their strength, they absorb most incident solar radiation
-in the mesopshere and stratosphere.
+in the mesosphere and stratosphere.
 Huggins bands cover the region of 310–340 nm.
 Although Chappuis bands are the weakest of the three, they are important for
-atomospheric absorption, because they lie in the region of 450–750 nm,
+atmospheric absorption, because they lie in the region of 450–750 nm,
 where solar radiation is the strongest. Their principal location of absorption
-is in the troposhpere.
+is in the troposphere.
 
 \begin{figure}
 \includegraphics[width=\textwidth]{ozone-absorption/ozone-absorption.pdf}
@@ -188,7 +188,7 @@ is in the troposhpere.
 \textbf{Ozone shortwave absorption.}
 Absorbed solar radiation (\textbf{red}) and absorption cross section
 (\textbf{blue}) of $\text{O}_3$.
-Indicated are approximate regions of the Hartley, Huggins and Chappius
+Indicated are approximate regions of the Hartley, Huggins and Chappuis
 absorption bands.
 Data from \cite{serdyuchenko2012}.
 }
@@ -208,7 +208,7 @@ Adopted from \cite{goody1995}. After Brasseur and Solomon (1984).
 
 Carbon dioxide ($\mathrm{CO_2}$) is mostly active in the longwave spectrum,
 but exhibits a number of bands in the shortwave as well. The strongest is
-centered at $2.7\ \mathrm{\mu m}$, and a number of weaker bands are at
+centred at $2.7\ \mathrm{\mu m}$, and a number of weaker bands are at
 $2.0\ \mathrm{\mu m}$, $1.6\ \mathrm{\mu m}$, $1.4\ \mathrm{\mu m}$
 [@liou2002].
 
@@ -220,7 +220,7 @@ High-frequency UV absorption cross section is
 shown in Figure\ \ref{fig:oxygen-absorption}. The strength of this absorption
 means that little UV radiation penetrates the atmosphere in this region.
 
-Even thouh $\mathrm{O_2}$ is a homonuclear diatomic molecule with no electic
+Even though $\mathrm{O_2}$ is a homonuclear diatomic molecule with no electric
 dipole moment, it has a permanent magnetic moment,
 enabling rotational transitions to occur. 
 
@@ -228,13 +228,13 @@ Outside of the UV band, oxygen absorbs in the *red* and *infrared*
 ‘atmospheric’ bands [@goody1995].
 They are associated with the $\mathrm{a\leftarrow X}$ (resp.
 $\mathrm{b\leftarrow X}$) electronic transition in combination with
-vibrational-rotational transitions. The red bands comprise band A centered
+vibrational-rotational transitions. The red bands comprise band A centred
 at 762\ nm, band B
-at 688\ nm, and band $\gamma$ at 628\ nm. Infrared bands are centered at
+at 688\ nm, and band $\gamma$ at 628\ nm. Infrared bands are centred at
 $1.58\ \mathrm{\mu m}$, $1.27\ \mathrm{\mu m}$
 and $1.06\ \mathrm{\mu m}$.
 Although relatively sparse, the red bands are important to the
-troposheric energy budget, because they they are located at the peak of the
+tropospheric energy budget, because they they are located at the peak of the
 solar spectrum [@liou2002].
 
 Oxygen molecules are known to form dimers with some other
@@ -269,7 +269,7 @@ over a range of frequencies by three types of processes:
 * Pressure broadening
 
 _Natural broadening_ occurs due to quantum mechanical effects and is very weak
-compared to the other two. Therefore, it has little importantce to atmospheric
+compared to the other two. Therefore, it has little importance to atmospheric
 radiative transfer.
 
 _Doppler broadening_ occurs due to Doppler shift in frequency as observed
@@ -281,7 +281,7 @@ radiative transfer. It occurs due to collisions between molecules, which impose
 a finite time limit on absorption and emission of a monochromatic EM wave.
 
 Effects of all three types of broadening are combined together to produce
-a characteristic _line shape_ of an absorbtion line. Line shape is defined
+a characteristic _line shape_ of an absorption line. Line shape is defined
 as function $f(\nu)$, such that the absorption coefficient of an isolated
 line is:
 
@@ -296,7 +296,7 @@ $$
 \int_0^\infty f(\nu) \mathrm{d}\nu = 1
 $$
 
-Pressure broadening is described by the *Lorents line shape*,  Doppler
+Pressure broadening is described by the *Lorentz line shape*,  Doppler
 broadening by the *Doppler line shape*, and together they are described
 by the *Voigt line shape*.
 
@@ -309,7 +309,7 @@ is limited to a finite amount of time, this is equivalent to stimulation
 by a range of frequencies, which can be reconstructed by performing Fourier
 transform on the amplitude function. By taking into account the statistical
 distribution of time between collisions (Poisson distribution), we can
-calculate the relative probability of absorpiton/emission at every frequency.
+calculate the relative probability of absorption/emission at every frequency.
 The derivation is carried out in e.g. @zdunkowski2007, here we show only
 the important result – the _Lorentz line shape_:
 
@@ -317,7 +317,7 @@ $$
 f(\nu) = \frac{\alpha}{\pi[(\nu - \nu_0)^2 + \alpha^2]}
 $$
 
-where $\nu_0$ is the line center and $\alpha$ is the line *half-width*.
+where $\nu_0$ is the line centre and $\alpha$ is the line *half-width*.
 It should be noted that this only applies to high enough wavenumbers
 (compared to the half-width), but this is only concern to microwaves and longer
 wavelengths.
@@ -338,7 +338,7 @@ It has to be said that the theory outlined above (_Michelson-Lorentz theory_)
 does not hold exactly [@goody1995].
 Especially, collisions themselves are not instantaneous, but take finite
 amount of time. Perhaps most importantly, the Lorentz line shape is
-insuffiecient in describing the line shape in far-wings of lines, which
+insufficient in describing the line shape in far-wings of lines, which
 contribute very significantly to absorption in spectral windows, where
 there is no other absorption, and a far-wings of many distant lines add up.
 
@@ -368,7 +368,7 @@ W = \int_0^\infty (1 - e^{-k_{\nu} u}) d\nu
   = Su
 $$
 
-In the weak line limit, the aborption by a single line is independent from
+In the weak line limit, the absorption by a single line is independent from
 line shape, and it is linear with mass path.
 
 ### Strong Line Limit
@@ -394,7 +394,7 @@ $$
 L(\tilde{u}) = \tilde{u}e^{-\tilde{u}}[I_0(\tilde{u}) + I_1(\tilde{u})]
 $$
 
-Using this analytical form, it can be shown that for large mass path,
+Using this analytic form, it can be shown that for large mass path,
 equivalent width approaches:
 
 $$
@@ -405,7 +405,7 @@ This is the _strong line limit_, when absorption by a single line
 grows in proportion to the square root of mass path $\sqrt{u}$.
 
 The absorption by a single line starts off linearly, but with increasing
-absorber amount the monochromatic radiance near the line center becomes
+absorber amount the monochromatic radiance near the line centre becomes
 depleted, and the rate of absorption is reduced to sub-linear (square-root)
 regime. This can be thought of as _saturation_ of absorption,
 and is similar in the context of multiple overlapping absorption lines.
@@ -413,28 +413,28 @@ and is similar in the context of multiple overlapping absorption lines.
 Continuum
 ---------
 
-Gases absorb radiation in discreete absorption lines approximated by the Lorentz
+Gases absorb radiation in discrete absorption lines approximated by the Lorentz
 or Voigt line shape. However, in some molecules there are parts of the spectrum
 where the absorption coefficient varies relatively little with wavelength,
 without apparent association with absorption lines. Typically, this _continuum
 absoprtion_ occurs in connection with photoionization and photodissociation,
 when the extra energy is consumed by kinetic energy of the escaping electron,
 resp. broken-up molecules. These processes are mostly confined to the
-ultraviolet part of the spectrum, because of the high energies requered. In
+ultraviolet part of the spectrum, because of the high energies required. In
 addition to photoionisation and photodissociation, there are other less
-well-explained sources of continuum absoprtion at lower frequencies due to:
+well-explained sources of continuum absorption at lower frequencies due to:
 
 * Far-wings of absorption lines
 * Collision induced absorption
 * Absorption by dimers and multimers
 
-Even though contiuum absorption is generally weak compared to line absorption
+Even though continuum absorption is generally weak compared to line absorption
 (with the exception of UV),
 it is still of great importance, because it covers large parts of the spectrum,
 often in places where there is absence of line absorption
 (_atmospheric windows_).
 
-Water vapour is the most important source of contiuum for the energy budget,
-respnsible for as much as 40 % of longwave radiative cooling [@mlawer2012].
+Water vapour is the most important source of continuum for the energy budget,
+responsible for as much as 40 % of longwave radiative cooling [@mlawer2012].
 The continuum is mostly of two origins: far wings of lines and collision
 between molecules (self and foreign continuum).

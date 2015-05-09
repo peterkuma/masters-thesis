@@ -9,9 +9,9 @@ radiation schemes.
 Plane Parallel Approximation
 ----------------------------
 
-The atmopshere forms a thin envelope of the Earth with horizontal scales much
-pronounced relative to vertical scales. Factors influencing radiative tranfer
-include gasesous concentrations, clouds, air and surface temperature variation.
+The atmosphere forms a thin envelope of the Earth with horizontal scales much
+pronounced relative to vertical scales. Factors influencing radiative transfer
+include gaseous concentrations, clouds, air and surface temperature variation.
 Perhaps with the exception of cumulus clouds, all of these change slowly in the
 horizontal direction, and we can simplify the calculations if we treat them as
 constant over relatively large areas. In NWP models, this is commonly done by
@@ -36,8 +36,8 @@ In the following text we assume that layers are numbered from top to bottom by
 integer number k, where $k = 1$ is the uppermost layer, and $k = N$ the layer
 just above the surface. Some quantities, such as fluxes, need to be determined
 on layer interfaces. The layer interface corresponding to the top of the
-atmopshere will be numered $k = 0$,
-increasing down to the atmopshere-surface interface $k = N$.
+atmosphere will be numbered $k = 0$,
+increasing down to the atmosphere-surface interface $k = N$.
 
 ### Radiative Transfer Equation in Plane Parallel Approximation
 
@@ -59,11 +59,11 @@ $\mathrm{ds} = \mathrm{d}z/\mu$, \eqref{eq:rte} transforms to:
 [^note-cos-zenith-angle]: As noted by @petty2006, p. 325, some authors use the
 definition $\mu_0 \equiv |\cos(\theta)|$. Here, we use
 $\mu_0 \equiv \cos(\theta)$
-as it leads to more straightforward equations in this situtation.
+as it leads to more straightforward equations in this situation.
 
 More conveniently, we can use *optical depth*
 $\mathrm{d}\tau = -\beta_\mathrm{e}\mathrm{d}z$
-as a verticalthe vertical coordinate, and normalize by $\beta_e$:
+as a vertical coordinate, and normalise by $\beta_e$:
 
 \begin{align}
 \label{eq:plane-parallel-rte}
@@ -100,7 +100,7 @@ Delta-Two Stream Approximation
 In the *$\delta$-two stream approximation* radiance is assumed to be constant over
 hemispheres, with the exception of a peak[^peak] from direct
 solar radiation (if present).
-The peak is treated seperately in order to preserve
+The peak is treated separately in order to preserve
 good accuracy, as direct radiance can be orders of magnitude greater than
 diffuse radiance. There is no azimuthal or zenith dependence of diffuse
 radiance, and the total radiance is the sum of diffuse and direct radiance:
@@ -149,7 +149,7 @@ and $F_\downarrow$, and the flux density of solar radiation as $S$. Here,
 we assume that $S$ is coming from the Sun, and so always has a direction
 somewhere in the bottom hemisphere.
 
-<!-- In Reyleigh scattering regime
+<!-- In Rayleigh scattering regime
 this holds to great accuracy, while in the Mie regime the approximation is
 somewhat less sound. -->
 
@@ -166,7 +166,7 @@ In our decomposition into diffuse and direct radiation this equation
 now does not have a unique solution, as $I_\mathrm{diff}$ and $I_\mathrm{dir}$
 overlap
 at the angle of the direct radiation, and we cannot tell how much of the value
-of the right hand side is alloted to the change in diffuse radiation
+of the right hand side is allotted to the change in diffuse radiation
 $\mathrm{d}I_\mathrm{diff}$ and direct radiation $\mathrm{d}I_\mathrm{dir}$
 on the left hand side. Therefore, we postulate that the change in direct
 radiation is only due to extinction of direct radiation and scattering of
@@ -551,10 +551,10 @@ to 1 for large optical thickness.
 
 In the simple application of two stream approximation, we assume that
 diffuse radiation is hemispherically isotropic at all points along the
-vertical axis $z$. When integrating verticaly over a finite path
+vertical axis $z$. When integrating vertically over a finite path
 (a slab of atmosphere), however, we can improve the accuracy if we take
 into consideration that within the slab radiance may have full directional
-dependence and preserve hemispheric isotrophy on the boundaries only. This
+dependence and preserve hemispheric isotropy on the boundaries only. This
 allows us to account for the fact that radiation traversing the slab at
 different angles passes through different path lengths, and thus is subject to
 different levels of attenuation.
@@ -602,7 +602,7 @@ Figure\ \ref{fig:diffusivity-factor}. The values range from 2 for $\tau \ll 1$
 $\tau \gg 1$.
 
 The situation is more complicated if we consider broadband
-radiation, where optical satuation modifies the level of attenuation with
+radiation, where optical saturation modifies the level of attenuation with
 respect to monochromatic radiation in a path-dependent way.
 Generally, a single value of $U$ between 1 and 2 is chosen in radiation schemes,
 such that good practical results are obtained.
@@ -615,7 +615,7 @@ be integrated over in NWP models in a time-effective manner.
 A number of statistical approaches to this problem have been invented.
 One well-established approach is _band models_, whereby
 line strengths are assumed to have a particular statistical distribution
-with a limited number of parameters in each band (walength interval).
+with a limited number of parameters in each band (wavelength interval).
 For suitably chosen distributions,
 the integration over wavelength and a finite path can be done in a closed-form,
 leading to an expression for band-averaged transmittance
@@ -631,7 +631,7 @@ such as the entire shortwave or longwave spectrum.
 
 One of the most popular narrow-band models is the *Malkmus model*. It is
 based on the assumption that there is a given number of randomly
-distributed absorption lines in each band, and their stength has
+distributed absorption lines in each band, and their strength has
 the probability density:
 
 $$
@@ -728,7 +728,7 @@ is:
 
 When considering optical depth of larger spectral intervals (where narrow-band
 approximation no longer applies), we can observe *secondary saturation*,
-when diminising rate of optical depth increase is caused by variability
+when diminishing rate of optical depth increase is caused by variability
 of extinction with wavelength such as in Rayleigh scattering, and in cloud
 absorption and scattering. While this is not an issue to narrow-band model
 radiation schemes, it has to be taken into account in broadband model
@@ -787,7 +787,7 @@ interpolate gaseous optical thickness. Other intermediate
 results may also be reused, depending on the actual implementation of the
 solution.
 
-### Diminising Performance Gain of Temporal Subsampling
+### Diminishing Performance Gain of Temporal Subsampling
 
 \begin{figure}
 \centering
@@ -852,5 +852,5 @@ and there is a diminishing gain in performance as $k$ increases.
 Figure\ \ref{fig:diminishing-gain} demonstrates $\tau_k$
 for a particular choice of parameters. We can see that considering
 improvement in the total model run time is important when deciding
-the lenght of the intermittency period, especially considering
+the length of the intermittency period, especially considering
 the detrimental effect intermittency might have the result accuracy.

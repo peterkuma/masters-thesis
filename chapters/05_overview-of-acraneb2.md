@@ -13,7 +13,7 @@ precludes frequent recalculation of fluxes,
 necessitating either reduced temporal or spatial precision.
 As a result, changing cloud cover is not resolved with enough accuracy
 as one might wish.
-The bradband approach in ACRANEB2 allows for computational intermittency in
+The broadband approach in ACRANEB2 allows for computational intermittency in
 both shortwave and longwave parts of the spectrum by
 decoupling quickly changing cloud optical depths from slowly
 changing gaseous optical depths. This makes calling the radiation scheme
@@ -27,7 +27,7 @@ and approximations:
 - $\delta$-two stream approximation
 - Broadband model based (two bands: shortwave and longwave),
   with modified Malkmus band model transmission approximation
-- Curtis-Godson approximation of inhomegeneous path transmission
+- Curtis-Godson approximation of inhomogeneous path transmission
 - Adding method for flux computation to account for multiple scattering
   in shortwave and longwave spectrum
 - Computational intermittency in longwave and shortwave spectrum
@@ -35,7 +35,7 @@ and approximations:
 ACRANEB2 is currently available as an optional radiation scheme
 in the NWP model ALADIN of the RC LACE[^rc-lace] community.
 
-[^rc-lace]: Regional Cooperation for Limited Area modeling in Central Europe
+[^rc-lace]: Regional Cooperation for Limited Area Modelling in Central Europe
 (\url{http://www.rclace.eu/}).
 
 Operation Overview
@@ -45,14 +45,14 @@ The ACRANEB2 scheme performs calculations independently for every
 column in the model grid[^vectorisation].
 Vertically, the atmosphere is split into layers, on which the computation
 is discretised. In the ALADIN model, layers are defined in hybrid
-_eta cooridates_, transitioning smoothly from
+_eta coordinates_, transitioning smoothly from
 $\sigma$ coordinates near the surface
 to pressure coordinates in the free atmosphere. Therefore, boundary layers
 follow the ground, while upper layers follow isobaric surfaces.
 Apart from an NWP model, ACRANEB2 can be run in isolation inside a
 single column model. This is useful mostly for diagnostic purposes.
 
-[^vectorisation]: Thugh in parallel, in order to allow for vectorisation.
+[^vectorisation]: Though in parallel, in order to allow for vectorisation.
 
 ### Input and Output
 
@@ -107,8 +107,8 @@ $\alpha_1, ..., \alpha_4$.
 coefficients as an input.
 
     **Longwave:** The adding method is performed in total five times with
-    different choices of ‘idealised’ optical thickess, i.e. thickness assuming
-    radiation exchanged with the surface, space, or neighouring layers (resp.).
+    different choices of ‘idealised’ optical thickness, i.e. thickness assuming
+    radiation exchanged with the surface, space, or neighbouring layers (resp.).
 
 Gaseous Transmission
 --------------------
@@ -129,7 +129,7 @@ are treated as a single composite gas
 (‘CO2+’), because they are well-mixed, and their concentration in the atmosphere
 is relatively constant[^gases-concentration].
 
-[^gases-concentration]: This is not neccessrily true for all conditions,
+[^gases-concentration]: This is not necessarily true for all conditions,
 because some of these gases have sources near the surface, e.g. CO~2~
 is released by vegetation and exhibits both spatial and seasonal variability.
 Nevertheless, this simplification is justified, because the impact on
@@ -226,7 +226,7 @@ In the longwave spectrum, there are many sources of
 radiation: the Earth's surface and each atmospheric layer. This fact
 makes the situation more complicated than in the shortwave spectrum,
 as the broadband optical thickness of layers depends on the path travelled by
-radiation, which is ambiguous. The adding method can accomodate only a
+radiation, which is ambiguous. The adding method can accommodate only a
 single choice of optical thickness per layer. However, it is possible to
 overcome this problem with improved accuracy
 (over making a single arbitrary choice of optical thickness)

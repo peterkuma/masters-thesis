@@ -4,7 +4,7 @@ Introduction{-}
 *Radiation schemes* (or *radiative transfer codes*) are modules in numerical
 weather prediction (NWP) models and general circulation models (GCM)
 responsible for calculation of radiation fluxes in the atmosphere and the ocean.
-Fluxes are neccessary to quantify diabatic heating of atmospheric and oceanic
+Fluxes are necessary to quantify diabatic heating of atmospheric and oceanic
 layers. Radiation schemes contribute significantly to the accuracy of NWP
 models, but also take a large fraction of model run time. Due to the
 computational complexity of the problem, numerous approximations have to be
@@ -41,11 +41,11 @@ a suitable interpolation method in order to account for this dependency.
 
 In summary, the objectives of this work were:
 
-1. Find and investigate a suitable time subsampling (‘intermittence’) method
+1. Find and investigate a suitable time subsampling (‘intermittency’) method
 in the shortwave band of the radiation scheme ACRANEB2.
 
-2. Implement the shortwave intermittence method in the code of the scheme.
+2. Implement the shortwave intermittency method in the code of the scheme.
 
 3. Determine the performance and accuracy of various
-shortwave intermittence periods in the context of the
+shortwave intermittency periods in the context of the
 limited-area NWP model ALADIN.

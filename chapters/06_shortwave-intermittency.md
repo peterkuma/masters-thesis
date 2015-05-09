@@ -42,7 +42,7 @@ In addition to *optical path*, we use the concept of *optical thickness*.
 The *optical thickness* of a layer is commonly defined as the optical path
 through
 the layer in the vertical direction ($\mu_0 = 1$), but we note that this is
-the same as normalizing the actual optical path by $\mu_0$:
+the same as normalising the actual optical path by $\mu_0$:
 
 $$
 \tau := \tau(z_1, z_2; \mu_0=1) = k\Delta u = \mu_0 \left(\frac{1}{\mu_0}k\Delta u\right) = \mu_0 \tau(z_1, z_2; \mu_0)
@@ -52,7 +52,7 @@ where $\tau(z_1, z_2; \mu_0)$ denotes optical path for radiation passing
 at cosine of the zenith angle $\mu_0$. We use the same symbol $\tau$ for optical
 thickness and optical depth, but stating its meaning explicitly where needed.
 In the monochromatic case, both definitions are equivalent, but the latter
-generalizes better to the broadband radiation treatment, where the Beer's
+generalises better to the broadband radiation treatment, where the Beer's
 law no longer holds. We will therefore use this latter definition:
 
 $$
@@ -62,14 +62,14 @@ $$
 ### Downward and Upward Broadband Optical Thickness
 
 <!-- We can define *broadband optical thickness* as optical path taken by parallel
-radiation through a layer normalized by cosine of the zenith angle
+radiation through a layer normalised by cosine of the zenith angle
 $mu$. For monochromatic radiation, such definition is equivalent to the
 traditional definition (optical path through a layer when $mu0 = 1$), and is
 independent from $mu$, because optical path scales linearly with $mu0$.
 In the broadband case, this is no longer true, as the increase of optical
 path with $mu$ is sublinear. If we determine the dependence of optical 
 thickness on $mu$, we can approximate optical thicknesses during the
-intermittence period without a significant loss of accuracy. -->
+intermittency period without a significant loss of accuracy. -->
 
 In a broadband radiative transfer scheme, it is necessary to distinguish
 downward and upward optical thickness of a layer. This is because the optical
@@ -80,7 +80,7 @@ which determines the amount of spectral saturation.
 
 The downward shortwave optical thickness is calculated for parallel radiation
 coming directly from the Sun at a zenith angle $\theta$ and is equal
-to the optical path through the layer normalized by cosine of the zenith
+to the optical path through the layer normalised by cosine of the zenith
 angle (which is proportional to the length of the path).
 
 The upward shortwave optical thickness, on the contrary, is calculated for diffuse
@@ -121,7 +121,7 @@ calculations.
 through a layer depends on the layer height, but here an independent
 scaling was used. It is also affected by refraction, which is omitted as well.
 
-The modified cosine of the zenith angle is the natural coordiate for
+The modified cosine of the zenith angle is the natural coordinate for
 studying the change of optical thickness with the position of the Sun in
 the sky.
 
@@ -147,9 +147,9 @@ which is much more variable. However, this dependence can be accounted for by
 interpolating gaseous optical thicknesses on the interval between the minimal
 and maximal zenith an gles attained during a chosen intermittence period.-->
 
-### Dependece of Optical Thickness on the Zenith Angle
+### Dependence of Optical Thickness on the Zenith Angle
 
-<!-- In the monochromatic RTE, the depnedence of optical path on the inverse of
+<!-- In the monochromatic RTE, the dependence of optical path on the inverse of
 cosine of the zenith angle $\mu_0$ is linear:
 
 $$
@@ -172,7 +172,7 @@ As you can see from the logarithmic plot, the dependence is
 close to a power function (i.e. is linear in the logarithmic coordinates).
 This suggest that a linear interpolation between extreme values 
 of the zenith angle in an intermittency period could yield
-accurate enough results. Similar relatiotionship was observed in cloudy
+accurate enough results. Similar relationship was observed in cloudy
 atmosphere and a number of additional cases.
 
 \begin{figure}
@@ -186,7 +186,7 @@ atmosphere and a number of additional cases.
   at zenith angle $\theta_1$. (2) As the Sun rises to zenith angle $\theta_2$,
   the broadband optical thickness (as per our definition)
   of the layer changes from $\tau_1$ to $\tau_2$. Note that $\tau_2 > \tau_1$,
-  as the broadband optical thickness equals to optical path normalized by
+  as the broadband optical thickness equals to optical path normalised by
   $\mu = cos(\theta)$, which is proportional to the length of the path.
   \label{fig:geometry}
 }
@@ -204,7 +204,7 @@ atmosphere and a number of additional cases.
   (\textbf{top-left}) and log-log coordinates (\textbf{bottom-left}),
   and upward optical thickness in ordinary (\textbf{top-right}) and log-log
   coordinates (\textbf{bottom-right}).
-  Lines are labeled with layer numbers. Note that the relationship is
+  Lines are labelled with layer numbers. Note that the relationship is
   almost linear in the log-log coordinates.
   \label{fig:optical-depth}
 }
@@ -252,10 +252,10 @@ within 0.5\ K/day.
 [^more-cases]: Plots of all studied cases can be found in the
 Additional Materials (see the end of this report).
 
-Shortwave Intermittency Implementetion in a 3D Model
+Shortwave Intermittency Implementation in a 3D Model
 ------------------------------------------------
 
-The results from the Single Colomn Model support the application of
+The results from the Single Column Model support the application of
 shortwave intermittency in a 3-dimensional NWP model. This was implemented
 in the ACRANEB2 scheme in the ALADIN[^2] model.
 
@@ -269,7 +269,7 @@ independently for each grid point of the model domain.
 At the beginning of an intermittency period
 (*full* radiative time step):
 
-1. Calculate the mimimum and maximum values of the zenith angle attained at
+1. Calculate the minimum and maximum values of the zenith angle attained at
    any time step during the intermittency period. Store the zenith angles
    (the extreme values as well as the values at all time steps) in global
    arrays (preserved across time steps).
@@ -295,7 +295,7 @@ taken into account when implementing shortwave intermittency in a 3D model:
 
 1. **Solar declination.** Solar declination varies during the intermittency
    period. In our case, the model does no provide the scheme with solar
-   declination for the subsequent time steps, nor a straighforward way
+   declination for the subsequent time steps, nor a straightforward way
    of calculating it[^3].
    In order to
    simplify implementation, solar declination within intermittency period
@@ -303,7 +303,7 @@ taken into account when implementing shortwave intermittency in a 3D model:
    period is not expected to be chosen long enough for the variation of
    solar declination to be important.
 
-[^3]: Without copying a significat amount of code.
+[^3]: Without copying a significant amount of code.
 
 2. **Storage requirements.** Shortwave intermittency requires us to store
    fields of downward and upward optical thickness at two extreme values of
@@ -312,13 +312,13 @@ taken into account when implementing shortwave intermittency in a 3D model:
    to be kept in the main memory between time steps.
 
 3. **Day/night segmentation.** The ACRANEB2 scheme performs calculations
-   on blocks of grid points in a vectorizable form[^4]. The shortwave computations
+   on blocks of grid points in a vectorisable form[^4]. The shortwave computations
    are only performed on segments of grid points where the Sun is in the sky.
    This selection has to be extended with grid points where the zenith angle
    is positive at any time during the intermittency period.
 
-4. **Modularization.** The shortwave intermittency implementation required more
-   modularization in terms of decoupling the shortwave and longwave
+4. **Modularisation.** The shortwave intermittency implementation required more
+   modularisation in terms of decoupling the shortwave and longwave
    computations of optical thickness.
 
 [^4]: In the sense of performing an operation on a sequence of values
@@ -421,7 +421,7 @@ $0.4\ \text{K/day}$ with 2-h shortwave intermittency), whereas during
 the night the error is zero. At the ‘full’ steps when shortwave gaseous
 optical depths are calculated, the error drops markedly, giving rise
 to a tooth-like pattern,
-but a non-reducible error accumaltes with time as the run diverges
+but a non-reducible error accumulates with time as the run diverges
 from the reference run.
 
 Shortwave intermittency has an impact on the longwave heating rates,
@@ -463,7 +463,7 @@ disabled, as it causes the model run time to be non-monotonic with the length
 of the shortwave intermittency interval. With day/night segmentation enabled,
 time reduction scales up to 96\ % in the 2-h shortwave intermittency case,
 whereas in the results presented, the reduction is up to 94\ %
-(i.e. more pronounced). We belive that this choice is justified by the improved
+(i.e. more pronounced). We believe that this choice is justified by the improved
 clarity of interpretation of the results.
 
 Figure\ \ref{fig:shortwave-intermittency-performance-accuracy}
@@ -471,7 +471,7 @@ compares performance and accuracy of the model runs. As such, it is important
 in deciding the optimal choice of shortwave intermittency period. The exact
 choice depends on the presence of other performance tuning options
 in the whole model configuration,
-as an option with the least error incured per reduction in time should
+as an option with the least error incurred per reduction in time should
 be chosen. Therefore, depending on the circumstances it may be viable
 to increase the shortwave intermittency
 period even over 1\ h, although after this point the error starts to grow
@@ -482,7 +482,7 @@ Users of the radiation scheme are therefore advised to use this chart
 as a guide in deciding the optimum configuration in their particular situation.
 
 We should remark that the error observed in the runs was not normally
-distributed. Rather, many local errors were clustered around zero, descreasing
+distributed. Rather, many local errors were clustered around zero, decreasing
 gradually in number towards the 95-th percentiles, with the rest distributed
 in heavy-tails. Therefore, we chose the 90\ % confidence intervals and the mean
 absolute error (MAE) to present our results instead of the more traditional
