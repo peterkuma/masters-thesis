@@ -206,6 +206,29 @@ densities:
 F^\mathrm{net} = F^\uparrow - F^\downarrow
 \end{align}
 
+### Heating Rate
+
+*Heating rate* of an atmospheric layer by radiation is given by the difference
+of broadband net flux density between the top and bottom interfaces
+(considering the layer is thin enough to be heated/cooled evenly):
+
+\begin{align}
+\frac{\mathrm{d}F^\mathrm{net}}{\mathrm{d}p}\mathrm{d}p &=
+  -c_p\rho\frac{\mathrm{d}T}{\mathrm{d}t}\mathrm{d}z =
+  \frac{c_p}{g}\frac{\mathrm{d}T}{\mathrm{d}t}\mathrm{d}p
+  \quad\int_{p_1}^{p_2} (...)\\
+F^\mathrm{net}(p_2) - F^\mathrm{net}(p_1) &=
+  \frac{c_p}{g}\frac{\mathrm{d}T}{\mathrm{d}t}(p_2 - p_1)\\
+\frac{\mathrm{d}T}{\mathrm{d}t} &=
+  \frac{g}{c_p}\frac{\Delta F^\mathrm{net}}{\Delta p}
+\end{align}
+
+In the context of NWP, heating rate is usually expressed in the units of K/day.
+The broadband net flux density is the net flux density integrated
+over a range of frequencies, such
+as the shortwave or longwave spectrum, in which case we speak about
+*shortwave* and *longwave heating rate*, resp.
+
 ### Mass and Volume Absorption/Extinction Coefficients
 \label{sec:mass-and-volume-absorption-coefficients}
 
@@ -279,13 +302,6 @@ it is related to optical thickness $\tau$ by:
 \begin{align}
 t = \exp(-\tau)
 \end{align}
-
-### Heating Rate
-
-Heating rate of a layer of atmosphere by radiation is given by the difference
-of net flux density between its top and bottom interfaces, which is
-a consequence of energy conservation – the energy is transferred from radiation
-to air molecules and airborne particles in the layer.
 
 The Radiative Transfer Equation
 -------------------------------
