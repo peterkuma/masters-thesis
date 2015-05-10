@@ -1,5 +1,6 @@
 Comparison of Intermittency in ACRANEB2 and FMR
 ===============================================
+\label{appendix:acraneb2-vs-fmr}
 
 In this appendix we present the results of an analysis comparing
 intermittency in ACRANEB2 and FMR [@fouquart1980][^appendix-note].
