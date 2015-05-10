@@ -7,11 +7,13 @@ while scattering is determined by Rayleigh scattering, Mie theory and
 geometric optics, in order to fully determine absorption we need to know the
 specific absorption lines of radiatively active gases.
 
-Absorption spectrum of gas molecules can have immensely complicated structure,
+The absorption spectrum of gas molecules can have immensely complicated structure,
 and one needs a very large amount of information to describe the structure
 fully. Additionally, smoothing the curve
-by averaging out the details is of little use in calculation of transmittance
-due to saturation at wavelengths where absorption is strongest (line centres).
+by averaging out the details is of little use in the
+calculation of transmittance
+due to saturation at wavelengths where absorption is the
+strongest (line centres).
 This chapter discusses the physical basis of absorption by gases, while
 Chapter\ \ref{chap:approximate-solutions-of-the-rte} introduces approaches
 to overcoming this problem.
@@ -30,7 +32,8 @@ The HITRAN database can be browsed conveniently at
 Types of Transitions
 --------------------
 
-Gases can absorb and emit radiation only in the vicinity of precise wavelengths
+With the exception of continua, gases can absorb and emit radiation only
+in the vicinity of precise wavelengths
 – absorption lines, due to restrictions imposed by the quantum theory.
 In particular, the energy
 has to match one of the allowed *electronic*, *vibrational* or *rotational*
@@ -99,7 +102,7 @@ In the shortwave spectrum, solar radiation is absorbed significantly
 * Methane ($\mathrm{CH_4}$)
 * Nitrous oxide ($\mathrm{N_2O}$)
 
-Solar absorption is the greatest in the
+Absorption of solar radiation is the greatest in the
 high-frequency range. In particular, gamma radiation, X-rays and UV-C
 are almost entirely absorbed early in their travel through the atmosphere,
 mostly by oxygen and ozone. As such, and because they constitute only a small
@@ -112,7 +115,7 @@ with a few weaker bands of ozone (Chappius band) and oxygen
 radiation is again absorbed strongly by multiple bands of water
 vapour, but also carbon dioxide, oxygen (‘infrared bands’), methane and nitrous
 oxide. Both absorption in the visible and near IR spectrum has to be accounted
-for for an accurate radiative transfer prediction in NWP.
+for for an accurate radiative transfer prediction in NWP models.
 The importance of absorption bands in the shortwave spectrum is given
 not only by their strength (absorption cross section) and concentration
 of the absorbing gas, but also by the
@@ -187,7 +190,7 @@ is in the troposphere.
 \label{fig:ozone-shortwave-bands}
 \textbf{Ozone shortwave absorption.}
 Absorbed solar radiation (\textbf{red}) and absorption cross section
-(\textbf{blue}) of $\text{O}_3$.
+(\textbf{blue}) of $\mathrm{O}_3$.
 Indicated are approximate regions of the Hartley, Huggins and Chappuis
 absorption bands.
 Data from \cite{serdyuchenko2012}.
@@ -208,8 +211,8 @@ Adopted from \cite{goody1995}. After Brasseur and Solomon (1984).
 
 Carbon dioxide ($\mathrm{CO_2}$) is mostly active in the longwave spectrum,
 but exhibits a number of bands in the shortwave as well. The strongest is
-centred at $2.7\ \mathrm{\mu m}$, and a number of weaker bands are at
-$2.0\ \mathrm{\mu m}$, $1.6\ \mathrm{\mu m}$, $1.4\ \mathrm{\mu m}$
+centred at 2.7\ $\mathrm{\mu m}$, and a number of weaker bands are at
+2.0\ $\mathrm{\mu m}$, 1.6\ $\mathrm{\mu m}$, 1.4\ $\mathrm{\mu m}$
 [@liou2002].
 
 ### Oxygen
@@ -231,24 +234,24 @@ $\mathrm{b\leftarrow X}$) electronic transition in combination with
 vibrational-rotational transitions. The red bands comprise band A centred
 at 762\ nm, band B
 at 688\ nm, and band $\gamma$ at 628\ nm. Infrared bands are centred at
-$1.58\ \mathrm{\mu m}$, $1.27\ \mathrm{\mu m}$
-and $1.06\ \mathrm{\mu m}$.
+1.58\ $\mathrm{\mu m}$, 1.27\ $\mathrm{\mu m}$
+and 1.06\ $\mathrm{\mu m}$.
 Although relatively sparse, the red bands are important to the
-tropospheric energy budget, because they they are located at the peak of the
+tropospheric energy budget because they are located at the peak of the
 solar spectrum [@liou2002].
 
 Oxygen molecules are known to form dimers with some other
 atmospheric constituents, notably $\mathrm{O_2}.\mathrm{N_2}$
 and $\mathrm{O_4}$. These have additional
-bands believed to contribute roughly $1\ \mathrm{Wm^{-2}}$
+bands believed to contribute roughly 1\ $\mathrm{Wm^{-2}}$
 to the total atmospheric absorption [@solomon1998].
 
 ### Methane
 
 Methane ($\mathrm{CH_4}$) is not active in the visible spectrum,
 but has a number of bands in the near IR clustered between 3
-and $4\ \mathrm{\mu m}$ (3.38, 3.53, 3.26), 2 and
-$2.5\ \mathrm{\mu m}$ (2.37, 2.30, 2.20) and at $1.66\ \mathrm{\mu m}$.
+and $4\ \mathrm{\mu m}$ (3.38, 3.53, 3.26 $\mu m$), 2 and
+$2.5\ \mathrm{\mu m}$ (2.37, 2.30, 2.20 $\mu m$) and at $1.66\ \mathrm{\mu m}$.
 
 ### Nitrous Oxide
 
@@ -303,7 +306,7 @@ by the *Voigt line shape*.
 ### Pressure Broadening
 
 Molecules in the atmosphere collide with each other at very high frequency.
-Every time a collision happens any absorption or emission process under way
+Every time a collision happens, any absorption or emission process under way
 is interrupted. When a stimulation by a monochromatic wave
 is limited to a finite amount of time, this is equivalent to stimulation
 by a range of frequencies, which can be reconstructed by performing Fourier

@@ -24,42 +24,41 @@ ALADIN.
 Theoretical Considerations
 --------------------------
 
-### Monochromatic Light
+### Broadband Optical Thickness
 
 Let us first consider the simple case of monochromatic radiation passing through
 a homogeneous atmospheric layer. Direct radiation passing at cosine of the
 zenith angle $\mu_0$ is attenuated exponentially by the Beer's law:
 
 $$
-I(z) = I(z_0) \exp\left(-\frac{1}{\mu_0}k_e\Delta u\right)
+I_\mathrm{dir}(z_2) = I_\mathrm{dir}(z_1) \exp\left(-\frac{1}{\mu_0}k_e\Delta u\right)
 $$
 
 where $k_e$ is the mass extinction coefficient and $\Delta u$ is the mass of the
 absorber per unit area.
-Here, $(1/\mu_0) k_e\Delta u$ is the *optical path* through the layer.
-
-In addition to *optical path*, we use the concept of *optical thickness*.
-The *optical thickness* of a layer is commonly defined as the optical path
-through
-the layer in the vertical direction ($\mu_0 = 1$), but we note that this is
-the same as normalising the actual optical path by $\mu_0$:
+Here, $(1/\mu_0) k_e\Delta u$ is the optical path through the layer.
+In addition to optical path, we use the concept of optical thickness
+(Section\ \ref{sec:optical-path}).
+The optical thickness of a layer is commonly defined as the optical path
+through the layer in the vertical direction ($\mu_0 = 1$),
+but we note that this is
+the same as normalising the actual optical path by $1/\mu_0$:
 
 $$
-\tau := \tau(z_1, z_2; \mu_0=1) = k\Delta u = \mu_0 \left(\frac{1}{\mu_0}k\Delta u\right) = \mu_0 \tau(z_1, z_2; \mu_0)
+\tau \equiv \tau(z_1, z_2; \mu_0=1) = k_e\Delta u = \mu_0 \left(\frac{1}{\mu_0}k_e\Delta u\right) = \mu_0 \tau(z_1, z_2; \mu_0)
 $$
 
 where $\tau(z_1, z_2; \mu_0)$ denotes optical path for radiation passing
-at cosine of the zenith angle $\mu_0$. We use the same symbol $\tau$ for optical
-thickness and optical depth, but stating its meaning explicitly where needed.
+at cosine of the zenith angle $\mu_0$.
 In the monochromatic case, both definitions are equivalent, but the latter
 generalises better to the broadband radiation treatment, where the Beer's
 law no longer holds. We will therefore use this latter definition:
 
 $$
-\tau := \mu_0 \tau(z_1, z_2; \mu_0)
+\tau \equiv \mu_0 \tau(z_1, z_2; \mu_0)
 $$
 
-### Downward and Upward Broadband Optical Thickness
+### Downward Direct and Upward Diffuse Broadband Optical Thickness
 
 <!-- We can define *broadband optical thickness* as optical path taken by parallel
 radiation through a layer normalised by cosine of the zenith angle
@@ -71,6 +70,13 @@ path with $mu$ is sublinear. If we determine the dependence of optical
 thickness on $mu$, we can approximate optical thicknesses during the
 intermittency period without a significant loss of accuracy. -->
 
+<!--
+In ACRANEB2, gaseous optical thickness of a layer for downward direct radiation
+from the Sun is calculated retrospectively from transmissivity from
+top-of-the-atmosphere the bottom of the layer of interest. Therefore, it
+depends 
+-->
+
 In a broadband radiative transfer scheme, it is necessary to distinguish
 downward and upward optical thickness of a layer. This is because the optical
 thickness depends not only on the properties of the layer
@@ -78,8 +84,8 @@ thickness depends not only on the properties of the layer
 entering the layer and the length of the path through the layer,
 which determines the amount of spectral saturation.
 
-The downward shortwave optical thickness is calculated for parallel radiation
-coming directly from the Sun at a zenith angle $\theta$ and is equal
+The downward shortwave optical thickness is calculated for direct radiation
+coming from the Sun at a zenith angle $\theta$ and is equal
 to the optical path through the layer normalised by cosine of the zenith
 angle (which is proportional to the length of the path).
 
@@ -294,7 +300,7 @@ There were a number of additional technical considerations which needed to be
 taken into account when implementing shortwave intermittency in a 3D model:
 
 1. **Solar declination.** Solar declination varies during the intermittency
-   period. In our case, the model does no provide the scheme with solar
+   period. In our case, the model does not provide the scheme with solar
    declination for the subsequent time steps, nor a straightforward way
    of calculating it[^3].
    In order to
