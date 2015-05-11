@@ -10,7 +10,7 @@ Cost versus accuracy study*.
 
 See [thesis.pdf](https://github.com/peterkuma/acraneb-thesis/raw/master/thesis.pdf).
 
-### Related Repositories:
+**Related Repositories:**
 
 - [peterkuma/acraneb2-intermittency-analysis](https://github.com/peterkuma/acraneb2-intermittency-analysis)
 - [peterkuma/shortwave-intermittency](https://github.com/peterkuma/shortwave-intermittency)
@@ -38,9 +38,9 @@ we show that this dependence can be approximated with good accuracy,
 implement this approximation in the ACRANEB2 radiation scheme
 and assess the impact on accuracy of heating rates and model run time
 in 24-h simulations of the limited-area NWP model ALADIN. We show that
-the modification results in time saving of up to 4\ % of total model run time
+the modification results in time saving of up to 4 % of total model run time
 and incur error on shortwave heating rates up to ±0.4 K/day at noon
-(90\ % confidence interval)
+(90 % confidence interval)
 and 0.06 K/day (MAE) over the whole domain and time period,
 and that both performance and accuracy scale with the length of the
 intermittency period. This relationship is summarised in
