@@ -3,27 +3,28 @@ Abstrakt{-}
 
 \fontspec{Minion Pro}
 
-Výpočtová náročnosť radiačných schém v numerických modeloch predpovedi
-počasia (NWP) neumožňuje plné
-výpočty radiačného prenosu v každom časovom kroku a bode mriežky modelu.
+Výpočtová náročnosť radiačných schém v numerických predpovedných modeloch
+počasia (NWP) neumožňuje robiť plné radiačné
+výpočty v každom časovom kroku a bode mriežky modelu.
 Tradične to modely riešia volaním radiačnej schémy s redukovaným časovým
 alebo priestorovým rozlíšením, prípadne so škálovaním výsledných tokov
 na zmenu teplotného profilu a slnečného zenitálneho uhla. V dôsledku toho
 je zanedbaná variabilita oblačnosti a dochádza tak k značnej chybe.
 V krátkovlnnom spektre sú relatívne pomaly sa meniace plynové
-optické vlastnosti jednou z najdrahších časí na výpočet. Navrhujeme
-modifikáciu krátkovlnného solveru širokospektrálnej radiačnej schémy
+optické vlastnosti jednou z najdrahších časí na výpočet. Preto navrhujeme
+modifikáciu krátkovlnnej časti širokospektrálnej radiačnej schémy
 ACRANEB2 na interpoláciu plynových optických hrúbok vrstiev vzhľadom na
 slnečný zenitálny uhol vrámci zvolenej intermitentnej periódy,
-zatiaľ čo vývoj oblačnosti je stále zachytený pomocou výpočtu tokov cez
+zatiaľ čo vývoj oblačnosti je stále zachytený pomocou výpočtu ich
+optických vlastností a výsledných tokov cez
 adding metódu v každom časovom kroku modelu. V tejto práci používame
 jednostĺpcový model na štúdium závislosti krátkovlnnej plynovej optickej
 hrúbky na slnečnom zenitálnom uhle, ukazujeme, že táto závislosť
 môže byť aproximovaná s dobrou presnosťou, implementujeme túto aproximáciu
-v radiačnej schéme ACRANEB2 a vyhodnocujeme dopad na presnosť ohrevov
+v radiačnej schéme ACRANEB2 a vyhodnocujeme dopad na presnosť ohrevu
 vrstiev a dĺžku behu modelu v 24 hodinovej simulácii regionálneho NWP
 modelu ALADIN. Ukazujeme, že táto úprava vedie k úspore času do 4\ %
-celkového času behu modelu a spôsobuje chybu krátkovlnných ohrevov vrstiev
+celkového času behu modelu a spôsobuje chybu krátkovlnných ohrevu vrstiev
 do ±0.4 K/deň na poludnie (90\ % konfidenčný interval) a 0.06 K/deň
 (stredná abs. chyba) cez celú doménu a časovú periódu a že
 výkon aj presnosť sa škálujú s dĺžkou intermitentnej periódy.
@@ -31,10 +32,10 @@ Tento vzťah je zhrnutý v porovnaní ceny a presnosti, poskytujúci
 potencionálnym užívateľom usmernenie pri voľbe optimálnej intermitentnej
 periódy pri daných okolnostiach. Navrhovaná zmena sa stala súčasťou
 radiačnej schémy ACRANEB2 implementovanej v balíku ALARO-1 verzia A
-a od januára 2015 je v operatívnom použití v modeli ALADIN/CHMI.
+a od januára 2015 je v operatívnom použití v modeli ALADIN/ČHMÚ.
 
 **Kľúčové slová:** krátkovlnný radiačný kód, cena verzus presnosť,
-širokospektrálny prístup, intermitencia, plynová optická hrúbka
+širokospektrálny prístup, čiastočná intermitencia, plynová optická hrúbka
 
 \fontfamily{\familydefault}\selectfont
 
@@ -49,11 +50,12 @@ scaling the resulting fluxes for the change in temperature profile
 and the solar zenith angle. As a result, the variability of cloud cover is
 neglected, leading to a considerable error. In the shortwave spectrum,
 relatively slowly changing gaseous optical properties are one of the most
-expensive parts to calculate. We propose a modification to the shortwave solver
+expensive parts to calculate. We propose a modification to the shortwave part
 of the ACRANEB2 broadband radiation scheme to interpolate gaseous optical
 thickness of layers with respect to the solar zenith angle within
 a chosen intermittency period, while still accounting for evolving cloudiness
-by recalculating fluxes via the adding method in every model time step.
+by recalculating its optical properties and the resulting
+fluxes via the adding method in every model time step.
 In this work we use a single column model to study the dependence
 of shortwave gaseous optical thickness on the solar zenith angle,
 we show that this dependence can be approximated with good accuracy,
@@ -73,4 +75,4 @@ implemented in package ALARO-1 version A, and since January 2015
 it is operational in the model ALADIN/CHMI.
 
 **Keywords:** shortwave radiative transfer code, cost versus accuracy,
-broadband approach, intermittency, gaseous optical thickness
+broadband approach, partial intermittency, gaseous optical thickness
