@@ -6,7 +6,7 @@ BIBLIOGRAPHY=$(wildcard bib/*)
 
 NAME:=thesis
 PANDOC:=pandoc
-PANDOC_FLAGS:=-w latex --toc --standalone --biblatex -Vdocumentclass=book -Vfontsize=12pt -Vmainfont="Lora" -Vsansfont="Source Sans Pro" -Vnumbersections -Vgeometry=a4paper,inner=3.5cm,outer=3cm,top=4cm,bottom=4cm
+PANDOC_FLAGS:=-w latex --toc --standalone --biblatex -Vdocumentclass=book -Vfontsize=12pt -Vmainfont="Lora" -Vsansfont="Source Sans Pro" -Vnumbersections -Vgeometry=a4paper,inner=4cm,outer=2.5cm,top=4cm,bottom=4cm
 BIBER:=biber
 LATEX_ENGINE:=xelatex
 LATEX_FLAGS:=-file-line-error -halt-on-error -output-directory build

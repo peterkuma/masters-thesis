@@ -1,4 +1,6 @@
 \thispagestyle{empty}
+\cleardoublepage
+\thispagestyle{empty}
 
 \begin{center}
 \Large\bfseries
@@ -28,7 +30,7 @@ Master's Thesis
 
 \begin{flushleft}
 \large
-\textbf{Degree Programme}: Meteorology and Climatology\\[0.5em]
+\textbf{Degree Programme}: Meteorology and Climatology (Single degree study, master II. deg., full time form)\\[0.5em]
 \textbf{Study Field}: 1160 Physics\\[0.5em]
 \textbf{Department}: Division of Meteorology and Climatology,\\
             Department of Astronomy, Physics of the Earth and Meteorology\\[0.5em]
@@ -43,10 +45,9 @@ Bc. Peter Kuma\\[1em]
 Bratislava, 2015
 \end{flushleft}
 
-\vspace{0.2cm}
+\vspace{0.4cm}
 
 \begin{flushleft}
-Copyright © 2015 Peter Kuma\\[1em]
 This work is licensed under a Creative Commons Attribution 4.0 International
 License:\\
 \texttt{http://creativecommons.org/licenses/by/4.0/}.
