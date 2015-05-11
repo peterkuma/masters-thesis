@@ -129,6 +129,17 @@ calculations.
 through a layer depends on the layer height, but here an independent
 scaling was used. It is also affected by refraction, which is omitted as well.
 
+The role of cosine of the solar zenith angle $\mu_0$ in radiative transfer
+is twofold – as a factor modulating solar insolation
+at TOA and as a path lengthening factor $1/\mu_0$,
+increasing absorber amount encounterd by slanted direct solar radiation.
+Path lengthening factor in the spherical atmosphere remains finite,
+while in the plane parallel approximation tends to infinity at sunrise
+and sunset. In order to get meaningful asymptotic behaviour of gaseous
+transmissions for small solar elevations,
+path lengthening factor $1/\mu_0$ can be adjusted by using the modified value
+$\mu_0'$.
+
 The modified cosine of the zenith angle is the natural coordinate for
 studying the change of optical thickness with the position of the Sun in
 the sky.
