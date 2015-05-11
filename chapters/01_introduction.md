@@ -31,7 +31,9 @@ radiation scheme utilises only two spectral intervals: shortwave and longwave.
 The implementation of temporal subsampling (‘intermittency’)
 in the longwave spectrum had already been done,
 while it was one of the objectives of this work to implement temporal
-subsampling in the shortwave spectrum.
+subsampling in the shortwave spectrum. Similar efforts with other
+radiation schemes include ones of @manners2009 and @schomburg2012.
+
 
 While in the longwave spectrum gaseous optical thickness can be assumed
 constant over multiple time steps without a significant loss of accuracy,
