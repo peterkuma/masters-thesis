@@ -11,10 +11,10 @@ alebo priestorovým rozlíšením, prípadne so škálovaním výsledných tokov
 na zmenu teplotného profilu a slnečného zenitálneho uhla. V dôsledku toho
 je zanedbaná variabilita oblačnosti a dochádza tak k značnej chybe.
 V krátkovlnnom spektre sú relatívne pomaly sa meniace plynové
-optické vlastnosti jednou z najdrahších časí na výpočet. Preto navrhujeme
+optické vlastnosti jednou z najdrahších častí na výpočet. Preto navrhujeme
 modifikáciu krátkovlnnej časti širokospektrálnej radiačnej schémy
 ACRANEB2 na interpoláciu plynových optických hrúbok vrstiev vzhľadom na
-slnečný zenitálny uhol vrámci zvolenej intermitentnej periódy,
+slnečný zenitálny uhol v rámci zvolenej intermitentnej periódy,
 zatiaľ čo vývoj oblačnosti je stále zachytený pomocou výpočtu ich
 optických vlastností a výsledných tokov cez
 adding metódu v každom časovom kroku modelu. V tejto práci používame
@@ -22,10 +22,10 @@ jednostĺpcový model na štúdium závislosti krátkovlnnej plynovej optickej
 hrúbky na slnečnom zenitálnom uhle, ukazujeme, že táto závislosť
 môže byť aproximovaná s dobrou presnosťou, implementujeme túto aproximáciu
 v radiačnej schéme ACRANEB2 a vyhodnocujeme dopad na presnosť ohrevu
-vrstiev a dĺžku behu modelu v 24 hodinovej simulácii regionálneho NWP
+vrstiev a dĺžku behu modelu v 24-hodinovej simulácii regionálneho NWP
 modelu ALADIN. Ukazujeme, že táto úprava vedie k úspore času do 4\ %
-celkového času behu modelu a spôsobuje chybu krátkovlnných ohrevu vrstiev
-do ±0.4 K/deň na poludnie (90\ % konfidenčný interval) a 0.06 K/deň
+celkového času behu modelu a spôsobuje chybu krátkovlnného ohrevu vrstiev
+do ±0.4 K/deň napoludnie (90\ % konfidenčný interval) a 0.06 K/deň
 (stredná abs. chyba) cez celú doménu a časovú periódu a že
 výkon aj presnosť sa škálujú s dĺžkou intermitentnej periódy.
 Tento vzťah je zhrnutý v porovnaní ceny a presnosti, poskytujúci
@@ -63,7 +63,7 @@ implement this approximation in the ACRANEB2 radiation scheme
 and assess the impact on accuracy of heating rates and model run time
 in 24-h simulations of the limited-area NWP model ALADIN. We show that
 the modification results in time saving of up to 4\ % of total model run time
-and incur error on shortwave heating rates up to ±0.4 K/day at noon
+and incurs error on shortwave heating rates up to ±0.4 K/day at noon
 (90\ % confidence interval)
 and 0.06 K/day (MAE) over the whole domain and time period,
 and that both performance and accuracy scale with the length of the

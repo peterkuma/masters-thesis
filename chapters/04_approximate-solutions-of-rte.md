@@ -23,7 +23,7 @@ vertical coordinate.
 
 Alternative to the plane parallel approximation is a full three-dimensional
 treatment of radiation, generally performed by Monte Carlo simulation. This
-is however too computationally expensive to be done in today NWP models.
+is however too computationally expensive to be done in contemporary NWP models.
 
 ### Layers
 
@@ -434,6 +434,7 @@ after which the equations for diffuse radiation become:
 
 
 ### Differential Form of the Radiative Transfer Equation
+\label{sec:differential-form-of-rte}
 
 The equations \ref{eq:delta-scaled-upward-flux},
 \ref{eq:delta-scaled-downward-flux} and
@@ -469,6 +470,7 @@ This system of equations simplifies in both the shortwave and longwave spectrum:
 in shortwave $B = 0$, in longwave $S = 0$.
 
 ### Integral Form of the Radiative Transfer Equation for a Homogeneous Layer
+\label{sec:integral-form-of-rte}
 
 The coupled system of linear ordinary differential equations
 \eqref{eq:differential-rte-upward}–\eqref{eq:differential-rte-solar}
@@ -478,7 +480,8 @@ and we list only the result here according to @masek2014. Also see e.g.
 @zdunkowski2007, Sec. 6.4 for a worked out solution.
 
 Integrated over a layer from $\tau_t$ (top) to $\tau_b$ (bottom), the diffuse
-and direct fluxes have the following linear relationship:
+and direct fluxes have the following linear relationship
+in the shortwave spectrum:
 
 \begin{align}
 \begin{bmatrix}
@@ -496,6 +499,7 @@ S(\tau_t)\\
 F^\downarrow(\tau_t)\\
 F^\uparrow(\tau_b)
 \end{bmatrix}
+\label{eq:integral-rte}
 \end{align}
 
 where the *integral layer coefficients* $a_1$, ..., $a_5$:
@@ -534,6 +538,27 @@ $\tau_b$.
 \label{fig:integral-rte-scheme}
 }
 \end{figure}
+
+### Adding Method
+\label{sec:adding-method}
+
+The *adding method* is a method of finding a solution to fluxes for given
+optical depths and temperature of layers (in the longwave spectrum).
+The adding method assumes the $\delta$-two stream approximation and
+layer discretisation. The relationship between fluxes at the top and
+bottom interfaces of a layer in the shortwave spectrum
+is expressed by \eqref{eq:integral-rte}. The equations for all layers can b
+ consolidated into a system of linear
+equations:
+
+$$
+\mathbb{A}\mathbf{F} = \mathbf{S}
+$$
+
+where $\mathbb{A}$ is a matrix of coefficients (layer transmittances and
+reflectances), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
+vector of sources. This system can then be solved for $\mathbf{F}$, which
+is the desired outcome of the adding method.
 
 ### Diffusivity Factor
 
@@ -734,47 +759,6 @@ absorption and scattering. While this is not an issue to narrow-band model
 radiation schemes, it has to be taken into account in broadband model
 radiation schemes *in addition* to optical saturation.
 
-Adding Method
--------------
-
-The *adding method* is a method of finding a solution to fluxes for given
-optical depths and temperature of layers. The adding method assumes the
-$\delta$-two stream approximation and layer discretisation.
-
-A relationship between fluxes at the top and bottom interfaces of a layer
-can be found from the $\delta$-two stream differential equations.
-
-$$
-\begin{pmatrix}
-S_k\\
-F^\downarrow_k\\
-F^\uparrow_{k-1}
-\end{pmatrix}
-=
-\begin{pmatrix}
-a_1  &0    &0\\
-a_2  &a_3  &a_4\\
-a_5  &a_6  &a_7
-\end{pmatrix}
-\begin{pmatrix}
-S_{k-1}\\
-F^\downarrow_{k-1}\\
-F^\uparrow_k    
-\end{pmatrix}
-$$
-
-The equations for all layers can be consolidated into a system of linear
-equations:
-
-$$
-\mathbb{A}\mathbf{F} = \mathbf{S}
-$$
-
-where $\mathbb{A}$ is a matrix of coefficients (layer transmittances and
-reflectances), $\mathbf{F}$ is a vector of fluxes and $\mathbf{S}$ is a
-vector of sources. This system can then be solved for $\mathbf{F}$, which
-is the desired outcome of the adding method.
-
 Temporal Subsampling
 --------------------
 \label{sec:computational-intermittency}
@@ -807,7 +791,7 @@ of intermittent steps when approximate results are calculated
 (e.g. by interpolation), while full steps take an unchanged
 amount of time (or somewhat greater, depending on implementation details).
 Radiation schemes constitute a fraction of total run time
-of an NWP model, typically 20–60 % (?). Therefore, there is a limit on
+of an NWP model. Therefore, there is a limit on
 the total time reduction due to performance improvements in
 the radiation scheme alone. Moreover, as we increase the length of
 the intermittency period

@@ -250,8 +250,9 @@ to the total atmospheric absorption [@solomon1998].
 
 Methane ($\mathrm{CH_4}$) is not active in the visible spectrum,
 but has a number of bands in the near IR clustered between 3
-and $4\ \mathrm{\mu m}$ (3.38, 3.53, 3.26 $\mu m$), 2 and
-$2.5\ \mathrm{\mu m}$ (2.37, 2.30, 2.20 $\mu m$) and at $1.66\ \mathrm{\mu m}$.
+and $4\ \mathrm{\mu m}$ (3.38, 3.53, 3.26 $\mathrm{\mu m}$), 2 and
+$2.5\ \mathrm{\mu m}$ (2.37, 2.30, 2.20 $\mathrm{\mu m}$)
+and at $1.66\ \mathrm{\mu m}$.
 
 ### Nitrous Oxide
 

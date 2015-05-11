@@ -96,7 +96,8 @@ effect of full intermittency on heating rate accuracy, and how it can be
 alleviated with the combination of longwave and shortwave intermittency.
 The results were clearly in favour of partial intermittency in ACRANEB2,
 but the analysis did not seek to compare performance aspects. The analysis
-hinted an interesting degradation of accuracy in the lower troposphere
-in ACRANEB2, which might be of interest in a continued development
+revealed a degradation of accuracy of longwave heating rate
+in the planetary boundary layer in ACRANEB2,
+which might be of interest in a continued development
 of the longwave solver. Because of the limited scope of this adjunct analysis,
 it was formulated as an appendix (Appendix\ \ref{appendix:acraneb2-vs-fmr}).

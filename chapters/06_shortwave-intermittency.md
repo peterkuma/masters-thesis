@@ -381,8 +381,9 @@ distributing computation on blocks of grid points to the threads.
 [^acraneb2-intermittency-analysis]: The full analysis is
 available at \url{https://github.com/peterkuma/acraneb2-intermittency-analysis}.
 
-[^nc-dump]: https://github.com/peterkuma/nc_dump
-[^dump2h5]: https://github.com/peterkuma/dump2h5
+
+[^nc-dump]: \url{https://github.com/peterkuma/nc_dump}
+[^dump2h5]: \url{https://github.com/peterkuma/dump2h5}
 
 \begin{figure}
 \centering

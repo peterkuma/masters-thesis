@@ -94,13 +94,14 @@ aerosols still needs to be taken into account.
 
 The general operation of the scheme can be summarised as follows:
 
-1. Optical thickness and transmittance/reflectance coefficients of layers are
+1. Optical thickness and differential layer coefficients are
 calculated. These are due to gases, clouds and aerosols. The resulting
 layer coefficients are a weighted sum of layer coefficients for the particular
 processes, weighted by optical thickness [@masek2014]:
 
     \begin{align}
     \alpha_i = \frac{1}{\tau}\sum_j \alpha_{i,j}\tau_j, \quad \tau = \sum_j \tau_j
+    \label{eq:alpha-weighting}
     \end{align}
 
 2. Integral layer coefficients $a_1, ..., a_4$ are calculated from
@@ -109,7 +110,7 @@ $\alpha_1, ..., \alpha_4$.
 3. Fluxes are calculated using the adding method, taking the integral layer
 coefficients as an input.
 
-    **Longwave:** The adding method is performed in total five times with
+    **Longwave:** The adding method is performed in total 8 times with
     different choices of ‘idealised’ optical thickness, i.e. thickness assuming
     radiation exchanged with the surface, space, or neighbouring layers (resp.).
 
@@ -144,8 +145,8 @@ atmospheric heating rate is small.
 The radiation scheme depends on the ability to calculate gaseous optical
 paths between arbitrary layers. Broadband optical paths are approximated by a
 *modified Malkmus model*. The scheme uses the narrow-band Malkmus band model
-as its bases, but adding additional parameters in order to account for
-secondary saturation and Voigt line shape, and increase accuracy over a range
+as its base, but adding additional parameters in order to account for
+secondary saturation and Voigt line shape, and to increase accuracy over a range
 of common atmospheric conditions (temperature and pressure).
 
 The modified Malkmus band model is defined as follows [@masek2014]:
@@ -187,6 +188,8 @@ $(u, p, T)$ combinations by a
 weighted average of the narrow-band optical paths, weighted by the spectral
 composition of the incoming solar flux.
 
+<!--
+
 Solving the RTE
 ---------------
 
@@ -221,7 +224,6 @@ when we consider the net exchange rate formulation:
 i.e. when we compute the flux divergence R_k by the adding method, it is
 equal to the sum of CTS, EWS and EBL terms. For a suitable choice of sources,
 
-<!--
 Longwave Solution
 -----------------
 
