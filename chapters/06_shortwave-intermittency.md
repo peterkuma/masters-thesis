@@ -490,7 +490,8 @@ as a guide in deciding the optimum configuration in their particular situation.
 We should remark that the error observed in the runs was not normally
 distributed. Rather, many local errors were clustered around zero, decreasing
 gradually in number towards the 95-th percentiles, with the rest distributed
-in heavy-tails. Therefore, we chose the 90\ % confidence intervals and the mean
+in heavy-tails (Figure\ \ref{fig:shortwave-intermittency-error-distribution}).
+Therefore, we chose the 90\ % confidence intervals and the mean
 absolute error (MAE) to present our results instead of the more traditional
 root-mean-square error (RMSE), which would place very strong emphasis on
 the outliers and could be misleading due to the expectation of normal
@@ -563,5 +564,20 @@ Heating rate error is weighted by pressure thickness of layers.
 Run time was measured as CPU time in a benchmark (exclusive) mode
 on 8 CPUs of NEC SX-9 (100 GFLOP per CPU).
 \label{fig:shortwave-intermittency-performance-accuracy}
+}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{img/shortwave_heating_rate_error_distribution.pdf}
+\includegraphics[width=\textwidth]{img/longwave_heating_rate_error_distribution.pdf}
+\caption{
+\textbf{Shortwave and longwave heating rate error distribution with 30-min shortwave
+intermittency.}
+Histogram of shortwave (\textbf{top}) and longwave (\textbf{bottom})
+heating rate error with 30-min shortwave intermittency
+compared to no shortwave intermittency.
+Heating rate error is weighted by pressure thickness of layers (by resampling).
+\label{fig:shortwave-intermittency-error-distribution}
 }
 \end{figure}
