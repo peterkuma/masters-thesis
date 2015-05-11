@@ -37,4 +37,4 @@ implemented in package ALARO-1 version A, and since January 2015
 it is operational in the model ALADIN/CHMI.
 
 **Keywords:** shortwave radiative transfer code, cost versus accuracy,
-broadband approach, intermittent update of gaseous optical thicknesses
+broadband approach, intermittency, gaseous optical thickness
