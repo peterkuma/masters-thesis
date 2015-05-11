@@ -1,7 +1,5 @@
 # Broadband approach as a framework for implementation of radiative transfer scheme with selective intermittency: Cost versus accuracy study
 
-**This is a DRAFT.**
-
 This repository contains source files and accompanying analyses
 of the master's thesis
 *Broadband approach as a framework for implementation of
@@ -10,7 +8,9 @@ Cost versus accuracy study*.
 
 See [thesis.pdf](https://github.com/peterkuma/acraneb-thesis/raw/master/thesis.pdf).
 
-**Related Repositories:**
+The thesis was submitted on 11 May 2015.
+
+**Related repositories:**
 
 - [peterkuma/acraneb2-intermittency-analysis](https://github.com/peterkuma/acraneb2-intermittency-analysis)
 - [peterkuma/shortwave-intermittency](https://github.com/peterkuma/shortwave-intermittency)
