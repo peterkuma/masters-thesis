@@ -71,35 +71,36 @@ path with $mu$ is sublinear. If we determine the dependence of optical
 thickness on $mu$, we can approximate optical thicknesses during the
 intermittency period without a significant loss of accuracy. -->
 
-<!--
-In ACRANEB2, gaseous optical thickness of a layer for downward direct radiation
-from the Sun is calculated retrospectively from transmissivity from
-top-of-the-atmosphere the bottom of the layer of interest. Therefore, it
-depends 
--->
+In ACRANEB2, gaseous optical thickness of layers is calculated retrospectively
+from gaseous transmissivity from TOA to the layer of interest.
+For the direct (downward) optical thickness, this involves a path
+from TOA to the layer of interest, while for diffuse (upward) optical thickess
+this involves a direct path from TOA to the surface and subsequent diffuse path
+to the layer of interest. There is no distinction made betweeen diffuse
+upward and diffuse downward optical thickness.
 
-In a broadband radiative transfer scheme, it is necessary to distinguish
-downward and upward optical thickness of a layer. This is because the optical
-thickness depends not only on the properties of the layer
-(as in monochromatic case), but also the spectral composition of the radiation
-entering the layer and the length of the path through the layer,
-which determines the amount of spectral saturation.
-
-The downward shortwave optical thickness is calculated for direct radiation
+The direct shortwave optical thickness is calculated for direct radiation
 coming from the Sun at a zenith angle $\theta$ and is equal
 to the optical path through the layer normalised by cosine of the zenith
 angle (which is proportional to the length of the path).
 
-The upward shortwave optical thickness, on the contrary, is calculated for diffuse
-radiation reflected from the surface, which does not have any associated
+The upward shortwave optical thickness is calculated for
+diffuse radiation reflected from the surface, which does not have any associated
 direction in the $\delta$-two stream approximation.
 In this case, the dependence
 on the zenith angle is only through its influence on the spectrum of the
-incoming radiation, which has passed through the atmosphere as parallel
-radiation at the given zenith angle.
+incoming radiation, which has passed through the atmosphere as direct
+radiation from TOA to the surface at the given zenith angle.
 
-The geometry of the downward case is depicted in Fig.\ \ref{fig:geometry}.
+In the following steps, the gaseous optical thickness is turned into
+gaseous differential layer coefficients $\alpha_i$
+(Section\ \ref{sec:differential-form-of-rte}), weighted with the contributions
+of other processes by \eqref{eq:alpha-weighting}, from which
+the integral coefficients $a_i$ are calculated
+(Section\ \ref{sec:integral-form-of-rte}),
+and finally solved by the adding method (Section\ \ref{sec:adding-method}).
 
+The geometry of the downward case is depicted in Figure\ \ref{fig:geometry}.
 
 ### Modified Cosine of the Zenith Angle
 
