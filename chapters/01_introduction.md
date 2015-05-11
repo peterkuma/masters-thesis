@@ -16,7 +16,7 @@ In the most simple
 implementation, fluxes calculated by the radiation scheme are kept constant
 across multiple model time steps, or a single calculation is performed for
 blocks of neighbouring domain points. More complex implementations
-interpolate resulting fluxes with respect to changes in temperature profile
+scale the resulting fluxes with respect to changes in temperature profile
 and the solar zenith angle [@morcrette2008].
 In such a case, the information about
 temporal or spatial variability is not fully taken into account. The situation

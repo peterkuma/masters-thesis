@@ -52,9 +52,10 @@ $\sigma$ coordinates near the surface
 to pressure coordinates in the free atmosphere. Therefore, boundary layers
 follow the ground, while upper layers follow isobaric surfaces.
 Apart from an NWP model, ACRANEB2 can be run in isolation inside a
-single column model. This is useful mostly for diagnostic purposes.
+single column model (acra2 SCM). This is useful mostly for diagnostic purposes.
 
-[^vectorisation]: Though in parallel, in order to allow for vectorisation.
+[^vectorisation]: Though these calculations are carried out in parallel,
+in order to allow for vectorisation.
 
 ### Input and Output
 

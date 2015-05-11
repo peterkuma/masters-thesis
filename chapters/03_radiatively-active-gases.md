@@ -397,15 +397,15 @@ $$
 L(\tilde{u}) = \tilde{u}e^{-\tilde{u}}[I_0(\tilde{u}) + I_1(\tilde{u})]
 $$
 
-Using this analytic form, it can be shown that for large mass path,
-equivalent width approaches:
+Using this analytical form, it can be shown that for a large mass path,
+the equivalent width approaches:
 
 $$
 W \approx 2\sqrt{S\alpha u}
 $$
  
 This is the _strong line limit_, when absorption by a single line
-grows in proportion to the square root of mass path $\sqrt{u}$.
+grows in proportion to the square root of mass path ($\sqrt{u}$).
 
 The absorption by a single line starts off linearly, but with increasing
 absorber amount the monochromatic radiance near the line centre becomes

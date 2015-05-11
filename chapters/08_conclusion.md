@@ -47,7 +47,7 @@ The analysis revealed the impact on shortwave heating rate up to ±0.4\ K/day
 (90 % confidence interval) at noon,
 but this value was considerably less at other times of the day (with
 less incoming solar radiation) and scaled with the length of the shortwave
-intermittency period. A typical tooth-like pattern was observed in time series,
+intermittency period. A typical ‘tooth-like’ pattern was observed in time series,
 indicating that with the start of a new intermittency period
 (when gaseous optical thickness is fully calculated),
 there is a strong reduction in error.

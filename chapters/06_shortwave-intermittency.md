@@ -1,5 +1,6 @@
 Shortwave Intermittency in ACRANEB2
 ===================================
+\label{chap:shortwave-intermittency-in-acraneb2}
 
 As the atmospheric gaseous composition and temperature and pressure profile
 do not
@@ -412,26 +413,27 @@ In order to determine how shortwave intermittency affects accuracy,
 we looked at the global bias in heating rate, as well as the local error
 and its statistical distribution. The shortwave intermittency runs were
 compared to the base configuration with no shortwave intermittency.
-The impact on shortwave heating rates and longwave heating rates can
+The impact on shortwave and longwave heating rates can
 be seen in Figure\ \ref{fig:shortwave-heating-rate-error}
 and Figure\ \ref{fig:longwave-heating-rate-error}, resp.
-The impact on bias was negligible ($<\ 0.2\ \text{K/day}$)
+The impact on bias was negligible (<\ 0.02 K/day)
 in both shortwave and longwave heating rates.
 
 It should be noted that in the time series plot, the time axis is in UTC,
-therefore domain points are not synchronised with respect to local solar time.
+therefore domain points are not synchronised with respect to their
+local solar time.
 
 From the shortwave heating rate error time series plot, it is clear
 that the magnitude of error is the greatest during the day (up to
-$0.4\ \text{K/day}$ with 2-h shortwave intermittency), whereas during
+±0.4\ K/day with 2-h shortwave intermittency), whereas during
 the night the error is zero. At the ‘full’ steps when shortwave gaseous
 optical depths are calculated, the error drops markedly, giving rise
-to a tooth-like pattern,
+to a ‘tooth-like‘ pattern,
 but a non-reducible error accumulates with time as the run diverges
 from the reference run.
 
-Shortwave intermittency has an impact on the longwave heating rates,
-leading to error of about 0.6\ K/day in the second half of the simulation,
+Shortwave intermittency has an impact on longwave heating rates as well,
+leading to an error of about 0.6\ K/day in the second half of the simulation,
 i.e. greater than in shortwave heating rates.
 This is likely due the strong sensitivity of longwave fluxes on the temperature
 profile.
@@ -450,6 +452,7 @@ We can see that the difference is on the order of K/day, which is small
 compared to the accuracy of the scheme. -->
 
 ### Performance
+\label{sec:shortwave-intermittency-performance}
 
 The total model run time of shortwave intermittency experiments is displayed in
 Figure\ \ref{fig:shortwave-intermittency-performance}. The time reduction was up
@@ -463,14 +466,17 @@ optical thickness is calculated twice
 period), and the implementation only introduces overhead compared to the
 base configuration.
 
-**Note:** It has to be noted that the performance analysis had to be performed with
-day/night segmentation
+**Note:** It has to be noted that the performance analysis had to be performed
+with day/night segmentation
 disabled, as it causes the model run time to be non-monotonic with the length
 of the shortwave intermittency interval. With day/night segmentation enabled,
-time reduction scales up to 96\ % in the 2-h shortwave intermittency case,
-whereas in the results presented, the reduction is up to 94\ %
+time reduction scales up to 4\ % in the 2-h shortwave intermittency case,
+whereas in the results presented, the reduction is up to 6\ %
 (i.e. more pronounced). We believe that this choice is justified by the improved
-clarity of interpretation of the results.
+clarity of interpretation of the results. In practice, however, the day/night
+segmentation is much preferred due to its time saving (about 3\ %).
+For completeness, the results with day/night segmentation enabled are in
+Appendix\ \ref{appendix:shortwave-intermittency-performance-with-dn}.
 
 Figure\ \ref{fig:shortwave-intermittency-performance-accuracy}
 compares performance and accuracy of the model runs. As such, it is important
