@@ -1,6 +1,41 @@
 Abstrakt{-}
 ========
 
+\fontspec{Minion Pro}
+
+Výpočtová náročnosť radiačných schém v NWP modeloch neumožňuje plné
+výpočty radiačného prenosu v každom časovom kroku a bode mriežky modelu.
+Tradične to modely riešia volaním radiačnej schémy s redukovaným časovým
+alebo priestorovým rozlíšením, prípadne so škálovaním výsledných tokov
+na zmenu teplotného profilu a slnečného zenitálneho uhla. V dôsledku toho
+je zanedbaná variabilita oblačnosti a dochádza tak k značnej chybe.
+V krátkovlnnom spektre sú relatívne pomaly sa meniace plynové
+optické vlastnosti jednou z najdrahších časí na výpočet. Navrhujeme
+modifikáciu krátkovlnného solveru širokospektrálnej radiačnej schémy
+ACRANEB2 na interpoláciu plynových optických hrúbok vrstiev vzhľadom na
+slnečný zenitálny uhol vrámci zvolenej prechodnej (intermitentnej) periódy,
+zatiaľ čo vývoj oblačnosti je stále zachytený pomocou výpočtu tokov cez
+adding metódu v každom časovom kroku modelu. V tejto práci používame
+jednostĺpcový model na štúdium závislosti krátkovlnnej plynovej optickej
+hrúbky na slnečnom zenitálnom uhle, ukazujeme, že táto závislosť
+môže byť aproximovaná s dobrou presnosťou, implementujeme túto aproximáciu
+v radiačnej schéme ACRANEB2 a vyhodnocujeme dopad na presnosť ohrevov
+vrstiev a dĺžku behu modelu v 24 hodinovej simulácii ohraničeného NWP
+modelu ALADIN. Ukazujeme, že táto úprava vedie k úspore času do 4\ %
+celkového času behu modelu a spôsobuje chybu krátkovlnných ohrevov vrstiev
+do ±0.4 K/deň na poludnie (90\ % konfidenčný interval) a 0.06 K/deň
+(stredná abs. chyba) cez celú doménu a časovú periódu a že
+výkon aj presnosť sa škálujú s dĺžkou intermitentnej periódy.
+Tento vzťah je zhrnutý v porovnaní ceny a presnosti, poskytujúci
+potencionálnym užívateľom usmernenie pri voľbe optimálnej intermitentnej
+periódy pri daných okolnostiach. Navrhovaná zmena sa stala súčasťou
+radiačnej schémy ACRANEB2 implementovanej v balíku ALARO-1 verzia A
+a od januára 2015 je v operatívnom použití v modeli ALADIN/CHMI.
+
+**Kľúčové slová:** krátkovlnný radiačný kód, cena verzus presnosť,
+širokospektrálny prístup, intermitencia, plynová optická hrúbka
+
+\fontfamily{\familydefault}\selectfont
 
 Abstract{-}
 ========
