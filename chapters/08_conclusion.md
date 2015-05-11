@@ -9,8 +9,9 @@ spatial subsampling will still be necessary. If we can transition from
 simple reduction of resolution or frequency to more elaborate approaches,
 the models can benefit from increased accuracy, or allocate the time saved
 to other components. The ACRANEB2 radiation scheme was devised to address
-this issue by having only two spectral bands, allowing for (otherwise too large)
-fields to be kept in memory and be reused between time steps.
+this issue by having only two spectral bands, allowing for its
+global fields to be kept in memory and be reused between time steps
+(otherwise the memory requirements would be prohibitive).
 In the first place, the longwave intermittency of gaseous optical thickness
 was implemented (not as part of this work), leading to tremendous computational
 time saving, necessary for it to be a viable competitor to other schemes with
@@ -42,15 +43,16 @@ data export capabilities of the model and allowing for a comprehensive analysis
 and plotting in the powerful statistical programming environment R.
 Prepared were 6 experiments with different choices of the shortwave
 intermittency period, and run on the NEC SX-9 supercomputer at CHMI.
-The analysis revealed the impact on shortwave heating rates up to ±0.4\ K/day at
-noon, but this value was considerably less at other times of the day (with
+The analysis revealed the impact on shortwave heating rate up to ±0.4\ K/day
+(90 % confidence interval) at noon,
+but this value was considerably less at other times of the day (with
 less incoming solar radiation) and scaled with the length of the shortwave
 intermittency period. A typical tooth-like pattern was observed in time series,
 indicating that with the start of a new intermittency period
 (when gaseous optical thickness is fully calculated),
 there is a strong reduction in error.
 Somewhat surprisingly, it was found that the effect on longwave heating rate
-error is also present and is even greater (up to 0.6 K/day), but it does
+error is present in an even greater magnitude (up to 0.6 K/day), but it does
 not depend on the length of the shortwave intermittency period and accumulates
 monotonically with time. It is hypothesised that it is the result of the innate
 uncertainty (i.e. presence of noise) in temperature profiles in the model,
@@ -63,7 +65,7 @@ Performance of the experiments was more difficult to evaluate due to three
 issues: (1) the supercomputer at CHMI is normally shared by many jobs,
 affecting even the
 measured CPU time, (2) day/night segmentation of computation
-in ACRANEB2 makes the CPU time non-monotonic with
+in ACRANEB2 makes the CPU time not strictly monotonic with
 shortwave intermittency period,
 (3) SX-9 are vectorising processors, limiting the
 applicability to other architectures.
@@ -86,14 +88,14 @@ Unfortunately, the assessment of longwave intermittency as set out in the
 thesis assigment was not completed due to time constraints,
 but in a smaller adjunct analysis we performed a comparison of
 ACRANEB2 with the
-radiation scheme FRM (also available in the ALADIN model) in terms of their
+radiation scheme FMR/RRTM (also available in the ALADIN model) in terms of their
 accuracy with 1-h longwave and shortwave intermittency (ACRANEB2)
 and 1-h full intermittency (FMR). The purpose was to demonstrate the detrimental
-effect of full intermittency on heating rates accuracy, and how it can be
+effect of full intermittency on heating rate accuracy, and how it can be
 alleviated with the combination of longwave and shortwave intermittency.
-The results were in favour of ACRANEB2,
+The results were clearly in favour of partial intermittency in ACRANEB2,
 but the analysis did not seek to compare performance aspects. The analysis
-hinted an interesting degradation of performance in the lower troposphere
+hinted an interesting degradation of accuracy in the lower troposphere
 in ACRANEB2, which might be of interest in a continued development
 of the longwave solver. Because of the limited scope of this adjunct analysis,
 it was formulated as an appendix (Appendix\ \ref{appendix:acraneb2-vs-fmr}).
