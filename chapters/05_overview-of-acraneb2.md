@@ -20,20 +20,22 @@ changing gaseous optical depths. This makes calling the radiation scheme
 at every model time step feasible,
 responding rapidly to the development of cloud cover.
 
-We can characterise the ACRANEB2 scheme by the choices of methods
+We can characterise the ACRANEB2 radiation scheme by the choices of methods
 and approximations:
 
-- Horizontally homogeneous (1D)
-- $\delta$-two stream approximation
-- Broadband model based (two bands: shortwave and longwave),
-  with modified Malkmus band model transmission approximation
+- Plane parallel and $\delta$-two stream approximation
+- Broadband spectral division with two bands: shortwave and longwave
+- Gaseous optical depths calculated with a modified Malkmus band model
+- Parameterised saturation of shortwave cloud absorption and Rayleigh scattering 
 - Curtis-Godson approximation of inhomogeneous path transmission
 - Adding method for flux computation to account for multiple scattering
-  in shortwave and longwave spectrum
-- Computational intermittency in longwave and shortwave spectrum
+  in the shortwave and longwave spectrum
+- Temporal subsampling (intermittency) in the longwave and shortwave spectrum
+- Longwave solution based on a net exchange rate formulation
+- Gray-body approximation of aerosols and Earth's surface
 
 ACRANEB2 is currently available as an optional radiation scheme
-in the NWP model ALADIN of the RC LACE[^rc-lace] community.
+in the ALARO-1 packages of the NWP model ALADIN.
 
 [^rc-lace]: Regional Cooperation for Limited Area Modelling in Central Europe
 (\url{http://www.rclace.eu/}).
