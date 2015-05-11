@@ -90,7 +90,8 @@ but in a smaller adjunct analysis we performed a comparison of
 ACRANEB2 with the
 radiation scheme FMR/RRTM (also available in the ALADIN model) in terms of their
 accuracy with 1-h longwave and shortwave intermittency (ACRANEB2)
-and 1-h full intermittency (FMR). The purpose was to demonstrate the detrimental
+and 1-h full intermittency (FMR/RRTM).
+The purpose was to demonstrate the detrimental
 effect of full intermittency on heating rate accuracy, and how it can be
 alleviated with the combination of longwave and shortwave intermittency.
 The results were clearly in favour of partial intermittency in ACRANEB2,
